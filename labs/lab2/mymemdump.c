@@ -4,31 +4,31 @@
 #include <stdlib.h>
 
 void mymemdump(FILE * fd, char * p , int len) {
-    // Add your code here.
-    // You may see p as an array.
-    // p[0] will return the element 0 
-    // p[1] will return the element 1 and so on
-    
-    int count = 0;
-    while ((count * 16) < len) {
-    p += count * 16;
-    fprintf(fd, "0x%016lX: ", (unsigned long) p);
-    for (int i = (16 * count); i < (16 * (count + 1)); i++) {
-      int c = p[i]&0xFF;
-        
-      // Print first byte as hexadecimal
-      fprintf(fd, "%02X ", c);
-    }
-	fprintf(fd, " ");
-    for (int i = (16 * count); i < (16 * (count + 1)); i++) {
-      int c = p[i]&0xFF;
-      // Print first byte as character
-      if (c>=127)
-        fprintf(fd, "%c", '.');
-      else
-      fprintf(fd, "%c", (c>=32)?c:'.');
-    }
-    count++;
-    fprintf(fd,"\n");
-    }
+	fprintf(fd, "0x%016lX: ", (unsigned long) p);
+	for (int i = 0; i < len; i++) {
+		fprintf(fd, "%02X ", p[i]&0xFF);
+		if (((i+1) % 16) == 0){
+			fprintf(fd, " ");
+			for (int j = (i - 15); j <= i; j++) {
+				if (((p[j]&0xFF) < 127) && ((p[j]&0xFF) >= 32))
+					fprintf(fd, "%c", p[j]&0xFF);
+				else
+					fprintf(fd, "%c", '.');
+			}
+			fprintf(fd, "\n");
+			if ((i+1) < len)
+				fprintf(fd, "0x%016lX: ", (unsigned long) (p + i + 1));
+		}
+		else if (((len % 16) != 0) && !((i+1) < len)) {
+			for (int j = 0; j < (3 * (16 - (len % 16))) + 1; j++)			
+				fprintf(fd, " ");
+			for (int j = (i - (len % 16) + 1); j <= i; j++) {
+				if (((p[j]&0xFF) < 127) && ((p[j]&0xFF) >= 32))
+					fprintf(fd, "%c", p[j]&0xFF);
+				else
+					fprintf(fd, "%c", '.');
+			}
+			fprintf(fd, "\n");
+		}
+	}
 }
