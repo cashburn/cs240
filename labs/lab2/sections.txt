@@ -1,0 +1,22 @@
+Address     Variable/Function   Section
+----------- -----------------   -------
+0x4005b2    foo                 Text
+0x40058d    main                Text
+0x601048	a
+0x60104c	e
+0x601064	c
+0x66ea667c	d
+0x66ea669c	b
+0x66ea66a0	p
+0x66ea66a8	str
+
+
+
+
+&a=0x601048
+&b=0x66ea669c &c=0x601064
+&p=0x66ea66a0 p=0x1dad010
+&str=0x66ea66a8 str=0x4006f5
+&d=0x66ea667c &e=0x60104c
+main=0x4005b2 &foo=0x40058d
+
