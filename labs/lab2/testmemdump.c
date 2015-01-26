@@ -123,8 +123,8 @@ main(int argc, char ** argv) {
   	expectedoutput =   memdump_str(0, (char *) str, 32);
   }
   else if ( testNum == 4) {
-  	myoutput =   memdump_str(1, (char *) &y, 41);
-  	expectedoutput =   memdump_str(0, (char *) &y, 41);
+  	myoutput =   memdump_str(1, (char *) &y, 8);
+  	expectedoutput =   memdump_str(0, (char *) &y, 8);
   }
   else if ( testNum == 5) {
   	myoutput =   memdump_str(1, (char *) &x.a, 64);
