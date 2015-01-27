@@ -10,7 +10,7 @@ void mymemdump(FILE * fd, char * p , int len) {
 		if (((i+1) % 16) == 0){
 			fprintf(fd, " ");
 			for (int j = (i - 15); j <= i; j++) {
-				if (((p[j]&0xFF) < 127) && ((p[j]&0xFF) >= 32))
+				if (((p[j]&0xFF) <= 127) && ((p[j]&0xFF) >= 32))
 					fprintf(fd, "%c", p[j]&0xFF);
 				else
 					fprintf(fd, "%c", '.');
@@ -23,7 +23,7 @@ void mymemdump(FILE * fd, char * p , int len) {
 			for (int j = 0; j < (3 * (16 - (len % 16))) + 1; j++)			
 				fprintf(fd, " ");
 			for (int j = (i - (len % 16) + 1); j <= i; j++) {
-				if (((p[j]&0xFF) < 127) && ((p[j]&0xFF) >= 32))
+				if (((p[j]&0xFF) <= 127) && ((p[j]&0xFF) >= 32))
 					fprintf(fd, "%c", p[j]&0xFF);
 				else
 					fprintf(fd, "%c", '.');
