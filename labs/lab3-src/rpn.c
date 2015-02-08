@@ -31,9 +31,11 @@ double rpn_eval(char * fileName, double x) {
         return arg1 * arg2;
     }
 	while ((c = fgetc(fd)) != EOF) {
-		fseek(fd, -1l, SEEK_CUR);
+		//fseek(fd, -1l, SEEK_CUR);
 		fscanf(fd, "%s", string);
 		i = strcspn(string, "123456789");
+		if ((c == '\n') || (c == ' '))
+			string = ""
 		if (i != strlen(string)) {
 			stack_push(atof(string));
 			while (((c = fgetc(fd)) != '\n') && (c != ' ')) { }
