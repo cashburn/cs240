@@ -33,7 +33,7 @@ double rpn_eval(char * fileName, double x) {
 	while ((c = fgetc(fd)) != EOF) {
 		
 		
-		if ((c != '\n') && (c != ' ')) {
+		if ((c == '\n') || (c == ' ')) {
 			strcpy(string, "");
 			continue;
 		}
@@ -42,7 +42,7 @@ double rpn_eval(char * fileName, double x) {
 		i = strcspn(string, "123456789");
 		if (i != strlen(string)) {
 			stack_push(atof(string));
-			while (((c = fgetc(fd)) != '\n') && (c != ' ')) { }
+			//while (((c = fgetc(fd)) != '\n') && (c != ' ')) { }
 			count++;
 		}
 		if (strcmp(string, "+") == 0) {
