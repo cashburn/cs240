@@ -2,7 +2,7 @@
 
 -------------------------------------------------
 CS240: Lab 3. cashburn   
-Sun Feb  8 14:26:05 EST 2015
+Sun Feb  8 15:05:31 EST 2015
 -------------------------------------------------
 ./countlines in1                    : 4   of 4  
 ./countlines in2                    : 4   of 4  
@@ -11,7 +11,7 @@ Sun Feb  8 14:26:05 EST 2015
 ./towords in2                       : 4   of 4  
 ./towords hamlet                    : 3   of 3  
 ./test_stack                        : 10  of 10 
-./rpncalc rpn1                      : 0   of 3  
+./rpncalc rpn1                      : 3   of 3  
 ./rpncalc rpn2                      : 0   of 3  
 ./rpncalc rpn3                      : 0   of 3  
 ./rpncalc rpn4                      : 0   of 3  
@@ -30,5 +30,5 @@ Sun Feb  8 14:26:05 EST 2015
 ./plot rpn15 -5 5                   : 0   of 8  
 ./plot rpn15 -10 10                 : 0   of 7  
 -------------------------------------------------
-                              Total:  32 of 100
+                              Total:  35 of 100
 
