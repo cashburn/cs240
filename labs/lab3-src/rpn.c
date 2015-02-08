@@ -84,9 +84,9 @@ double rpn_eval(char * fileName, double x) {
 	}
 	if (count == 1)
 		return stack_pop();
-	if (count < 1)
-		printf("Elements remain in the stack\n");
 	if (count > 1)
+		printf("Elements remain in the stack\n");
+	if (count < 1)
 		printf("Stack underflow\n");
 	exit(1);
 }
