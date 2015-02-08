@@ -35,7 +35,7 @@ double rpn_eval(char * fileName, double x) {
 		fseek(fd, -1l, SEEK_CUR);
 		fscanf(fd, "%s", string);
 		i = strstr((char *) string, "123456789");
-		if (i != NULL {
+		if (i != NULL) {
 			stack_push(atof(string));
 			while (((c = fgetc(fd)) != '\n') && (c != ' ')) { }
 			count++;
