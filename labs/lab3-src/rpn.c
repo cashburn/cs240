@@ -16,7 +16,7 @@ double rpn_eval(char * fileName, double x) {
 		exit(1);
 	}
 	int count = 0;
-	int c
+	int c;
 	char * i;
 	char string[6];
 	double add(double arg2, double arg1) {
