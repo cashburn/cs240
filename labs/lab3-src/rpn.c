@@ -85,6 +85,6 @@ double rpn_eval(char * fileName, double x) {
 	if (count == 1)
 		return stack_pop();
 	
-	
+	exit(1);
 }
 
