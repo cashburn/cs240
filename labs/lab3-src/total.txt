@@ -5,9 +5,9 @@
 ./towords in2                       : 4   of 4  
 ./towords hamlet                    : 3   of 3  
 ./test_stack                        : 10  of 10 
-./rpncalc rpn1                      : 3   of 3  
-./rpncalc rpn2                      : 3   of 3  
-./rpncalc rpn3                      : 3   of 3  
+./rpncalc rpn1                      : 0   of 3  
+./rpncalc rpn2                      : 0   of 3  
+./rpncalc rpn3                      : 0   of 3  
 ./rpncalc rpn4                      : 0   of 3  
 ./rpncalc rpn5                      : 0   of 3  
 ./rpncalc rpn6                      : 0   of 3  
@@ -15,7 +15,7 @@
 ./rpncalc rpn8                      : 0   of 3  
 ./rpncalc rpn9                      : 0   of 3  
 ./rpncalc rpn10                     : 0   of 3  
-./rpncalc rpn11 3                   : 3   of 3  
+./rpncalc rpn11 3                   : 0   of 3  
 ./rpncalc rpn12 45                  : 0   of 3  
 ./rpncalc rpn13 2                   : 0   of 3  
 ./rpncalc rpn13 2                   : 0   of 3  
