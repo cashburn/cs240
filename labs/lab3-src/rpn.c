@@ -36,7 +36,7 @@ double rpn_eval(char * fileName, double x) {
 		if ((c >= '0') && (c <= '9')) {
 			fseek(fd, -1l, SEEK_CUR);
 			fscanf(fd, "%s", string);
-			stack_push(atof(temp));
+			stack_push(atof(string));
 			while (((c = fgetc(fd)) != '\n') && (c != ' ')) { }
 			count++;
 		}
