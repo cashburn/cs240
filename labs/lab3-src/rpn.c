@@ -67,23 +67,19 @@ double rpn_eval(char * fileName, double x) {
 		}
 		if (strcmp(string, "sin") == 0) {
 			stack_push(sin(stack_pop()));
-			count++;
 		}
 		if (strcmp(string, "cos") == 0) {
 			stack_push(cos(stack_pop()));
-			count++;
 		}
 		if (strcmp(string, "exp") == 0) {
 			stack_push(exp(stack_pop()));
-			count++;
 		}
 		if (strcmp(string, "pow") == 0) {
 			stack_push(pow(stack_pop(),stack_pop()));
-			count++;
+			count--;
 		}
 		if (strcmp(string, "log") == 0) {
 			stack_push(log(stack_pop()));
-			count++;
 		}
 	}
 	if (count == 1)
