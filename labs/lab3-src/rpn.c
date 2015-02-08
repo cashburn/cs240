@@ -16,7 +16,7 @@ double rpn_eval(char * fileName, double x) {
 		exit(1);
 	}
 	int count = 0;
-	int c;
+	int c, i;
 	char string[6];
 	double add(double arg2, double arg1) {
         return arg1 + arg2;
@@ -33,50 +33,51 @@ double rpn_eval(char * fileName, double x) {
 	while ((c = fgetc(fd)) != EOF) {
 		fseek(fd, -1l, SEEK_CUR);
 		fscanf(fd, "%s", string);
+		i = strcspn(string, NULL)
 		if ((c >= '0') && (c <= '9')) {
 			fseek(fd, -1l, SEEK_CUR);
 			fscanf(fd, "%s", string);
-			stack_push(atof(temp));
+			stack_push(atof(string));
 			while (((c = fgetc(fd)) != '\n') && (c != ' ')) { }
 			count++;
 		}
-		if (string == "+") {
+		if (strcmp(string, "+") == 0) {
 			stack_push(add(stack_pop(), stack_pop()));
 			count--;
 		}
-		if (string == "-") {
+		if (strcmp(string, "-") == 0) {
 			stack_push(sub(stack_pop(), stack_pop()));
 			count--;
 		}
-		if (string == "/") {
+		if (strcmp(string, "/") == 0) {
 			stack_push(div(stack_pop(), stack_pop()));
 			count--;
 		}
-		if (string == "*") {
+		if (strcmp(string, "*") == 0) {
 			stack_push(mul(stack_pop(), stack_pop()));
 			count--;
 		}
-		if (string == "x") {
+		if (strcmp(string, "x") == 0) {
 			stack_push(x);
 			count++;
 		}
-		if (string == "sin") {
+		if (strcmp(string, "sin") == 0) {
 			stack_push(sin(stack_pop()));
 			count++;
 		}
-		if (string == "cos") {
+		if (strcmp(string, "cos") == 0) {
 			stack_push(cos(stack_pop()));
 			count++;
 		}
-		if (string == "exp") {
+		if (strcmp(string, "exp") == 0) {
 			stack_push(exp(stack_pop()));
 			count++;
 		}
-		if (string == "pow") {
+		if (strcmp(string, "pow") == 0) {
 			stack_push(pow(stack_pop(),stack_pop()));
 			count++;
 		}
-		if (string == "log") {
+		if (strcmp(string, "log") == 0) {
 			stack_push(log(stack_pop()));
 			count++;
 		}
