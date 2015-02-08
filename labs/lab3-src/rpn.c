@@ -17,6 +17,7 @@ double rpn_eval(char * fileName, double x) {
 	}
 	int count = 0;
 	int c;
+	char string[6];
 	double add(double arg2, double arg1) {
         return arg1 + arg2;
     }
@@ -30,70 +31,54 @@ double rpn_eval(char * fileName, double x) {
         return arg1 * arg2;
     }
 	while ((c = fgetc(fd)) != EOF) {
-		if ((c == ' ') || (c == '\n'))
-			continue;
+		fseek(fd, -1l, SEEK_CUR);
+		fscanf(fd, "%s", string);
 		if ((c >= '0') && (c <= '9')) {
-			char temp[5];
 			fseek(fd, -1l, SEEK_CUR);
-			fscanf(fd, "%s", temp);
+			fscanf(fd, "%s", string);
 			stack_push(atof(temp));
 			while (((c = fgetc(fd)) != '\n') && (c != ' ')) { }
 			count++;
 		}
-		if (c == '+') {
+		if (string == "+") {
 			stack_push(add(stack_pop(), stack_pop()));
 			count--;
 		}
-		if (c == '-') {
+		if (string == "-") {
 			stack_push(sub(stack_pop(), stack_pop()));
 			count--;
 		}
-		if (c == '/') {
+		if (string == "/") {
 			stack_push(div(stack_pop(), stack_pop()));
 			count--;
 		}
-		if (c == '*') {
+		if (string == "*") {
 			stack_push(mul(stack_pop(), stack_pop()));
 			count--;
 		}
-		if (c == 'x') {
+		if (string == "x") {
 			stack_push(x);
 			count++;
 		}
-		if (c == 's') {
-			if ((c = fgetc(fd)) == 'i')
-				if ((c = fgetc(fd)) == 'n') {
-					stack_push(sin(stack_pop()));
-					count++;
-				}
+		if (string == "sin") {
+			stack_push(sin(stack_pop()));
+			count++;
 		}
-		if (c == 'c') {
-			if ((c = fgetc(fd)) == 'o')
-				if ((c = fgetc(fd)) == 's') {
-					stack_push(cos(stack_pop()));
-					count++;
-				}
+		if (string == "cos") {
+			stack_push(cos(stack_pop()));
+			count++;
 		}
-		if (c == 'e') {
-			if ((c = fgetc(fd)) == 'x')
-				if ((c = fgetc(fd)) == 'p') {
-					stack_push(exp(stack_pop()));
-					count++;
-				}
+		if (string == "exp") {
+			stack_push(exp(stack_pop()));
+			count++;
 		}
-		if (c == 'p') {
-			if ((c = fgetc(fd)) == 'o')
-				if ((c = fgetc(fd)) == 'w') {
-					stack_push(pow(stack_pop(),stack_pop()));
-					count++;
-				}
+		if (string == "pow") {
+			stack_push(pow(stack_pop(),stack_pop()));
+			count++;
 		}
-		if (c == 'l') {
-			if ((c = fgetc(fd)) == 'o')
-				if ((c = fgetc(fd)) == 'g') {
-					stack_push(log(stack_pop()));
-					count++;
-				}
+		if (string == "log") {
+			stack_push(log(stack_pop()));
+			count++;
 		}
 	}
 	if (count == 1)
