@@ -36,9 +36,9 @@ void plotXY(int x, int y, char c) {
 
 void createPlot( char * funcFile, double minX, double maxX) {
   int nvals = MAXCOLS;
-  double yy[MAXROWS];
+  double yy[MAXCOLS];
   clearPlot();
-  double step = (maxX - minX)/MAXROWS;
+  double step = (maxX - minX)/MAXCOLS;
   // Evaluate function and store in vector yy
   double value = minX;
   for (int i = 0; value < maxX; i++, value += step) {
@@ -47,7 +47,7 @@ void createPlot( char * funcFile, double minX, double maxX) {
   //Compute maximum and minimum y in vector yy
   double maxY = yy[0];
   double minY = yy[0];
-  for (int i = 0; i < MAXROWS; i++) {
+  for (int i = 0; i < MAXCOLS; i++) {
     if (yy[i] > maxY)
       maxY = yy[i];
     if (yy[i] < minY)
