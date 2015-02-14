@@ -82,6 +82,7 @@ double rpn_eval(char * fileName, double x) {
 			stack_push(log(stack_pop()));
 		}
 	}
+	fclose(fd);
 	if (count == 1)
 		return stack_pop();
 	if (count > 1)
