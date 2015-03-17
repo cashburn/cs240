@@ -1,0 +1,809 @@
+rm -f test_mystring isbalanced test_slist countwords *.out
+gcc -g -o test_mystring mystring.c test_mystring.c
+gcc -g -o test_slist test_slist.c slist.c
+gcc -g -o isbalanced isbalanced.c
+gcc -g -o countwords countwords.c
+======= test_mystring test1  ===========
+Running test1
+CS240 is a great class
+Test passed...
+
+======= test_mystring test2  ===========
+Running test2
+world
+Hello world
+NULL
+NULL
+Test passed...
+
+======= test_mystring test3  ===========
+Running test3
+Original: s1=<    hello   >
+s1=<hello>
+Original: s1=<hello   >
+s1=<hello>
+Original: s1=<    hello>
+s1=<hello>
+Original: s1=<hello>
+s1=<hello>
+Test passed...
+
+======= test_mystring test4  ===========
+*****Test Failed*****
+------ Your Output ----------
+------ Expected Output ------
+Running test4
+original=<apple>
+from=<pp>
+to=<orange>
+replace=<b=aorangele>
+original=Dear friend, We thank you friend for your present.
+We hope to see you friend in our next party.
+Sincerely yours.
+
+from=<friend>
+to=<George>
+result=<Dear George, We thank you George for your present.
+We hope to see you George in our next party.
+Sincerely yours.
+>
+original=aaa bbbbb a bbbbaa bbb vvv bb fff b
+from=<bb>
+to=< xxx >
+result=<aaa  xxx  xxx b a  xxx  xxx aa  xxx b vvv  xxx  fff b>
+------ Difference -----------
+0a1,19
+> Running test4
+> original=<apple>
+> from=<pp>
+> to=<orange>
+> replace=<b=aorangele>
+> original=Dear friend, We thank you friend for your present.
+> We hope to see you friend in our next party.
+> Sincerely yours.
+> 
+> from=<friend>
+> to=<George>
+> result=<Dear George, We thank you George for your present.
+> We hope to see you George in our next party.
+> Sincerely yours.
+> >
+> original=aaa bbbbb a bbbbaa bbb vvv bb fff b
+> from=<bb>
+> to=< xxx >
+> result=<aaa  xxx  xxx b a  xxx  xxx aa  xxx b vvv  xxx  fff b>
+-----------------------------
+
+======= test_slist test1  ===========
+*****Test Failed*****
+------ Your Output ----------
+Running test1
+--- List ---
+--- List ---
+------ Expected Output ------
+Running test1
+--- List ---
+val=2
+val=4
+val=1
+val=8
+val=3
+--- List ---
+val=2
+val=4
+val=1
+val=8
+val=3
+val=2
+val=4
+val=1
+val=8
+val=3
+------ Difference -----------
+2a3,7
+> val=2
+> val=4
+> val=1
+> val=8
+> val=3
+3a9,18
+> val=2
+> val=4
+> val=1
+> val=8
+> val=3
+> val=2
+> val=4
+> val=1
+> val=8
+> val=3
+-----------------------------
+
+======= test_slist test2  ===========
+*****Test Failed*****
+------ Your Output ----------
+Running test2
+--- List ---
+remove 8
+--- List ---
+remove 3
+--- List ---
+remove 3
+--- List ---
+remove 2
+--- List ---
+------ Expected Output ------
+Running test2
+--- List ---
+val=2
+val=4
+val=1
+val=8
+val=3
+val=2
+val=4
+val=1
+val=8
+val=3
+remove 8
+--- List ---
+val=2
+val=4
+val=1
+val=3
+val=2
+val=4
+val=1
+val=8
+val=3
+remove 3
+--- List ---
+val=2
+val=4
+val=1
+val=2
+val=4
+val=1
+val=8
+val=3
+remove 3
+--- List ---
+val=2
+val=4
+val=1
+val=2
+val=4
+val=1
+val=8
+remove 2
+--- List ---
+val=4
+val=1
+val=2
+val=4
+val=1
+val=8
+------ Difference -----------
+2a3,12
+> val=2
+> val=4
+> val=1
+> val=8
+> val=3
+> val=2
+> val=4
+> val=1
+> val=8
+> val=3
+4a15,23
+> val=2
+> val=4
+> val=1
+> val=3
+> val=2
+> val=4
+> val=1
+> val=8
+> val=3
+6a26,33
+> val=2
+> val=4
+> val=1
+> val=2
+> val=4
+> val=1
+> val=8
+> val=3
+8a36,42
+> val=2
+> val=4
+> val=1
+> val=2
+> val=4
+> val=1
+> val=8
+10a45,50
+> val=4
+> val=1
+> val=2
+> val=4
+> val=1
+> val=8
+-----------------------------
+
+======= test_slist test3  ===========
+*****Test Failed*****
+------ Your Output ----------
+Running test3
+--- List ---
+==== remove interval 8<=x<=9 =====
+--- List ---
+
+==== remove interval 1<=x<=3 =====
+--- List ---
+------ Expected Output ------
+Running test3
+--- List ---
+val=2
+val=4
+val=1
+val=8
+val=3
+val=2
+val=4
+val=1
+val=8
+val=3
+==== remove interval 8<=x<=9 =====
+--- List ---
+val=2
+val=4
+val=1
+val=3
+val=2
+val=4
+val=1
+val=3
+
+==== remove interval 1<=x<=3 =====
+--- List ---
+val=4
+val=4
+------ Difference -----------
+2a3,12
+> val=2
+> val=4
+> val=1
+> val=8
+> val=3
+> val=2
+> val=4
+> val=1
+> val=8
+> val=3
+4a15,22
+> val=2
+> val=4
+> val=1
+> val=3
+> val=2
+> val=4
+> val=1
+> val=3
+7a26,27
+> val=4
+> val=4
+-----------------------------
+
+======= test_slist test4  ===========
+*****Test Failed*****
+------ Your Output ----------
+------ Expected Output ------
+Running test4
+======= List 1 =====
+--- List ---
+val=2
+val=4
+val=1
+val=8
+val=2
+val=15
+======= List 2 =====
+--- List ---
+val=3
+val=5
+val=7
+val=8
+val=1
+val=10
+val=11
+val=12
+val=13
+val=2
+====== Intersection ======
+--- List ---
+val=8
+val=1
+val=2
+------ Difference -----------
+0a1,26
+> Running test4
+> ======= List 1 =====
+> --- List ---
+> val=2
+> val=4
+> val=1
+> val=8
+> val=2
+> val=15
+> ======= List 2 =====
+> --- List ---
+> val=3
+> val=5
+> val=7
+> val=8
+> val=1
+> val=10
+> val=11
+> val=12
+> val=13
+> val=2
+> ====== Intersection ======
+> --- List ---
+> val=8
+> val=1
+> val=2
+-----------------------------
+
+======= isbalanced []  ===========
+*****Test Failed*****
+------ Your Output ----------
+------ Expected Output ------
+string is balanced
+------ Difference -----------
+0a1
+> string is balanced
+-----------------------------
+
+======= isbalanced [][  ===========
+*****Test Failed*****
+------ Your Output ----------
+------ Expected Output ------
+string is not balanced
+------ Difference -----------
+0a1
+> string is not balanced
+-----------------------------
+
+======= isbalanced []]  ===========
+*****Test Failed*****
+------ Your Output ----------
+------ Expected Output ------
+string is not balanced
+------ Difference -----------
+0a1
+> string is not balanced
+-----------------------------
+
+======= isbalanced [)  ===========
+*****Test Failed*****
+------ Your Output ----------
+------ Expected Output ------
+string is not balanced
+------ Difference -----------
+0a1
+> string is not balanced
+-----------------------------
+
+======= isbalanced []{()}  ===========
+*****Test Failed*****
+------ Your Output ----------
+------ Expected Output ------
+string is balanced
+------ Difference -----------
+0a1
+> string is balanced
+-----------------------------
+
+======= isbalanced []{()()}  ===========
+*****Test Failed*****
+------ Your Output ----------
+------ Expected Output ------
+string is balanced
+------ Difference -----------
+0a1
+> string is balanced
+-----------------------------
+
+======= isbalanced ({)}  ===========
+*****Test Failed*****
+------ Your Output ----------
+------ Expected Output ------
+string is not balanced
+------ Difference -----------
+0a1
+> string is not balanced
+-----------------------------
+
+======= isbalanced ([{)]}  ===========
+*****Test Failed*****
+------ Your Output ----------
+------ Expected Output ------
+string is not balanced
+------ Difference -----------
+0a1
+> string is not balanced
+-----------------------------
+
+======= isbalanced ]  ===========
+*****Test Failed*****
+------ Your Output ----------
+------ Expected Output ------
+string is not balanced
+------ Difference -----------
+0a1
+> string is not balanced
+-----------------------------
+
+======= countwords test.txt  ===========
+*****Test Failed*****
+------ Your Output ----------
+------ Expected Output ------
+computer 2
+great 1
+is 1
+science 2
+to 1
+welcome 1
+------ Difference -----------
+0a1,6
+> computer 2
+> great 1
+> is 1
+> science 2
+> to 1
+> welcome 1
+-----------------------------
+
+======= countwords cosmos.txt  ===========
+*****Test Failed*****
+------ Your Output ----------
+------ Expected Output ------
+a 7
+across 1
+aired 1
+alan 1
+along 1
+american 1
+among 1
+and 10
+animation 1
+ann 1
+approach 1
+are 1
+as 2
+astrophysicist 1
+at 1
+augmenting 1
+back 1
+backing 1
+based 1
+been 1
+braga 1
+brannon 1
+bring 1
+bringing 1
+broadcast 1
+broadcasting 1
+but 1
+by 5
+calendar 1
+carl 1
+century 1
+channel 1
+clout 1
+co 1
+college 1
+computer 1
+concluded 1
+considered 1
+content 1
+cosmic 1
+cosmos 3
+countries 1
+creator 1
+degrasse 1
+developed 1
+documentaries 1
+documentary 1
+dozens 1
+druyan 1
+elements 1
+entire 1
+episode 1
+episodes 1
+executive 1
+extensive 1
+extra 1
+features 1
+films 1
+financial 1
+follow 1
+follows 1
+footage 1
+for 1
+format 1
+foundation 1
+fox 3
+generated 1
+geographic 2
+graphics 1
+has 1
+height 1
+home 1
+imagination 1
+in 3
+including 1
+information 1
+inspired 1
+instrumental 1
+internationally 1
+investment 1
+is 5
+june 2
+local 1
+loosely 1
+macfarlane 1
+march 1
+media 1
+milestone 1
+narration 1
+national 2
+neil 1
+network 2
+networks 1
+next 1
+night 1
+odyssey 1
+of 7
+on 5
+original 2
+other 2
+personal 1
+premiered 1
+presented 2
+produced 1
+producers 1
+provides 1
+public 1
+rebroadcast 1
+rebroadcasting 1
+release 1
+remainder 1
+s 1
+sagan 3
+same 1
+science 2
+scientific 2
+score 1
+series 12
+service 1
+seth 1
+ship 1
+show 4
+silvestri 1
+simultaneously 1
+since 1
+spacetime 1
+st 1
+stations 1
+storytelling 1
+student 1
+such 1
+television 5
+ten 1
+that 1
+the 30
+thirteen 1
+this 1
+to 4
+tyson 1
+up 1
+updated 1
+us 1
+used 1
+voyage 1
+was 3
+were 1
+which 1
+who 1
+whose 1
+widow 1
+with 4
+young 1
+------ Difference -----------
+0a1,152
+> a 7
+> across 1
+> aired 1
+> alan 1
+> along 1
+> american 1
+> among 1
+> and 10
+> animation 1
+> ann 1
+> approach 1
+> are 1
+> as 2
+> astrophysicist 1
+> at 1
+> augmenting 1
+> back 1
+> backing 1
+> based 1
+> been 1
+> braga 1
+> brannon 1
+> bring 1
+> bringing 1
+> broadcast 1
+> broadcasting 1
+> but 1
+> by 5
+> calendar 1
+> carl 1
+> century 1
+> channel 1
+> clout 1
+> co 1
+> college 1
+> computer 1
+> concluded 1
+> considered 1
+> content 1
+> cosmic 1
+> cosmos 3
+> countries 1
+> creator 1
+> degrasse 1
+> developed 1
+> documentaries 1
+> documentary 1
+> dozens 1
+> druyan 1
+> elements 1
+> entire 1
+> episode 1
+> episodes 1
+> executive 1
+> extensive 1
+> extra 1
+> features 1
+> films 1
+> financial 1
+> follow 1
+> follows 1
+> footage 1
+> for 1
+> format 1
+> foundation 1
+> fox 3
+> generated 1
+> geographic 2
+> graphics 1
+> has 1
+> height 1
+> home 1
+> imagination 1
+> in 3
+> including 1
+> information 1
+> inspired 1
+> instrumental 1
+> internationally 1
+> investment 1
+> is 5
+> june 2
+> local 1
+> loosely 1
+> macfarlane 1
+> march 1
+> media 1
+> milestone 1
+> narration 1
+> national 2
+> neil 1
+> network 2
+> networks 1
+> next 1
+> night 1
+> odyssey 1
+> of 7
+> on 5
+> original 2
+> other 2
+> personal 1
+> premiered 1
+> presented 2
+> produced 1
+> producers 1
+> provides 1
+> public 1
+> rebroadcast 1
+> rebroadcasting 1
+> release 1
+> remainder 1
+> s 1
+> sagan 3
+> same 1
+> science 2
+> scientific 2
+> score 1
+> series 12
+> service 1
+> seth 1
+> ship 1
+> show 4
+> silvestri 1
+> simultaneously 1
+> since 1
+> spacetime 1
+> st 1
+> stations 1
+> storytelling 1
+> student 1
+> such 1
+> television 5
+> ten 1
+> that 1
+> the 30
+> thirteen 1
+> this 1
+> to 4
+> tyson 1
+> up 1
+> updated 1
+> us 1
+> used 1
+> voyage 1
+> was 3
+> were 1
+> which 1
+> who 1
+> whose 1
+> widow 1
+> with 4
+> young 1
+-----------------------------
+
+0
+OK. No string functions
+
+
+
+-------------------------------------------------
+CS240: lab5. cashburn   
+-------------------------------------------------
+test_mystring test1                 : 5   of 5  
+test_mystring test2                 : 5   of 5  
+test_mystring test3                 : 5   of 5  
+test_mystring test4                 : 0   of 10 
+test_slist test1                    : 0   of 5  
+test_slist test2                    : 0   of 5  
+test_slist test3                    : 0   of 5  
+test_slist test4                    : 0   of 10 
+isbalanced []                       : 0   of 2  
+isbalanced [][                      : 0   of 2  
+isbalanced []]                      : 0   of 2  
+isbalanced [)                       : 0   of 2  
+isbalanced []{()}                   : 0   of 4  
+isbalanced []{()()}                 : 0   of 4  
+isbalanced ({)}                     : 0   of 4  
+isbalanced ([{)]}                   : 0   of 4  
+isbalanced ]                        : 0   of 1  
+countwords test.txt                 : 0   of 10 
+countwords cosmos.txt               : 0   of 15 
+-------------------------------------------------
+CS240: lab5. cashburn Tue Mar 10 10:56:05 EDT 2015  Total:  15 of 100
+
