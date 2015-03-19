@@ -1,0 +1,9 @@
+[master afa7f9c] 15 of 100
+ 8 files changed, 3 insertions(+), 1 deletion(-)
+ create mode 100644 labs/lab5-src/.local.git.out
+ create mode 100644 labs/lab5-src/.local.total.out
+ rewrite labs/lab5-src/countwords (79%)
+ rewrite labs/lab5-src/isbalanced (77%)
+ create mode 100644 labs/lab5-src/mystring.o
+ rewrite labs/lab5-src/test_mystring (76%)
+ rewrite labs/lab5-src/test_slist (73%)
