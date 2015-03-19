@@ -85,7 +85,7 @@ char * mystrtrim(char * s) {
 char * mystrreplace( char * src, char * from, char * to)  {
 	char * final;
 	//do {
-	final = (char *) malloc(sizeof(src)-sizeof(from)+sizeof(to));
+	final = (char *) calloc(1,sizeof(src)-sizeof(from)+sizeof(to));
 	char * final1 = final;
 	char * src1 = src;
 	char * from1 = from;
