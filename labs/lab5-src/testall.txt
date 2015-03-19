@@ -35,20 +35,21 @@ Running test4
 original=<apple>
 from=<pp>
 to=<orange>
-replace=<b=aorangele>
+replace=<b=(null)>
 original=Dear friend, We thank you friend for your present.
 We hope to see you friend in our next party.
 Sincerely yours.
 
 from=<friend>
 to=<George>
-result=<Dear George, We thank yo! friende you friend in our next party.
+result=<Dear George, We thank you friend for your present.
+We hope to see you friend in our next party.
 Sincerely yours.
 >
 original=aaa bbbbb a bbbbaa bbb vvv bb fff b
 from=<bb>
 to=< xxx >
-result=<aaa  xxx  xxx  a  xxx  xxx !>
+result=<aaa  xxx bbb a bbbbaa bbb vvv bb fff b>
 ------ Expected Output ------
 Running test4
 original=<apple>
@@ -70,24 +71,23 @@ from=<bb>
 to=< xxx >
 result=<aaa  xxx  xxx b a  xxx  xxx aa  xxx b vvv  xxx  fff b>
 ------ Difference -----------
-12c12,13
-< result=<Dear George, We thank yo! friende you friend in our next party.
+5c5
+< replace=<b=(null)>
+---
+> replace=<b=aorangele>
+12,13c12,13
+< result=<Dear George, We thank you friend for your present.
+< We hope to see you friend in our next party.
 ---
 > result=<Dear George, We thank you George for your present.
 > We hope to see you George in our next party.
-18c19
-< result=<aaa  xxx  xxx  a  xxx  xxx !>
+19c19
+< result=<aaa  xxx bbb a bbbbaa bbb vvv bb fff b>
 ---
 > result=<aaa  xxx  xxx b a  xxx  xxx aa  xxx b vvv  xxx  fff b>
 -----------------------------
 
 ======= test_slist test1  ===========
-*****Test Failed*****
------- Your Output ----------
-Running test1
---- List ---
---- List ---
------- Expected Output ------
 Running test1
 --- List ---
 val=2
@@ -106,39 +106,11 @@ val=4
 val=1
 val=8
 val=3
------- Difference -----------
-2a3,7
-> val=2
-> val=4
-> val=1
-> val=8
-> val=3
-3a9,18
-> val=2
-> val=4
-> val=1
-> val=8
-> val=3
-> val=2
-> val=4
-> val=1
-> val=8
-> val=3
------------------------------
+Test passed...
 
 ======= test_slist test2  ===========
 *****Test Failed*****
 ------ Your Output ----------
-Running test2
---- List ---
-remove 8
---- List ---
-remove 3
---- List ---
-remove 3
---- List ---
-remove 2
---- List ---
 ------ Expected Output ------
 Running test2
 --- List ---
@@ -191,7 +163,9 @@ val=4
 val=1
 val=8
 ------ Difference -----------
-2a3,12
+0a1,50
+> Running test2
+> --- List ---
 > val=2
 > val=4
 > val=1
@@ -202,7 +176,8 @@ val=8
 > val=1
 > val=8
 > val=3
-4a15,23
+> remove 8
+> --- List ---
 > val=2
 > val=4
 > val=1
@@ -212,7 +187,8 @@ val=8
 > val=1
 > val=8
 > val=3
-6a26,33
+> remove 3
+> --- List ---
 > val=2
 > val=4
 > val=1
@@ -221,7 +197,8 @@ val=8
 > val=1
 > val=8
 > val=3
-8a36,42
+> remove 3
+> --- List ---
 > val=2
 > val=4
 > val=1
@@ -229,7 +206,8 @@ val=8
 > val=4
 > val=1
 > val=8
-10a45,50
+> remove 2
+> --- List ---
 > val=4
 > val=1
 > val=2
@@ -243,11 +221,41 @@ val=8
 ------ Your Output ----------
 Running test3
 --- List ---
+val=2
+val=4
+val=1
+val=8
+val=3
+val=2
+val=4
+val=1
+val=8
+val=3
 ==== remove interval 8<=x<=9 =====
 --- List ---
+val=2
+val=4
+val=1
+val=8
+val=3
+val=2
+val=4
+val=1
+val=8
+val=3
 
 ==== remove interval 1<=x<=3 =====
 --- List ---
+val=2
+val=4
+val=1
+val=8
+val=3
+val=2
+val=4
+val=1
+val=8
+val=3
 ------ Expected Output ------
 Running test3
 --- List ---
@@ -277,29 +285,21 @@ val=3
 val=4
 val=4
 ------ Difference -----------
-2a3,12
-> val=2
-> val=4
-> val=1
-> val=8
-> val=3
-> val=2
-> val=4
-> val=1
-> val=8
-> val=3
-4a15,22
-> val=2
-> val=4
-> val=1
-> val=3
-> val=2
-> val=4
-> val=1
-> val=3
-7a26,27
-> val=4
-> val=4
+18d17
+< val=8
+23d21
+< val=8
+28d25
+< val=2
+30,33d26
+< val=1
+< val=8
+< val=3
+< val=2
+35,37d27
+< val=1
+< val=8
+< val=3
 -----------------------------
 
 ======= test_slist test4  ===========
@@ -796,7 +796,7 @@ test_mystring test1                 : 5   of 5
 test_mystring test2                 : 5   of 5  
 test_mystring test3                 : 5   of 5  
 test_mystring test4                 : 0   of 10 
-test_slist test1                    : 0   of 5  
+test_slist test1                    : 5   of 5  
 test_slist test2                    : 0   of 5  
 test_slist test3                    : 0   of 5  
 test_slist test4                    : 0   of 10 
@@ -812,5 +812,5 @@ isbalanced ]                        : 0   of 1
 countwords test.txt                 : 0   of 10 
 countwords cosmos.txt               : 0   of 15 
 -------------------------------------------------
-CS240: lab5. cashburn Wed Mar 18 21:51:19 CDT 2015  Total:  15 of 100
+CS240: lab5. cashburn Wed Mar 18 23:16:44 CDT 2015  Total:  20 of 100
 

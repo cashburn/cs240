@@ -19,3 +19,6 @@
 [master 6cd1ad7] 15 of 100
  8 files changed, 18 insertions(+), 14 deletions(-)
  rewrite labs/lab5-src/mystring.o (77%)
+[master 8a5bbd1] 15 of 100
+ 7 files changed, 8 insertions(+), 3 deletions(-)
+ rewrite labs/lab5-src/mystring.o (75%)

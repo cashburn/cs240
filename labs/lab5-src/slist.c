@@ -13,14 +13,33 @@ sllist_init(SLList * list)
 // Add int value to the end of list. The values may be repeated.
 void
 sllist_add_end( SLList *list, int value )  {
-
+	SLEntry * e = list->head;
+	SLEntry * n = (SLEntry *) malloc(sizeof(SLEntry));
+	n->value = value;
+	if (e == NULL) {
+		list->head = n;
+		return;
+	}
+	while (e->next != NULL) {
+		e = e->next;
+	}
+	e->next = n;
 }
 
 
 // Remove first occurrence of value in the list. It returns 1 if value is found or 0 otherwise.
 int sllist_remove(SLList *list, int value) {
-
-	return 0;
+	SLEntry * e = list->head;
+	SLEntry * last = NULL;
+	while ((e != NULL) && (e->value != value)) {
+		last = e;
+		e = e->next;
+	}
+	if (e == NULL)
+		return 0;
+	last->next = e->next;
+	free(e);
+	return 1;
 }
 
 

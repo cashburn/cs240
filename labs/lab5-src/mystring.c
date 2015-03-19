@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+
 // Adds src at the end of dest. Return the value of dest.
 char *mystrcat(char * dest, char * src) {
 	char * src1 = src;
@@ -128,7 +129,7 @@ char * mystrreplace( char * src, char * from, char * to)  {
 		from1 = from;
 		to1 = to;*/
 		if (mystrstr(final, from) != NULL)
-			return mystrreplace(final, from, to);
+			//return mystrreplace(mystrdup(final), from, to);
 
 	return final;
 }
