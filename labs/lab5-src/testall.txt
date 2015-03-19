@@ -31,6 +31,25 @@ Test passed...
 ======= test_mystring test4  ===========
 *****Test Failed*****
 ------ Your Output ----------
+Running test4
+original=<apple>
+from=<pp>
+to=<orange>
+replace=<b=aorangele>
+original=Dear friend, We thank you friend for your present.
+We hope to see you friend in our next party.
+Sincerely yours.
+
+from=<friend>
+to=<George>
+result=<Dear George, We thank you friend for your present.
+We hope to see you friend in our next party.
+Sincerely yours.
+>
+original=aaa bbbbb a bbbbaa bbb vvv bb fff b
+from=<bb>
+to=< xxx >
+result=<aaa  xxx bbb a bbbbaa bbb vvv bb fff b>
 ------ Expected Output ------
 Running test4
 original=<apple>
@@ -52,25 +71,15 @@ from=<bb>
 to=< xxx >
 result=<aaa  xxx  xxx b a  xxx  xxx aa  xxx b vvv  xxx  fff b>
 ------ Difference -----------
-0a1,19
-> Running test4
-> original=<apple>
-> from=<pp>
-> to=<orange>
-> replace=<b=aorangele>
-> original=Dear friend, We thank you friend for your present.
-> We hope to see you friend in our next party.
-> Sincerely yours.
-> 
-> from=<friend>
-> to=<George>
+12,13c12,13
+< result=<Dear George, We thank you friend for your present.
+< We hope to see you friend in our next party.
+---
 > result=<Dear George, We thank you George for your present.
 > We hope to see you George in our next party.
-> Sincerely yours.
-> >
-> original=aaa bbbbb a bbbbaa bbb vvv bb fff b
-> from=<bb>
-> to=< xxx >
+19c19
+< result=<aaa  xxx bbb a bbbbaa bbb vvv bb fff b>
+---
 > result=<aaa  xxx  xxx b a  xxx  xxx aa  xxx b vvv  xxx  fff b>
 -----------------------------
 
@@ -805,5 +814,5 @@ isbalanced ]                        : 0   of 1
 countwords test.txt                 : 0   of 10 
 countwords cosmos.txt               : 0   of 15 
 -------------------------------------------------
-CS240: lab5. cashburn Wed Mar 18 21:03:23 CDT 2015  Total:  15 of 100
+CS240: lab5. cashburn Wed Mar 18 21:04:45 CDT 2015  Total:  15 of 100
 
