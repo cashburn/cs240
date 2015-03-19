@@ -127,7 +127,9 @@ char * mystrreplace( char * src, char * from, char * to)  {
 		src1 = final1;
 		from1 = from;
 		to1 = to;*/
-	//} while (mystrstr(final, from) != NULL);
+		if (mystrstr(final, from) != NULL)
+			return mystrreplace(final, from, to);
+
 	return final;
 }
 

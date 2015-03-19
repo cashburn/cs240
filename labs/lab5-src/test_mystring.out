@@ -9,11 +9,10 @@ Sincerely yours.
 
 from=<friend>
 to=<George>
-result=<Dear George, We thank you friend for your present.
-We hope to see you friend in our next party.
+result=<Dear George, We thank yo! friende you friend in our next party.
 Sincerely yours.
 >
 original=aaa bbbbb a bbbbaa bbb vvv bb fff b
 from=<bb>
 to=< xxx >
-result=<aaa  xxx bbb a bbbbaa bbb vvv bb fff b>
+result=<aaa  xxx  xxx  a  xxx  xxx !>
