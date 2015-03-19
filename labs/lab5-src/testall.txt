@@ -109,9 +109,6 @@ val=3
 Test passed...
 
 ======= test_slist test2  ===========
-*****Test Failed*****
------- Your Output ----------
------- Expected Output ------
 Running test2
 --- List ---
 val=2
@@ -162,59 +159,7 @@ val=2
 val=4
 val=1
 val=8
------- Difference -----------
-0a1,50
-> Running test2
-> --- List ---
-> val=2
-> val=4
-> val=1
-> val=8
-> val=3
-> val=2
-> val=4
-> val=1
-> val=8
-> val=3
-> remove 8
-> --- List ---
-> val=2
-> val=4
-> val=1
-> val=3
-> val=2
-> val=4
-> val=1
-> val=8
-> val=3
-> remove 3
-> --- List ---
-> val=2
-> val=4
-> val=1
-> val=2
-> val=4
-> val=1
-> val=8
-> val=3
-> remove 3
-> --- List ---
-> val=2
-> val=4
-> val=1
-> val=2
-> val=4
-> val=1
-> val=8
-> remove 2
-> --- List ---
-> val=4
-> val=1
-> val=2
-> val=4
-> val=1
-> val=8
------------------------------
+Test passed...
 
 ======= test_slist test3  ===========
 *****Test Failed*****
@@ -797,7 +742,7 @@ test_mystring test2                 : 5   of 5
 test_mystring test3                 : 5   of 5  
 test_mystring test4                 : 0   of 10 
 test_slist test1                    : 5   of 5  
-test_slist test2                    : 0   of 5  
+test_slist test2                    : 5   of 5  
 test_slist test3                    : 0   of 5  
 test_slist test4                    : 0   of 10 
 isbalanced []                       : 0   of 2  
@@ -812,5 +757,5 @@ isbalanced ]                        : 0   of 1
 countwords test.txt                 : 0   of 10 
 countwords cosmos.txt               : 0   of 15 
 -------------------------------------------------
-CS240: lab5. cashburn Wed Mar 18 23:16:44 CDT 2015  Total:  20 of 100
+CS240: lab5. cashburn Wed Mar 18 23:29:15 CDT 2015  Total:  25 of 100
 

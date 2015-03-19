@@ -37,7 +37,11 @@ int sllist_remove(SLList *list, int value) {
 	}
 	if (e == NULL)
 		return 0;
-	last->next = e->next;
+	if (last == NULL) {
+		list->head = e->next;
+	}
+	else
+		last->next = e->next;
 	free(e);
 	return 1;
 }
