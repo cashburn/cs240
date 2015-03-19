@@ -7,3 +7,5 @@
  create mode 100644 labs/lab5-src/mystring.o
  rewrite labs/lab5-src/test_mystring (76%)
  rewrite labs/lab5-src/test_slist (73%)
+[master 8756fe9] 15 of 100
+ 3 files changed, 12 insertions(+), 1 deletion(-)
