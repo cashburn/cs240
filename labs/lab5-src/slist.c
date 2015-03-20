@@ -74,26 +74,26 @@ void sllist_remove_interval(SLList *list, int min, int max) {
 SLList * sllist_intersection(SLList * a, SLList * b) {
 	SLList * intersection = (SLList *) malloc(sizeof(SLList));
 	sllist_init(intersection);
-	SLEntry * entrya = b->head;
-	SLEntry * entryb = a->head;
+	SLEntry * entrya = a->head;
+	SLEntry * entryb = b->head;
 	SLEntry * entryi = intersection->head;
 	SLEntry * last = entryi;
-	while (entrya != NULL) {
+	while (entryb != NULL) {
 		entryi = intersection->head;
 		while (entryi != NULL) {
-			if (entrya->value == entryi->value)
+			if (entryb->value == entryi->value)
 				break;
 			last = entryi;
 			entryi = entryi->next;
 
 		}
 		if (entryi != NULL) {
-			entrya = entrya->next;
+			entryb = entryb->next;
 			entryi = intersection->head;
 			continue;
 		}
-		entryb = b->head;
-		while (entryb != NULL) {
+		entrya = a->head;
+		while (entrya != NULL) {
 			if (entrya->value == entryb->value) {
 				entryi = (SLEntry *) malloc(sizeof(SLEntry));
 				entryi->value = entrya->value;
@@ -107,9 +107,9 @@ SLList * sllist_intersection(SLList * a, SLList * b) {
 				}
 				break;
 			}
-			entryb = entryb->next;
+			entrya = entrya->next;
 		}
-		entrya = entrya->next;
+		entryb = entryb->next;
 	}
 	return intersection;
 }

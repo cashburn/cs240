@@ -5,7 +5,7 @@ test_mystring test4                 : 0   of 10
 test_slist test1                    : 5   of 5  
 test_slist test2                    : 5   of 5  
 test_slist test3                    : 5   of 5  
-test_slist test4                    : 0   of 10 
+test_slist test4                    : 10  of 10 
 isbalanced []                       : 0   of 2  
 isbalanced [][                      : 0   of 2  
 isbalanced []]                      : 0   of 2  
