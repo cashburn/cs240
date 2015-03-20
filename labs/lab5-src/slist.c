@@ -77,8 +77,9 @@ SLList * sllist_intersection(SLList * a, SLList * b) {
 	SLEntry * entrya = a->head;
 	SLEntry * entryb = b->head;
 	SLEntry * entryi = intersection->head;
-	SLEntry * last = NULL;
+	SLEntry * last = entryi;
 	while (entrya != NULL) {
+		entryi = intersection->head;
 		while (entryi != NULL) {
 			if (entrya->value == entryi->value)
 				break;
@@ -96,14 +97,21 @@ SLList * sllist_intersection(SLList * a, SLList * b) {
 			if (entrya->value == entryb->value) {
 				entryi = (SLEntry *) malloc(sizeof(SLEntry));
 				entryi->value = entrya->value;
-				last->next = entryi;
-				last = entryi;
+				if (last == NULL) {
+					intersection->head = entryi;
+					last = intersection->head;
+				}
+				else {
+					last->next = entryi;
+					last = entryi;
+				}
 				break;
 			}
 			entryb = entryb->next;
 		}
 		entrya = entrya->next;
 	}
+	return intersection;
 }
 
 void sllist_print(SLList * list)
