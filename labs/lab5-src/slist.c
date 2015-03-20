@@ -82,7 +82,9 @@ SLList * sllist_intersection(SLList * a, SLList * b) {
 		while (entryi != NULL) {
 			if (entrya->value == entryi->value)
 				break;
+			last = entryi;
 			entryi = entryi->next;
+
 		}
 		if (entryi != NULL) {
 			entrya = entrya->next;
