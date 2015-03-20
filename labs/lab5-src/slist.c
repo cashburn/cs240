@@ -51,19 +51,17 @@ int sllist_remove(SLList *list, int value) {
 void sllist_remove_interval(SLList *list, int min, int max) {
 	SLEntry * e = list->head;
 	SLEntry * last = NULL;
-	while ((e != NULL) && (e->value >= min) && (e->value <= max)) {
+	while ((e != NULL)) {
+	 	if ((e->value >= min) && (e->value <= max)) {
+			if (last == NULL)
+				list->head = e->next;
+			else
+				last->next = e->next;
+			free(e);
+		}
 		last = e;
 		e = e->next;
 	}
-	if (e == NULL)
-		return;
-	if (last == NULL) {
-		list->head = e->next;
-	}
-	else
-		last->next = e->next;
-	free(e);
-	return;
 }
 
 
