@@ -26,3 +26,5 @@
  11 files changed, 107 insertions(+), 81 deletions(-)
  rewrite labs/lab5-src/mystring.o (78%)
  rewrite labs/lab5-src/test_slist (70%)
+[master 58f4ae8] 25 of 100
+ 7 files changed, 16 insertions(+), 61 deletions(-)

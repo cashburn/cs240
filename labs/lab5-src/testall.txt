@@ -178,7 +178,6 @@ val=8
 val=3
 ==== remove interval 8<=x<=9 =====
 --- List ---
-val=2
 val=4
 val=1
 val=8
@@ -191,8 +190,6 @@ val=3
 
 ==== remove interval 1<=x<=3 =====
 --- List ---
-val=2
-val=4
 val=1
 val=8
 val=3
@@ -230,21 +227,23 @@ val=3
 val=4
 val=4
 ------ Difference -----------
-18d17
+14a15
+> val=2
+17d17
 < val=8
-23d21
+22d21
 < val=8
-28d25
-< val=2
-30,33d26
+27,30d25
 < val=1
 < val=8
 < val=3
 < val=2
-35,37d27
+32,34c27
 < val=1
 < val=8
 < val=3
+---
+> val=4
 -----------------------------
 
 ======= test_slist test4  ===========
@@ -757,5 +756,5 @@ isbalanced ]                        : 0   of 1
 countwords test.txt                 : 0   of 10 
 countwords cosmos.txt               : 0   of 15 
 -------------------------------------------------
-CS240: lab5. cashburn Wed Mar 18 23:29:15 CDT 2015  Total:  25 of 100
+CS240: lab5. cashburn Fri Mar 20 09:53:20 CDT 2015  Total:  25 of 100
 

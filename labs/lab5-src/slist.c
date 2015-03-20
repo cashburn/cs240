@@ -49,20 +49,32 @@ int sllist_remove(SLList *list, int value) {
 
 // Removes from the list and frees the nodes of all the items that are min <= value <= max
 void sllist_remove_interval(SLList *list, int min, int max) {
-
+	SLEntry * e = list->head;
+	SLEntry * last = NULL;
+	while ((e != NULL) && (e->value >= min) && (e->value <= max)) {
+		last = e;
+		e = e->next;
+	}
+	if (e == NULL)
+		return;
+	if (last == NULL) {
+		list->head = e->next;
+	}
+	else
+		last->next = e->next;
+	free(e);
+	return;
 }
 
 
 // It allocates and returns a new list with the intersection of the two lists, that is the 
 // list of all the items that are common to the two lists. The items in the intersection are
 // unique. 
-SLList *
-sllist_intersection(SLList *a, SLList *b) {
+SLList * sllist_intersection(SLList *a, SLList *b) {
 	return NULL;
 }
 
-void
-sllist_print(SLList *list)
+void sllist_print(SLList *list)
 {
 	// Move to the end
 	SLEntry * e = list->head;
