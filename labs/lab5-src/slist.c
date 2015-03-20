@@ -58,6 +58,7 @@ void sllist_remove_interval(SLList *list, int min, int max) {
 			else
 				last->next = e->next;
 			free(e);
+			e = last;
 		}
 		last = e;
 		e = e->next;
