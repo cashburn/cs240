@@ -5,7 +5,7 @@
 
 
 // Adds src at the end of dest. Return the value of dest.
-char *mystrcat(char * dest, char * src) {
+char * mystrcat(char * dest, char * src) {
 	char * src1 = src;
 	char * dest1 = dest;
 	while (*dest1) 
