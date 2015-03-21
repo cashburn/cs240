@@ -47,8 +47,8 @@ int main(int argc,  char ** argv) {
 			s++;
 	}
 	if (top)
-		printf("String is not balanced\n");
+		printf("string is not balanced\n");
 	else
-		printf("String is balanced\n");
+		printf("string is balanced\n");
 }
 
