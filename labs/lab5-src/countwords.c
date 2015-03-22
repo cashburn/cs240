@@ -92,9 +92,12 @@ main(int argc, char **argv) {
 		change = 0;
 		for (int i = 0; i < nWords - 1; i++) {
 			if (strcmp(wordArray[i].word, wordArray[i+1].word) > 1) {
-				char * temp = strdup(wordArray[i].word);
+				char * tempWord = strdup(wordArray[i].word);
+				int tempCount = wordArray[i].count;
 				wordArray[i].word = strdup(wordArray[i+1].word);
-				wordArray[i+1].word = strdup(temp);
+				wordArray[i].count = wordArray[i+1].count;
+				wordArray[i+1].word = strdup(tempWord);
+				wordArray[i+1].count = tempCount;
 				change = 1;
 			}
 		}

@@ -1,9 +1,9 @@
 1,5c1,5
-< [ 1
-< ] 6
+< [ 5
+< ] 5
 < ][ 1
+< a 6
 < a 1
-< a 5
 ---
 > a 7
 > across 1
@@ -11,45 +11,45 @@
 > alan 1
 > along 1
 7,18d6
-< cosmos 2
+< cosmos 1
 < documentary 1
-< cosmos 5
-< by 12
-< carl 5
-< broadcasting 5
-< and 23
-< considered 4
+< cosmos 1
+< by 5
+< carl 1
+< broadcasting 1
+< and 10
+< considered 1
 < back 1
 < bring 1
-< at 4
+< at 1
 < based 1
 20,29c8,9
-< as 1
+< as 2
 < astrophysicist 1
 < are 1
-< degrasse 3
-< developed 2
-< documentaries 5
+< degrasse 1
+< developed 1
+< documentaries 1
 < clout 1
 < college 1
-< bringing 5
+< bringing 1
 < broadcast 1
 ---
 > and 10
 > animation 1
 32,45c12,15
-< films 10
+< films 1
 < follow 1
 < for 1
 < foundation 1
-< executive 2
+< executive 1
 < druyan 1
 < calendar 1
 < co 1
 < cosmic 1
 < cosmos 1
 < creator 1
-< but 7
+< but 1
 < along 1
 < animation 1
 ---
@@ -58,7 +58,7 @@
 > astrophysicist 1
 > at 1
 47c17,20
-< computer 2
+< computer 1
 ---
 > back 1
 > backing 1
@@ -78,17 +78,16 @@
 > by 5
 > calendar 1
 > carl 1
-56,57c33,58
-< content 2
-< been 1
----
+55a33,38
 > clout 1
 > co 1
 > college 1
 > computer 1
 > concluded 1
 > considered 1
-> content 1
+57c40,58
+< been 1
+---
 > cosmic 1
 > cosmos 3
 > countries 1
@@ -119,36 +118,34 @@
 < elements 1
 < features 1
 < extensive 1
-< is 1
+< is 5
 < height 1
 ---
 > foundation 1
 > fox 3
 67a68
 > geographic 2
-69,78c70,74
+69,77c70,73
 < footage 1
 < fox 1
 < fox 1
 < episodes 1
 < extra 1
-< dozens 3
+< dozens 1
 < concluded 1
 < countries 1
 < geographic 1
-< in 1
 ---
 > has 1
 > height 1
 > home 1
 > imagination 1
-> in 3
 79a76
 > information 1
 82,88d78
 < investment 1
 < imagination 1
-< information 2
+< information 1
 < has 1
 < geographic 1
 < fox 1
@@ -160,12 +157,12 @@
 < milestone 1
 < odyssey 1
 < personal 1
-< presented 1
-< on 1
+< presented 2
+< on 5
 < public 1
-< of 1
+< of 7
 < network 1
-< other 1
+< other 2
 < neil 1
 < macfarlane 1
 ---
@@ -175,14 +172,14 @@
 > local 1
 105,107c85
 < producers 1
-< original 1
+< original 2
 < narration 1
 ---
 > macfarlane 1
 109,112c87,92
 < local 1
 < national 1
-< national 4
+< national 1
 < network 1
 ---
 > media 1
@@ -204,54 +201,50 @@
 > presented 2
 118a105
 > producers 1
-120,133c107,111
-< science 1
-< spacetime 1
-< television 1
-< series 1
-< the 1
-< show 1
-< up 1
-< to 1
-< sagan 1
-< scientific 1
-< service 1
-< the 1
-< this 1
-< tyson 1
----
+119a107,114
 > public 1
 > rebroadcast 1
 > rebroadcasting 1
 > release 1
 > remainder 1
-135,139c113
+> s 1
+> sagan 3
+> same 1
+121,128d115
+< spacetime 1
+< television 5
+< series 12
+< the 23
+< show 4
+< up 1
+< to 4
+< sagan 1
+129a117,118
+> score 1
+> series 12
+131,136d119
+< the 1
+< this 1
+< tyson 1
+< s 1
 < sagan 1
 < sagan 1
-< seth 1
+138,143d120
 < student 1
 < the 1
----
-> sagan 3
-141,150c115,116
+< same 1
 < thirteen 1
 < storytelling 1
 < that 1
-< ship 1
+145,151c122
 < since 1
 < such 1
 < voyage 1
 < updated 1
 < used 1
 < the 1
+< score 1
 ---
-> science 2
-> scientific 2
-151a118,122
-> series 12
-> service 1
-> seth 1
-> ship 1
 > show 4
 153d123
 < the 1
@@ -267,10 +260,9 @@
 < remainder 1
 < the 1
 < the 1
-164,166c129,145
+164,165c129,144
 < release 1
 < the 1
-< was 1
 ---
 > storytelling 1
 > student 1
@@ -288,8 +280,3 @@
 > us 1
 > used 1
 > voyage 1
-> was 3
-172c151
-< with 1
----
-> with 4
