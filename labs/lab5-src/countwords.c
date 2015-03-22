@@ -88,17 +88,17 @@ main(int argc, char **argv) {
 		wordArray[nWords++].count = 1;
 	}
 	int change = 1;
-	while (change) {
-		change = 0;
+	for (int j = 0; j < nWords; j++) {
+		//change = 0;
 		for (int i = 0; i < nWords - 1; i++) {
-			if (strcmp(wordArray[i].word, wordArray[i+1].word) > 1) {
+			if (strcmp(wordArray[i].word, wordArray[i+1].word) > 0) {
 				char * tempWord = strdup(wordArray[i].word);
 				int tempCount = wordArray[i].count;
 				wordArray[i].word = strdup(wordArray[i+1].word);
 				wordArray[i].count = wordArray[i+1].count;
 				wordArray[i+1].word = strdup(tempWord);
 				wordArray[i+1].count = tempCount;
-				change = 1;
+				//change = 1;
 			}
 		}
 	}

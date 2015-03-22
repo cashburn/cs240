@@ -63,3 +63,5 @@
 [master 9cfcfb8] 62 of 100
  7 files changed, 330 insertions(+), 341 deletions(-)
  rewrite labs/lab5-src/countwords (89%)
+[master d7d2e44] 62 of 100
+ 7 files changed, 110 insertions(+), 115 deletions(-)
