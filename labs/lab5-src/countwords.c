@@ -40,7 +40,7 @@ static char * nextword() {
 	char * string1 = string;
 	while ((c = fgetc(fd)) != EOF) {
 		charCount++;
-		if (!((c >= 'a') && (c <= 'z')) && !((c >= 'A') && (c <= 'z')))
+		if (!((c >= 'a') && (c <= 'z')) && !((c >= 'A') && (c <= 'Z')))
 			break;
 		else
 			*string1 = c;

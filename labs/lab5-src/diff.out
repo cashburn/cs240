@@ -1,50 +1,47 @@
-1,5c1
-< [ 5
-< ] 5
-< ][ 1
+1,2c1
 < a 6
 < a 1
 ---
 > a 7
-45,47c41
+42,44c41
 < cosmos 1
 < cosmos 1
 < cosmos 1
 ---
 > cosmos 3
-72,74c66
+69,71c66
 < fox 1
 < fox 1
 < fox 1
 ---
 > fox 3
-76,77c68
+73,74c68
 < geographic 1
 < geographic 1
 ---
 > geographic 2
-91,92c82
+88,89c82
 < june 1
 < june 1
 ---
 > june 2
-100,101c90
+97,98c90
 < national 1
 < national 1
 ---
 > national 2
-103,104c92
+100,101c92
 < network 1
 < network 1
 ---
 > network 2
-125,127c113
+122,124c113
 < sagan 1
 < sagan 1
 < sagan 1
 ---
 > sagan 3
-149,156c135
+146,153c135
 < the 23
 < the 1
 < the 1
