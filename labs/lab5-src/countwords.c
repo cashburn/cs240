@@ -87,6 +87,18 @@ main(int argc, char **argv) {
 		strcpy(wordArray[nWords].word, read);
 		wordArray[nWords++].count = 1;
 	}
+	int change = 1;
+	while (change) {
+		change = 0;
+		for (int i = 0; i < nWords - 1; i++) {
+			if (strcmp(wordArray[i].word, wordArray[i+1].word) > 1) {
+				char * temp = strdup(wordArray[i].word);
+				wordArray[i].word = strdup(wordArray[i+1].word);
+				wordArray[i+1].word = strdup(temp);
+				change = 1;
+			}
+		}
+	}
 	for (int i = 0; i < nWords; i++) {
 		printf("%s %d\n", wordArray[i].word, wordArray[i].count);
 	}

@@ -1,118 +1,89 @@
 1,5c1,5
-< cosmos 1
-< a 6
-< spacetime 1
-< odyssey 1
-< is 5
+< [ 1
+< ] 6
+< ][ 1
+< a 1
+< a 5
 ---
 > a 7
 > across 1
 > aired 1
 > alan 1
 > along 1
-7,31c7
-< science 2
+7,18d6
+< cosmos 2
 < documentary 1
-< television 5
-< series 12
-< [ 5
-< ] 5
-< the 23
-< show 4
-< follow 1
-< up 1
-< to 4
-< cosmos 1
-< a 1
-< personal 1
-< voyage 1
-< which 1
-< was 3
-< presented 2
-< by 5
-< carl 1
-< sagan 1
-< on 5
-< public 1
-< broadcasting 1
-< service 1
----
-> among 1
-33,44c9,14
-< considered 1
-< milestone 1
-< for 1
-< scientific 2
-< documentaries 1
-< this 1
-< developed 1
-< bring 1
+< cosmos 5
+< by 12
+< carl 5
+< broadcasting 5
+< and 23
+< considered 4
 < back 1
-< foundation 1
-< of 7
-< network 1
+< bring 1
+< at 4
+< based 1
+20,29c8,9
+< as 1
+< astrophysicist 1
+< are 1
+< degrasse 3
+< developed 2
+< documentaries 5
+< clout 1
+< college 1
+< bringing 5
+< broadcast 1
 ---
+> and 10
 > animation 1
-> ann 1
-> approach 1
+32,45c12,15
+< films 10
+< follow 1
+< for 1
+< foundation 1
+< executive 2
+< druyan 1
+< calendar 1
+< co 1
+< cosmic 1
+< cosmos 1
+< creator 1
+< but 7
+< along 1
+< animation 1
+---
 > are 1
 > as 2
 > astrophysicist 1
-46,47c16,18
-< height 1
-< other 2
+> at 1
+47c17,20
+< computer 2
 ---
-> augmenting 1
 > back 1
 > backing 1
-49,74c20,23
-< films 1
-< the 1
-< astrophysicist 1
-< neil 1
-< degrasse 1
-< tyson 1
-< who 1
-< as 2
-< young 1
-< college 1
-< student 1
-< inspired 1
-< sagan 1
-< among 1
-< executive 1
-< producers 1
-< are 1
-< seth 1
-< macfarlane 1
-< whose 1
-< clout 1
-< financial 1
-< investment 1
-< were 1
-< instrumental 1
-< in 3
----
+> based 1
 > been 1
-> braga 1
-> brannon 1
-> bring 1
-77,81c26,33
-< ann 1
-< druyan 1
-< sagan 1
-< s 1
-< widow 1
+50,53c23,30
+< alan 1
+< backing 1
+< across 1
+< aired 1
 ---
+> bring 1
+> bringing 1
+> broadcast 1
 > broadcasting 1
 > but 1
 > by 5
 > calendar 1
 > carl 1
-> century 1
-> channel 1
+56,57c33,58
+< content 2
+< been 1
+---
 > clout 1
-82a35,42
+> co 1
 > college 1
 > computer 1
 > concluded 1
@@ -121,180 +92,185 @@
 > cosmic 1
 > cosmos 3
 > countries 1
-84,98c44,49
-< original 2
-< ][ 1
-< the 1
-< loosely 1
-< follows 1
-< same 1
-< thirteen 1
-< episode 1
-< format 1
-< storytelling 1
-< approach 1
-< that 1
-< cosmos 1
-< used 1
-< including 1
----
+> creator 1
 > degrasse 1
 > developed 1
 > documentaries 1
 > documentary 1
 > dozens 1
 > druyan 1
-100,111c51,54
-< such 1
-< ship 1
-< imagination 1
-< cosmic 1
-< calendar 1
-< but 1
-< features 1
-< information 1
-< updated 1
-< since 1
-< along 1
-< with 4
----
+> elements 1
 > entire 1
 > episode 1
 > episodes 1
 > executive 1
-113c56,66
-< computer 1
----
+> extensive 1
 > extra 1
 > features 1
 > films 1
-> financial 1
+58a60
 > follow 1
-> follows 1
+60c62,63
+< episode 1
+---
 > footage 1
 > for 1
-> format 1
+62,66c65,66
+< elements 1
+< features 1
+< extensive 1
+< is 1
+< height 1
+---
 > foundation 1
 > fox 3
-114a68
+67a68
 > geographic 2
-116,118c70,88
-< animation 1
+69,78c70,74
 < footage 1
-< augmenting 1
+< fox 1
+< fox 1
+< episodes 1
+< extra 1
+< dozens 3
+< concluded 1
+< countries 1
+< geographic 1
+< in 1
 ---
 > has 1
 > height 1
 > home 1
 > imagination 1
 > in 3
-> including 1
+79a76
 > information 1
-> inspired 1
-> instrumental 1
-> internationally 1
+82,88d78
+< investment 1
+< imagination 1
+< information 2
+< has 1
+< geographic 1
+< fox 1
+< entire 1
+90,103c80,83
+< home 1
+< june 1
+< june 1
+< milestone 1
+< odyssey 1
+< personal 1
+< presented 1
+< on 1
+< public 1
+< of 1
+< network 1
+< other 1
+< neil 1
+< macfarlane 1
+---
 > investment 1
 > is 5
 > june 2
 > local 1
-> loosely 1
+105,107c85
+< producers 1
+< original 1
+< narration 1
+---
 > macfarlane 1
-> march 1
+109,112c87,92
+< local 1
+< national 1
+< national 4
+< network 1
+---
 > media 1
 > milestone 1
-120c90,103
-< the 1
----
+> narration 1
 > national 2
 > neil 1
 > network 2
-> networks 1
-> next 1
-> night 1
+116c96,101
+< media 1
+---
 > odyssey 1
 > of 7
 > on 5
 > original 2
 > other 2
 > personal 1
-> premiered 1
+117a103
 > presented 2
-122,125c105
-< brannon 1
-< braga 1
-< alan 1
-< silvestri 1
----
+118a105
 > producers 1
-127c107,116
-< backing 1
+120,133c107,111
+< science 1
+< spacetime 1
+< television 1
+< series 1
+< the 1
+< show 1
+< up 1
+< to 1
+< sagan 1
+< scientific 1
+< service 1
+< the 1
+< this 1
+< tyson 1
 ---
 > public 1
 > rebroadcast 1
 > rebroadcasting 1
 > release 1
 > remainder 1
-> s 1
+135,139c113
+< sagan 1
+< sagan 1
+< seth 1
+< student 1
+< the 1
+---
 > sagan 3
-> same 1
+141,150c115,116
+< thirteen 1
+< storytelling 1
+< that 1
+< ship 1
+< since 1
+< such 1
+< voyage 1
+< updated 1
+< used 1
+< the 1
+---
 > science 2
 > scientific 2
-129,131c118,123
-< the 1
-< premiered 1
-< march 1
----
+151a118,122
 > series 12
 > service 1
 > seth 1
 > ship 1
 > show 4
-> silvestri 1
-133,135c125,126
+153d123
+< the 1
+155,156c125,126
 < us 1
-< across 1
 < ten 1
 ---
 > since 1
 > spacetime 1
-137,164d127
-< century 1
-< fox 1
-< networks 1
-< the 1
-< remainder 1
-< aired 1
-< fox 1
-< network 1
-< national 1
-< geographic 1
-< channel 1
-< rebroadcasting 1
-< episodes 1
-< next 1
-< night 1
-< extra 1
-< content 1
-< the 1
-< has 1
-< been 1
+158,162d127
 < rebroadcast 1
-< internationally 1
-< dozens 1
-< countries 1
-< local 1
-< national 1
-< geographic 1
-< fox 1
-166,173c129,152
+< rebroadcasting 1
+< remainder 1
 < the 1
-< concluded 1
-< june 1
-< home 1
-< media 1
+< the 1
+164,166c129,145
 < release 1
-< entire 1
-< june 1
+< the 1
+< was 1
 ---
 > storytelling 1
 > student 1
@@ -313,10 +289,7 @@
 > used 1
 > voyage 1
 > was 3
-> were 1
-> which 1
-> who 1
-> whose 1
-> widow 1
+172c151
+< with 1
+---
 > with 4
-> young 1
