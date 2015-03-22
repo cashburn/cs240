@@ -87,7 +87,7 @@ main(int argc, char **argv) {
 		strcpy(wordArray[nWords].word, read);
 		wordArray[nWords++].count = 1;
 	}
-	int change = 1;
+	/*
 	for (int j = 0; j < nWords; j++) {
 		//change = 0;
 		for (int i = 0; i < nWords - 1; i++) {
@@ -101,7 +101,7 @@ main(int argc, char **argv) {
 				//change = 1;
 			}
 		}
-	}
+	}*/
 	for (int i = 0; i < nWords; i++) {
 		printf("%s %d\n", wordArray[i].word, wordArray[i].count);
 	}

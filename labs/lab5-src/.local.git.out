@@ -68,3 +68,5 @@
 [master 8436929] 72 of 100
  8 files changed, 180 insertions(+), 401 deletions(-)
  rewrite labs/lab5-src/diff.out (86%)
+[master 34d6673] 72 of 100
+ 7 files changed, 16 insertions(+), 17 deletions(-)
