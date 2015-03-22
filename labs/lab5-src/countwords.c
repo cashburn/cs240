@@ -22,27 +22,66 @@ int charCount;
 int wordPos;
 
 void toLower(char *s) {
-
+	char * s1 = s;
+	while (*s1) {
+		if ((*s1 >= 'A') && (*s1 <= 'Z'))
+			*s1 = *s1 - 'A' + 'a';
+		if (*s1 == EOF)
+			return;
+		s1++;
+	}
 }
 
 // It returns the next word from stdin.
 // If there are no more more words it returns NULL. 
 static char * nextword() {
-
-        return NULL;
+	int c;
+	char * string = malloc(MAXWORD * sizeof(char));
+	while ((c = fgetc(fd)) != EOF) {
+		charCount++;
+		if (!((c >= 'a') && (c <= 'z')) && !((c >= 'A') && (c <= 'z')))
+			break;
+		else
+			*string = c;
+	}
+	if (c == EOF)
+		return NULL;
+	*string = 0;
+	return string;
 }
 
 int
-main(int argc, char **argv)
-{
+main(int argc, char **argv) {
 	if (argc < 2) {
 		printf("Usage: countwords filename\n");
 		exit(1);
 	}
-
+	maxWords = 10;
 	char * filename = argv[1];
 
 	fd = fopen(filename, "r");
-
+	wordArray = (WordInfo *) malloc(maxWords * sizeof(WordInfo));
+	char * read;
+	int temp;
+	while ((read = nextword()) != NULL) {
+		temp = 0;
+		if (nWords == maxWords) {
+			maxWords = 2 * maxWords;
+			wordArray = (WordInfo *) realloc(wordArray, maxWords * sizeof(WordInfo));
+		}
+		for (int i = 0; i < nWords; i++) {
+			if (strcmp(wordArray[i].word, read) == 0) {
+				wordArray[i].count++;
+				break;
+			}
+		}
+		if (temp)
+			continue;
+		strcpy(wordArray[nWords].word, read);
+		wordArray[nWords++].count = 0;
+	}
+	for (int i = 0; i < nWords; i++) {
+		printf("%s %d\n", wordArray[i].word, wordArray[i].count);
+	}
 }
 
