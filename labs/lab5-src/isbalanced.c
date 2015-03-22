@@ -12,6 +12,8 @@ void stack_push(char s) {
 }
 
 char stack_pop() {
+	if (top == 0)
+		return 0;
 	char t = stack[--top];
 	stack[top] = 0;
 	return t;
@@ -46,7 +48,7 @@ int main(int argc,  char ** argv) {
 			}
 			s++;
 	}
-	if (top == 1)
+	if (top)
 		printf("string is not balanced\n");
 	else
 		printf("string is balanced\n");
