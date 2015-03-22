@@ -67,6 +67,7 @@ main(int argc, char **argv) {
 	int temp;
 	while ((read = nextword()) != NULL) {
 		temp = 0;
+		toLower(read);
 		if (nWords == maxWords) {
 			maxWords = 2 * maxWords;
 			wordArray = (WordInfo *) realloc(wordArray, maxWords * sizeof(WordInfo));
@@ -82,7 +83,6 @@ main(int argc, char **argv) {
 		}
 		if (temp)
 			continue;
-		toLower(read);
 		wordArray[nWords].word = (char *) malloc(sizeof(read));
 		strcpy(wordArray[nWords].word, read);
 		wordArray[nWords++].count = 1;
