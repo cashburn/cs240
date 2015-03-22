@@ -70,3 +70,6 @@
  rewrite labs/lab5-src/diff.out (86%)
 [master 34d6673] 72 of 100
  7 files changed, 16 insertions(+), 17 deletions(-)
+[master 748fc95] 62 of 100
+ 8 files changed, 453 insertions(+), 184 deletions(-)
+ rewrite labs/lab5-src/countwords (92%)
