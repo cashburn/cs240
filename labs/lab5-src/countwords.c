@@ -37,16 +37,18 @@ void toLower(char *s) {
 static char * nextword() {
 	int c;
 	char * string = malloc(MAXWORD * sizeof(char));
+	char * string1 = string;
 	while ((c = fgetc(fd)) != EOF) {
 		charCount++;
 		if (!((c >= 'a') && (c <= 'z')) && !((c >= 'A') && (c <= 'z')))
 			break;
 		else
-			*string = c;
+			*string1 = c;
+		string1++;
 	}
 	if (c == EOF)
 		return NULL;
-	*string = 0;
+	*string1 = 0;
 	return string;
 }
 
@@ -69,16 +71,21 @@ main(int argc, char **argv) {
 			maxWords = 2 * maxWords;
 			wordArray = (WordInfo *) realloc(wordArray, maxWords * sizeof(WordInfo));
 		}
+		if (strlen(read) == 0)
+			continue;
 		for (int i = 0; i < nWords; i++) {
 			if (strcmp(wordArray[i].word, read) == 0) {
 				wordArray[i].count++;
+				temp = 1;
 				break;
 			}
 		}
 		if (temp)
 			continue;
+		toLower(read);
+		wordArray[nWords].word = (char *) malloc(sizeof(read));
 		strcpy(wordArray[nWords].word, read);
-		wordArray[nWords++].count = 0;
+		wordArray[nWords++].count = 1;
 	}
 	for (int i = 0; i < nWords; i++) {
 		printf("%s %d\n", wordArray[i].word, wordArray[i].count);

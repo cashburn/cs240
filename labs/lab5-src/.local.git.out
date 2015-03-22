@@ -55,3 +55,6 @@
  rewrite labs/lab5-src/isbalanced (85%)
 [master f5a8d03] 62 of 100
  7 files changed, 16 insertions(+), 11 deletions(-)
+[master 4595680] 62 of 100
+ 5 files changed, 51 insertions(+), 8 deletions(-)
+ rewrite labs/lab5-src/countwords (92%)
