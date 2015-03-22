@@ -89,3 +89,6 @@
 [master 49a447d] 90 of 100
  7 files changed, 7 insertions(+), 3 deletions(-)
  rewrite labs/lab5-src/mystring.o (77%)
+[master 1c7352e] 90 of 100
+ 7 files changed, 10 insertions(+), 6 deletions(-)
+ rewrite labs/lab5-src/mystring.o (77%)
