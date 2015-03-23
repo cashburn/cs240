@@ -11,7 +11,7 @@ isbalanced: isbalanced.c
 	gcc -g -o isbalanced isbalanced.c
 
 countwords: countwords.c
-	gcc -g -o countwords countwords.c
+	gcc -g -o countwords countwords.c -std=gnu99
 
 org:
 	cp test_mystring test_mystring.org
