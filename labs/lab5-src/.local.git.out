@@ -102,3 +102,19 @@
  rewrite labs/lab5-src/test_mystring (78%)
  rewrite labs/lab5-src/test_slist (80%)
 [master 6399a72] 90 of 100
+[master 9ded5a1] 90 of 140
+ 23 files changed, 523 insertions(+), 3 deletions(-)
+ create mode 100644 labs/lab5-src/bits.c
+ create mode 100644 labs/lab5-src/bits.h
+ create mode 100644 labs/lab5-src/mysort.c
+ create mode 100644 labs/lab5-src/mysort.h
+ create mode 100755 labs/lab5-src/test_bits
+ create mode 100644 labs/lab5-src/test_bits.c
+ create mode 100755 labs/lab5-src/test_bits.org
+ create mode 100644 labs/lab5-src/test_bits.org.out
+ create mode 100644 labs/lab5-src/test_bits.out
+ create mode 100755 labs/lab5-src/test_mysort
+ create mode 100644 labs/lab5-src/test_mysort.c
+ create mode 100755 labs/lab5-src/test_mysort.org
+ create mode 100644 labs/lab5-src/test_mysort.org.out
+ create mode 100644 labs/lab5-src/test_mysort.out

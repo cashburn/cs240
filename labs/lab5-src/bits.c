@@ -14,9 +14,8 @@ void setBitAt( unsigned int *bitmap, int i, int bitValue ) {
 
 // It returns the bit value (0 or 1) at bit i
 int getBitAt( unsigned int bitmap, unsigned int i) {
-	// Add your code here
-}
-
+	unsigned int mask = 1 << i;
+	return ((bitmap & mask) >> i;
 // It returns the number of bits with a value "bitValue".
 // if bitValue is 0, it returns the number of 0s. If bitValue is 1, it returns the number of 1s.
 int countBits( unsigned int bitmap, unsigned int bitValue) {
