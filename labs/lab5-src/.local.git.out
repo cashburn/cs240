@@ -147,3 +147,6 @@
  4 files changed, 429 insertions(+), 351 deletions(-)
 [master b3b154f] 110 of 140
  5 files changed, 7 insertions(+), 3 deletions(-)
+[master 5c5986f] 110 of 140
+ 7 files changed, 12 insertions(+), 4 deletions(-)
+ rewrite labs/lab5-src/mystring.o (73%)
