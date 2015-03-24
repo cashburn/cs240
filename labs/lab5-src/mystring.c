@@ -85,7 +85,7 @@ char * mystrtrim(char * s) {
 // printf(<b=%s>\n, b); // It will print <b=aorangele>  
 char * mystrreplace( char * src, char * from, char * to)  {
 	//do {
-	char * final = (char *) calloc(1,sizeof(src)-sizeof(from)+sizeof(to));
+	char * final = (char *) calloc(1,sizeof(strlen(src)-strlen(from)+strlen(to)));
 	char * final1 = final;
 	char * src1 = src;
 	char * from1 = from;
