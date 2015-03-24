@@ -33,7 +33,7 @@ void printBits(unsigned int bitmap) {
 	printf("\n");
 	for (int i = 31; i >= 0; i--)
 		printf("%d", i%10);
-	
+	printf("\n");
 }
 
 

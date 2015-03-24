@@ -22,8 +22,8 @@ test_mysort test2                   : 0   of 4
 test_mysort test3                   : 0   of 4  
 test_mysort test4                   : 0   of 4  
 test_mysort test5                   : 0   of 4  
-test_bits test1                     : 0   of 4  
+test_bits test1                     : 4   of 4  
 test_bits test2                     : 0   of 4  
-test_bits test3                     : 0   of 4  
+test_bits test3                     : 4   of 4  
 test_bits test4                     : 0   of 4  
 test_bits test5                     : 0   of 4  

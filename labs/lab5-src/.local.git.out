@@ -124,3 +124,6 @@
  6 files changed, 17 insertions(+), 8 deletions(-)
 [master d024eb4] 90 of 140
  6 files changed, 10 insertions(+), 6 deletions(-)
+[master d7552ae] 90 of 140
+ 8 files changed, 29 insertions(+), 23 deletions(-)
+ rewrite labs/lab5-src/test_bits (67%)
