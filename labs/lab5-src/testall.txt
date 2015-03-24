@@ -2,7 +2,7 @@ rm -f test_mystring isbalanced test_slist countwords *.out
 gcc -g -o test_mystring mystring.c test_mystring.c
 gcc -g -o test_slist test_slist.c slist.c
 gcc -g -o isbalanced isbalanced.c
-gcc -g -o countwords countwords.c
+gcc -g -o countwords countwords.c -std=gnu99
 ======= test_mystring test1  ===========
 Running test1
 CS240 is a great class
@@ -35,21 +35,17 @@ Running test4
 original=<apple>
 from=<pp>
 to=<orange>
-replace=<b=(null)>
+replace=<b=aorangele>
 original=Dear friend, We thank you friend for your present.
 We hope to see you friend in our next party.
 Sincerely yours.
 
 from=<friend>
 to=<George>
-result=<Dear George, We thank you friend for your present.
-We hope to see you friend in our next party.
-Sincerely yours.
->
+result=<Dear George, We thank yo>
 original=aaa bbbbb a bbbbaa bbb vvv bb fff b
 from=<bb>
 to=< xxx >
-result=<aaa  xxx bbb a bbbbaa bbb vvv bb fff b>
 ------ Expected Output ------
 Running test4
 original=<apple>
@@ -71,19 +67,14 @@ from=<bb>
 to=< xxx >
 result=<aaa  xxx  xxx b a  xxx  xxx aa  xxx b vvv  xxx  fff b>
 ------ Difference -----------
-5c5
-< replace=<b=(null)>
----
-> replace=<b=aorangele>
-12,13c12,13
-< result=<Dear George, We thank you friend for your present.
-< We hope to see you friend in our next party.
+12c12,15
+< result=<Dear George, We thank yo>
 ---
 > result=<Dear George, We thank you George for your present.
 > We hope to see you George in our next party.
-19c19
-< result=<aaa  xxx bbb a bbbbaa bbb vvv bb fff b>
----
+> Sincerely yours.
+> >
+15a19
 > result=<aaa  xxx  xxx b a  xxx  xxx aa  xxx b vvv  xxx  fff b>
 -----------------------------
 
@@ -162,43 +153,6 @@ val=8
 Test passed...
 
 ======= test_slist test3  ===========
-*****Test Failed*****
------- Your Output ----------
-Running test3
---- List ---
-val=2
-val=4
-val=1
-val=8
-val=3
-val=2
-val=4
-val=1
-val=8
-val=3
-==== remove interval 8<=x<=9 =====
---- List ---
-val=4
-val=1
-val=8
-val=3
-val=2
-val=4
-val=1
-val=8
-val=3
-
-==== remove interval 1<=x<=3 =====
---- List ---
-val=1
-val=8
-val=3
-val=2
-val=4
-val=1
-val=8
-val=3
------- Expected Output ------
 Running test3
 --- List ---
 val=2
@@ -226,30 +180,9 @@ val=3
 --- List ---
 val=4
 val=4
------- Difference -----------
-14a15
-> val=2
-17d17
-< val=8
-22d21
-< val=8
-27,30d25
-< val=1
-< val=8
-< val=3
-< val=2
-32,34c27
-< val=1
-< val=8
-< val=3
----
-> val=4
------------------------------
+Test passed...
 
 ======= test_slist test4  ===========
-*****Test Failed*****
------- Your Output ----------
------- Expected Output ------
 Running test4
 ======= List 1 =====
 --- List ---
@@ -276,150 +209,54 @@ val=2
 val=8
 val=1
 val=2
------- Difference -----------
-0a1,26
-> Running test4
-> ======= List 1 =====
-> --- List ---
-> val=2
-> val=4
-> val=1
-> val=8
-> val=2
-> val=15
-> ======= List 2 =====
-> --- List ---
-> val=3
-> val=5
-> val=7
-> val=8
-> val=1
-> val=10
-> val=11
-> val=12
-> val=13
-> val=2
-> ====== Intersection ======
-> --- List ---
-> val=8
-> val=1
-> val=2
------------------------------
+Test passed...
 
 ======= isbalanced []  ===========
-*****Test Failed*****
------- Your Output ----------
------- Expected Output ------
 string is balanced
------- Difference -----------
-0a1
-> string is balanced
------------------------------
+Test passed...
 
 ======= isbalanced [][  ===========
-*****Test Failed*****
------- Your Output ----------
------- Expected Output ------
 string is not balanced
------- Difference -----------
-0a1
-> string is not balanced
------------------------------
+Test passed...
 
 ======= isbalanced []]  ===========
-*****Test Failed*****
------- Your Output ----------
------- Expected Output ------
 string is not balanced
------- Difference -----------
-0a1
-> string is not balanced
------------------------------
+Test passed...
 
 ======= isbalanced [)  ===========
-*****Test Failed*****
------- Your Output ----------
------- Expected Output ------
 string is not balanced
------- Difference -----------
-0a1
-> string is not balanced
------------------------------
+Test passed...
 
 ======= isbalanced []{()}  ===========
-*****Test Failed*****
------- Your Output ----------
------- Expected Output ------
 string is balanced
------- Difference -----------
-0a1
-> string is balanced
------------------------------
+Test passed...
 
 ======= isbalanced []{()()}  ===========
-*****Test Failed*****
------- Your Output ----------
------- Expected Output ------
 string is balanced
------- Difference -----------
-0a1
-> string is balanced
------------------------------
+Test passed...
 
 ======= isbalanced ({)}  ===========
-*****Test Failed*****
------- Your Output ----------
------- Expected Output ------
 string is not balanced
------- Difference -----------
-0a1
-> string is not balanced
------------------------------
+Test passed...
 
 ======= isbalanced ([{)]}  ===========
-*****Test Failed*****
------- Your Output ----------
------- Expected Output ------
 string is not balanced
------- Difference -----------
-0a1
-> string is not balanced
------------------------------
+Test passed...
 
 ======= isbalanced ]  ===========
-*****Test Failed*****
------- Your Output ----------
------- Expected Output ------
 string is not balanced
------- Difference -----------
-0a1
-> string is not balanced
------------------------------
+Test passed...
 
 ======= countwords test.txt  ===========
-*****Test Failed*****
------- Your Output ----------
------- Expected Output ------
 computer 2
 great 1
 is 1
 science 2
 to 1
 welcome 1
------- Difference -----------
-0a1,6
-> computer 2
-> great 1
-> is 1
-> science 2
-> to 1
-> welcome 1
------------------------------
+Test passed...
 
 ======= countwords cosmos.txt  ===========
-*****Test Failed*****
------- Your Output ----------
------- Expected Output ------
 a 7
 across 1
 aired 1
@@ -572,161 +409,388 @@ whose 1
 widow 1
 with 4
 young 1
+Test passed...
+
+======= test_mysort test1  ===========
+*****Test Failed*****
+------ Your Output ----------
+--- Numbers ----
+a[0]=45
+a[1]=23
+a[2]=78
+a[3]=12
+a[4]=100
+a[5]=1
+a[6]=100
+a[7]=34
+a[8]=90
+a[9]=78
+---- Numbers after Sorting ----
+a[0]=45
+a[1]=23
+a[2]=78
+a[3]=12
+a[4]=100
+a[5]=1
+a[6]=100
+a[7]=34
+a[8]=90
+a[9]=78
+------ Expected Output ------
+--- Numbers ----
+a[0]=45
+a[1]=23
+a[2]=78
+a[3]=12
+a[4]=100
+a[5]=1
+a[6]=100
+a[7]=34
+a[8]=90
+a[9]=78
+---- Numbers after Sorting ----
+a[0]=1
+a[1]=12
+a[2]=23
+a[3]=34
+a[4]=45
+a[5]=78
+a[6]=78
+a[7]=90
+a[8]=100
+a[9]=100
+testWithint OK
 ------ Difference -----------
-0a1,152
-> a 7
-> across 1
-> aired 1
-> alan 1
-> along 1
-> american 1
-> among 1
-> and 10
-> animation 1
-> ann 1
-> approach 1
-> are 1
-> as 2
-> astrophysicist 1
-> at 1
-> augmenting 1
-> back 1
-> backing 1
-> based 1
-> been 1
-> braga 1
-> brannon 1
-> bring 1
-> bringing 1
-> broadcast 1
-> broadcasting 1
-> but 1
-> by 5
-> calendar 1
-> carl 1
-> century 1
-> channel 1
-> clout 1
-> co 1
-> college 1
-> computer 1
-> concluded 1
-> considered 1
-> content 1
-> cosmic 1
-> cosmos 3
-> countries 1
-> creator 1
-> degrasse 1
-> developed 1
-> documentaries 1
-> documentary 1
-> dozens 1
-> druyan 1
-> elements 1
-> entire 1
-> episode 1
-> episodes 1
-> executive 1
-> extensive 1
-> extra 1
-> features 1
-> films 1
-> financial 1
-> follow 1
-> follows 1
-> footage 1
-> for 1
-> format 1
-> foundation 1
-> fox 3
-> generated 1
-> geographic 2
-> graphics 1
-> has 1
-> height 1
-> home 1
-> imagination 1
-> in 3
-> including 1
-> information 1
-> inspired 1
-> instrumental 1
-> internationally 1
-> investment 1
-> is 5
-> june 2
-> local 1
-> loosely 1
-> macfarlane 1
-> march 1
-> media 1
-> milestone 1
-> narration 1
-> national 2
-> neil 1
-> network 2
-> networks 1
-> next 1
-> night 1
-> odyssey 1
-> of 7
-> on 5
-> original 2
-> other 2
-> personal 1
-> premiered 1
-> presented 2
-> produced 1
-> producers 1
-> provides 1
-> public 1
-> rebroadcast 1
-> rebroadcasting 1
-> release 1
-> remainder 1
-> s 1
-> sagan 3
-> same 1
-> science 2
-> scientific 2
-> score 1
-> series 12
-> service 1
-> seth 1
-> ship 1
-> show 4
-> silvestri 1
-> simultaneously 1
-> since 1
-> spacetime 1
-> st 1
-> stations 1
-> storytelling 1
-> student 1
-> such 1
-> television 5
-> ten 1
-> that 1
-> the 30
-> thirteen 1
-> this 1
-> to 4
-> tyson 1
-> up 1
-> updated 1
-> us 1
-> used 1
-> voyage 1
-> was 3
-> were 1
-> which 1
-> who 1
-> whose 1
-> widow 1
-> with 4
-> young 1
+13,22c13,23
+< a[0]=45
+< a[1]=23
+< a[2]=78
+< a[3]=12
+< a[4]=100
+< a[5]=1
+< a[6]=100
+< a[7]=34
+< a[8]=90
+< a[9]=78
+---
+> a[0]=1
+> a[1]=12
+> a[2]=23
+> a[3]=34
+> a[4]=45
+> a[5]=78
+> a[6]=78
+> a[7]=90
+> a[8]=100
+> a[9]=100
+> testWithint OK
 -----------------------------
+
+======= test_mysort test2  ===========
+*****Test Failed*****
+------ Your Output ----------
+--- Numbers ----
+a[0]=45
+a[1]=23
+a[2]=78
+a[3]=12
+a[4]=100
+a[5]=1
+a[6]=100
+a[7]=34
+a[8]=90
+a[9]=78
+---- Numbers after Sorting ----
+a[0]=45
+a[1]=23
+a[2]=78
+a[3]=12
+a[4]=100
+a[5]=1
+a[6]=100
+a[7]=34
+a[8]=90
+a[9]=78
+------ Expected Output ------
+--- Numbers ----
+a[0]=45
+a[1]=23
+a[2]=78
+a[3]=12
+a[4]=100
+a[5]=1
+a[6]=100
+a[7]=34
+a[8]=90
+a[9]=78
+---- Numbers after Sorting ----
+a[0]=100
+a[1]=100
+a[2]=90
+a[3]=78
+a[4]=78
+a[5]=45
+a[6]=34
+a[7]=23
+a[8]=12
+a[9]=1
+testWithint Ascending OK
+------ Difference -----------
+13,22c13,23
+< a[0]=45
+< a[1]=23
+< a[2]=78
+< a[3]=12
+< a[4]=100
+< a[5]=1
+< a[6]=100
+< a[7]=34
+< a[8]=90
+< a[9]=78
+---
+> a[0]=100
+> a[1]=100
+> a[2]=90
+> a[3]=78
+> a[4]=78
+> a[5]=45
+> a[6]=34
+> a[7]=23
+> a[8]=12
+> a[9]=1
+> testWithint Ascending OK
+-----------------------------
+
+======= test_mysort test3  ===========
+*****Test Failed*****
+------ Your Output ----------
+----- Students ----
+Before
+0:Rachael               8
+1:Monica                9
+2:Phoebe               10
+3:Joey                 10
+4:Ross                  8
+5:Chandler              8
+----- Students Sorted by Grade ----
+0:Rachael               8
+1:Monica                9
+2:Phoebe               10
+3:Joey                 10
+4:Ross                  8
+5:Chandler              8
+------ Expected Output ------
+----- Students ----
+Before
+0:Rachael               8
+1:Monica                9
+2:Phoebe               10
+3:Joey                 10
+4:Ross                  8
+5:Chandler              8
+----- Students Sorted by Grade ----
+0:Chandler              8
+1:Rachael               8
+2:Ross                  8
+3:Monica                9
+4:Joey                 10
+5:Phoebe               10
+testWithStudents1 OK
+------ Difference -----------
+10,15c10,16
+< 0:Rachael               8
+< 1:Monica                9
+< 2:Phoebe               10
+< 3:Joey                 10
+< 4:Ross                  8
+< 5:Chandler              8
+---
+> 0:Chandler              8
+> 1:Rachael               8
+> 2:Ross                  8
+> 3:Monica                9
+> 4:Joey                 10
+> 5:Phoebe               10
+> testWithStudents1 OK
+-----------------------------
+
+======= test_mysort test4  ===========
+*****Test Failed*****
+------ Your Output ----------
+----- Students ----
+Before
+0:Rachael               8
+1:Monica                9
+2:Phoebe               10
+3:Joey                 10
+4:Ross                  8
+5:Chandler              8
+----- Students Sorted by Name ----
+0:Rachael               8
+1:Monica                9
+2:Phoebe               10
+3:Joey                 10
+4:Ross                  8
+5:Chandler              8
+------ Expected Output ------
+----- Students ----
+Before
+0:Rachael               8
+1:Monica                9
+2:Phoebe               10
+3:Joey                 10
+4:Ross                  8
+5:Chandler              8
+----- Students Sorted by Name ----
+0:Chandler              8
+1:Joey                 10
+2:Monica                9
+3:Phoebe               10
+4:Rachael               8
+5:Ross                  8
+testWithStudents2 OK
+------ Difference -----------
+10,15c10,16
+< 0:Rachael               8
+< 1:Monica                9
+< 2:Phoebe               10
+< 3:Joey                 10
+< 4:Ross                  8
+< 5:Chandler              8
+---
+> 0:Chandler              8
+> 1:Joey                 10
+> 2:Monica                9
+> 3:Phoebe               10
+> 4:Rachael               8
+> 5:Ross                  8
+> testWithStudents2 OK
+-----------------------------
+
+======= test_mysort test5  ===========
+*****Test Failed*****
+------ Your Output ----------
+----- Students ----
+Before
+0:Rachael               8
+1:Monica                9
+2:Phoebe               10
+3:Joey                 10
+4:Ross                  8
+5:Chandler              8
+----- Students Sorted by Name in Descending order ----
+0:Rachael               8
+1:Monica                9
+2:Phoebe               10
+3:Joey                 10
+4:Ross                  8
+5:Chandler              8
+------ Expected Output ------
+----- Students ----
+Before
+0:Rachael               8
+1:Monica                9
+2:Phoebe               10
+3:Joey                 10
+4:Ross                  8
+5:Chandler              8
+----- Students Sorted by Name in Descending order ----
+0:Ross                  8
+1:Rachael               8
+2:Phoebe               10
+3:Monica                9
+4:Joey                 10
+5:Chandler              8
+testWithStudents3 OK
+------ Difference -----------
+10,11c10,11
+< 0:Rachael               8
+< 1:Monica                9
+---
+> 0:Ross                  8
+> 1:Rachael               8
+13,14c13,14
+< 3:Joey                 10
+< 4:Ross                  8
+---
+> 3:Monica                9
+> 4:Joey                 10
+15a16
+> testWithStudents3 OK
+-----------------------------
+
+======= test_bits test1  ===========
+a:
+00000000000000000000000000001001
+10987654321098765432109876543210
+b:
+00000000000000000000000000000011
+10987654321098765432109876543210
+a&b:
+00000000000000000000000000000001
+10987654321098765432109876543210
+a|b:
+00000000000000000000000000001011
+10987654321098765432109876543210
+a^b:
+00000000000000000000000000001010
+10987654321098765432109876543210
+~a:
+11111111111111111111111111110110
+10987654321098765432109876543210
+Test passed...
+
+======= test_bits test2  ===========
+a:
+00000000000000000000000000001001
+10987654321098765432109876543210
+a after setBitAt(&a,10,1):
+00000000000000000000010000001001
+10987654321098765432109876543210
+a after setBitAt(&a,20,1):
+00000000000100000000010000001001
+10987654321098765432109876543210
+a after setBitAt(&a,0,0):
+00000000000100000000010000001000
+10987654321098765432109876543210
+a after setBitAt(&a,3,0):
+00000000000100000000010000000000
+10987654321098765432109876543210
+Test passed...
+
+======= test_bits test3  ===========
+a:
+11111111111111110001000000001001
+10987654321098765432109876543210
+getBitAt(3)=1
+getBitAt(10)=0
+getBitAt(20)=1
+getBitAt(5)=0
+Test passed...
+
+======= test_bits test4  ===========
+a:
+01101111001001000101111111110010
+10987654321098765432109876543210
+countBits(a,1)=19
+countBits(a,0)=13
+b:
+01111111011001111111111110001001
+10987654321098765432109876543210
+countBits(b,1)=23
+countBits(b,0)=9
+Test passed...
+
+======= test_bits test5  ===========
+a:
+01101111111001000101111110010010
+10987654321098765432109876543210
+maxContinuousOnes(a, &pos)=7 pos=21
+b:
+01111111011001111111111110001001
+10987654321098765432109876543210
+maxContinuousOnes(b, &pos)=12 pos=7
+Test passed...
 
 0
 OK. No string functions
@@ -742,19 +806,29 @@ test_mystring test3                 : 5   of 5
 test_mystring test4                 : 0   of 10 
 test_slist test1                    : 5   of 5  
 test_slist test2                    : 5   of 5  
-test_slist test3                    : 0   of 5  
-test_slist test4                    : 0   of 10 
-isbalanced []                       : 0   of 2  
-isbalanced [][                      : 0   of 2  
-isbalanced []]                      : 0   of 2  
-isbalanced [)                       : 0   of 2  
-isbalanced []{()}                   : 0   of 4  
-isbalanced []{()()}                 : 0   of 4  
-isbalanced ({)}                     : 0   of 4  
-isbalanced ([{)]}                   : 0   of 4  
-isbalanced ]                        : 0   of 1  
-countwords test.txt                 : 0   of 10 
-countwords cosmos.txt               : 0   of 15 
+test_slist test3                    : 5   of 5  
+test_slist test4                    : 10  of 10 
+isbalanced []                       : 2   of 2  
+isbalanced [][                      : 2   of 2  
+isbalanced []]                      : 2   of 2  
+isbalanced [)                       : 2   of 2  
+isbalanced []{()}                   : 4   of 4  
+isbalanced []{()()}                 : 4   of 4  
+isbalanced ({)}                     : 4   of 4  
+isbalanced ([{)]}                   : 4   of 4  
+isbalanced ]                        : 1   of 1  
+countwords test.txt                 : 10  of 10 
+countwords cosmos.txt               : 15  of 15 
+test_mysort test1                   : 0   of 4  
+test_mysort test2                   : 0   of 4  
+test_mysort test3                   : 0   of 4  
+test_mysort test4                   : 0   of 4  
+test_mysort test5                   : 0   of 4  
+test_bits test1                     : 4   of 4  
+test_bits test2                     : 4   of 4  
+test_bits test3                     : 4   of 4  
+test_bits test4                     : 4   of 4  
+test_bits test5                     : 4   of 4  
 -------------------------------------------------
-CS240: lab5. cashburn Fri Mar 20 09:53:20 CDT 2015  Total:  25 of 100
+CS240: lab5. cashburn Tue Mar 24 10:58:31 EDT 2015  Total:  110 of 140
 
