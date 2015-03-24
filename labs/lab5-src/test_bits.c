@@ -1,7 +1,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-
+#include <string.h>
 #include "bits.h"
 
 void test1()
