@@ -3,7 +3,7 @@
 // It prints the bits in bitmap as 0s and 1s.
 void printBits(unsigned int bitmap) {
 	for (int i = 31; i >= 0; i--) {
-		printf("%d", getBitAt(i));
+		printf("%d", getBitAt(bitmap, i));
 	}
 	printf("\n");
 	for (int i = 31; i >= 0; i--)

@@ -1,4 +1,4 @@
 a:
-maxContinuousOnes(a, &pos)=1877237650 pos=-1312960768
+maxContinuousOnes(a, &pos)=1877237650 pos=652209920
 b:
-maxContinuousOnes(b, &pos)=2137522057 pos=-1312960768
+maxContinuousOnes(b, &pos)=2137522057 pos=652209920
