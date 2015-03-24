@@ -52,8 +52,8 @@ int maxContinuousOnes(unsigned int bitmap, int * position) {
 				if ((out - in) > count) {
 					*position = in;
 					count = out - in;
-					out = 0;
 				}
+				out = 0;
 			}
 		}
 	}
