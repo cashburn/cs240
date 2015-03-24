@@ -156,3 +156,6 @@
  7 files changed, 7 insertions(+), 3 deletions(-)
  rewrite labs/lab5-src/mystring.o (66%)
  rewrite labs/lab5-src/test_mystring (62%)
+[master e2ce2db] 120 of 140
+ 9 files changed, 18 insertions(+), 39 deletions(-)
+ rewrite labs/lab5-src/mystring.o (60%)
