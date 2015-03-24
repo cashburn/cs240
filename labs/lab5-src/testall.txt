@@ -29,28 +29,6 @@ s1=<hello>
 Test passed...
 
 ======= test_mystring test4  ===========
-*****Test Failed*****
------- Your Output ----------
-Running test4
-original=<apple>
-from=<pp>
-to=<orange>
-replace=<b=aorangele>
-original=Dear friend, We thank you friend for your present.
-We hope to see you friend in our next party.
-Sincerely yours.
-
-from=<friend>
-to=<George>
-result=<Dear George, We thank you George or your present.
-We hope to see you George in our next party.
-Sincerely yours.
->
-original=aaa bbbbb a bbbbaa bbb vvv bb fff b
-from=<bb>
-to=< xxx >
-result=<aaa  xxx  xxx  a  xxx  xxx aa  xxx  vvv  xxx  fff b>
------- Expected Output ------
 Running test4
 original=<apple>
 from=<pp>
@@ -70,16 +48,7 @@ original=aaa bbbbb a bbbbaa bbb vvv bb fff b
 from=<bb>
 to=< xxx >
 result=<aaa  xxx  xxx b a  xxx  xxx aa  xxx b vvv  xxx  fff b>
------- Difference -----------
-12c12
-< result=<Dear George, We thank you George or your present.
----
-> result=<Dear George, We thank you George for your present.
-19c19
-< result=<aaa  xxx  xxx  a  xxx  xxx aa  xxx  vvv  xxx  fff b>
----
-> result=<aaa  xxx  xxx b a  xxx  xxx aa  xxx b vvv  xxx  fff b>
------------------------------
+Test passed...
 
 ======= test_slist test1  ===========
 Running test1
@@ -806,7 +775,7 @@ CS240: lab5. cashburn
 test_mystring test1                 : 5   of 5  
 test_mystring test2                 : 5   of 5  
 test_mystring test3                 : 5   of 5  
-test_mystring test4                 : 0   of 10 
+test_mystring test4                 : 10  of 10 
 test_slist test1                    : 5   of 5  
 test_slist test2                    : 5   of 5  
 test_slist test3                    : 5   of 5  
@@ -833,5 +802,5 @@ test_bits test3                     : 4   of 4
 test_bits test4                     : 4   of 4  
 test_bits test5                     : 4   of 4  
 -------------------------------------------------
-CS240: lab5. cashburn Tue Mar 24 11:05:56 EDT 2015  Total:  110 of 140
+CS240: lab5. cashburn Tue Mar 24 11:11:08 EDT 2015  Total:  120 of 140
 

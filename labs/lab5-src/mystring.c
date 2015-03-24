@@ -102,8 +102,12 @@ char * mystrreplace( char * src, char * from, char * to)  {
 			}
 			if (*src1 == *from1)
 				from1++;
+			
 			else {
-				from1 = from;
+				while (from1 != from) {
+					from1--;
+					src1--;
+				}
 				*final1 = *src1;
 				final1++;
 			}
