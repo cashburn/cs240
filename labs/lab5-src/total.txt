@@ -26,4 +26,4 @@ test_bits test1                     : 4   of 4
 test_bits test2                     : 4   of 4  
 test_bits test3                     : 4   of 4  
 test_bits test4                     : 4   of 4  
-test_bits test5                     : 0   of 4  
+test_bits test5                     : 4   of 4  

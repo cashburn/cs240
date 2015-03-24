@@ -37,23 +37,24 @@ int countBits( unsigned int bitmap, unsigned int bitValue) {
 // It returns the number of largest consecutive 1s in "bitmap".
 // Set "*position" to the beginning bit index of the sequence.
 int maxContinuousOnes(unsigned int bitmap, int * position) {
-	int in;
+	int in = -1;
 	int out = 0;
 	int count;
 	for (int i = 0; i < 32; i++) {
 		if ((getBitAt(bitmap, i) == 1)) {
-			if (!out)
+			if (in < 0) {
 				in = i;
+			}
 			continue;
 		}
 		else {
-			if (!out) {
+			if (in >= 0) {
 				out = i;
 				if ((out - in) > count) {
 					*position = in;
 					count = out - in;
 				}
-				out = 0;
+				in = -1;
 			}
 		}
 	}

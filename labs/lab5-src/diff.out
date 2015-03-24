@@ -1,8 +1,0 @@
-4c4
-< maxContinuousOnes(a, &pos)=3 pos=14
----
-> maxContinuousOnes(a, &pos)=7 pos=21
-8c8
-< maxContinuousOnes(b, &pos)=3 pos=3
----
-> maxContinuousOnes(b, &pos)=12 pos=7
