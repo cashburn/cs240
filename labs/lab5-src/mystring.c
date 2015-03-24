@@ -126,7 +126,7 @@ char * mystrreplace( char * src, char * from, char * to)  {
 		
 		if (mystrstr(final, from) != NULL) {
 			char * this = strdup(final);
-			//free(final);
+			free(final);
 			return mystrreplace(this, from, to);
 		}
 		/*src = strdup(final);

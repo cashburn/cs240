@@ -833,5 +833,5 @@ test_bits test3                     : 4   of 4
 test_bits test4                     : 4   of 4  
 test_bits test5                     : 4   of 4  
 -------------------------------------------------
-CS240: lab5. cashburn Tue Mar 24 11:04:35 EDT 2015  Total:  110 of 140
+CS240: lab5. cashburn Tue Mar 24 11:05:56 EDT 2015  Total:  110 of 140
 
