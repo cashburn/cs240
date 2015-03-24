@@ -31,6 +31,7 @@ int countBits( unsigned int bitmap, unsigned int bitValue) {
 		if (getBitAt(bitmap, i) == bitValue)
 			count++;
 	}
+	return count;
 }
 
 // It returns the number of largest consecutive 1s in "bitmap".
