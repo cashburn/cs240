@@ -133,7 +133,7 @@ char * mystrreplace( char * src, char * from, char * to)  {
 		free(final);
 	} while (mystrstr(src, from) != NULL);*/
 	
-	return src;
+	return final;
 }
 
 

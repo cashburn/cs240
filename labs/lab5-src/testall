@@ -67,6 +67,17 @@ runtest isbalanced "([{)]}" none 4
 runtest isbalanced "]" none 1
 runtest countwords test.txt none 10
 runtest countwords cosmos.txt none 15
+runtest test_mysort "test1" none 4
+runtest test_mysort "test2" none 4
+runtest test_mysort "test3" none 4
+runtest test_mysort "test4" none 4
+runtest test_mysort "test5" none 4
+runtest test_bits "test1" none 4
+runtest test_bits "test2" none 4
+runtest test_bits "test3" none 4
+runtest test_bits "test4" none 4
+runtest test_bits "test5" none 4
+
 
 ./check-strfunc.sh
 if [ $? -eq 0 ]; then
