@@ -26,8 +26,11 @@ void setBitAt( unsigned int *bitmap, int i, int bitValue ) {
 // It returns the number of bits with a value "bitValue".
 // if bitValue is 0, it returns the number of 0s. If bitValue is 1, it returns the number of 1s.
 int countBits( unsigned int bitmap, unsigned int bitValue) {
-	// Add your code here
-
+	int count = 0;
+	for (int i = 0; i < 32; i++) {
+		if (getBitAt(bitmap, i) == bitValue)
+			count++;
+	}
 }
 
 // It returns the number of largest consecutive 1s in "bitmap".
