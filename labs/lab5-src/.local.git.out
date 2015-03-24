@@ -94,3 +94,10 @@
  rewrite labs/lab5-src/mystring.o (77%)
 [master f23a59f] 90 of 100
  6 files changed, 7 insertions(+), 2 deletions(-)
+[master 09d3e2a] 90 of 100
+ 8 files changed, 4 insertions(+), 2 deletions(-)
+ rewrite labs/lab5-src/countwords (73%)
+ rewrite labs/lab5-src/isbalanced (85%)
+ rewrite labs/lab5-src/mystring.o (100%)
+ rewrite labs/lab5-src/test_mystring (78%)
+ rewrite labs/lab5-src/test_slist (80%)
