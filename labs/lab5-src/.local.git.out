@@ -101,3 +101,4 @@
  rewrite labs/lab5-src/mystring.o (100%)
  rewrite labs/lab5-src/test_mystring (78%)
  rewrite labs/lab5-src/test_slist (80%)
+[master 6399a72] 90 of 100
