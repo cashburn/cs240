@@ -25,8 +25,8 @@ void mysort( int n,                      // Number of elements
 	void * temp = malloc(elementSize);
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < n; j++) {
-			void * current = (char *) (array + (j * elementSize));
-			void * next = (char *) (array + ((j+1) * elementSize));
+			void * current = ((char *) array + (j * elementSize));
+			void * next = ((char *) array + ((j+1) * elementSize));
 			if (ascending) {
 				if ((*compFunc) (current, next) > 0) {
 					memcpy(temp, current, elementSize);
