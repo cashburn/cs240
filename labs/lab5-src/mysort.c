@@ -22,6 +22,27 @@ void mysort( int n,                      // Number of elements
 	     int ascending,              // 0 -> descending; 1 -> ascending
 	     CompareFunction compFunc )  // Comparison function.
 {
-	// Add your code here
+	void * temp = malloc(elementSize);
+	for (int i; i < n; i++) {
+		for (int j; j < n; j++) {
+			void * current = (char *) (array + (j * elementSize));
+			void * next = (char *) (array + ((j+1) * elementSize));
+			if (ascending) {
+				if ((*compFunc) (current, next) > 0) {
+					memcpy(temp, current, elementSize);
+					memcpy(current, next, elementSize);
+					memcpy(next, temp, elementSize);
+				}
+			}
+			else {
+				if ((*compFunc) (current, next) < 0) {
+					memcpy(temp, current, elementSize);
+					memcpy(current, next, elementSize);
+					memcpy(next, temp, elementSize);
+				}
+			}
+		}
+	}
+	free(temp);
 }
 
