@@ -161,3 +161,6 @@
  rewrite labs/lab5-src/mystring.o (60%)
 [master 38fe736] 120 of 140
  3 files changed, 6 insertions(+), 1 deletion(-)
+[master 40321af] 120 of 140
+ 6 files changed, 32 insertions(+), 18 deletions(-)
+ rewrite labs/lab5-src/test_mysort (74%)

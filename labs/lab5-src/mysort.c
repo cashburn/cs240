@@ -23,8 +23,8 @@ void mysort( int n,                      // Number of elements
 	     CompareFunction compFunc )  // Comparison function.
 {
 	void * temp = malloc(elementSize);
-	for (int i; i < n; i++) {
-		for (int j; j < n; j++) {
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
 			void * current = (char *) (array + (j * elementSize));
 			void * next = (char *) (array + ((j+1) * elementSize));
 			if (ascending) {
