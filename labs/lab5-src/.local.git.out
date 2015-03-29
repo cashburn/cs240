@@ -164,3 +164,5 @@
 [master 40321af] 120 of 140
  6 files changed, 32 insertions(+), 18 deletions(-)
  rewrite labs/lab5-src/test_mysort (74%)
+[master 3c8fd54] 124 of 140
+ 6 files changed, 9 insertions(+), 4 deletions(-)
