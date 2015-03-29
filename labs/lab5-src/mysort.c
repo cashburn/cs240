@@ -24,7 +24,7 @@ void mysort( int n,                      // Number of elements
 {
 	void * temp = malloc(elementSize);
 	for (int i = 0; i < n; i++) {
-		for (int j = 0; j < n; j++) {
+		for (int j = 0; j < n - 1; j++) {
 			void * current = ((char *) array + (j * elementSize));
 			void * next = ((char *) array + ((j+1) * elementSize));
 			if (ascending) {
