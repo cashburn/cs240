@@ -91,6 +91,14 @@ int compareStudentByGrade( void * a, void * b )
   //
   // 
 
+  Student * sa = (Student *) a;
+  Student * sb = (Student *) b;
+  if (sa->grade > sb->grade)
+    return 1;
+  if (sa->grade < sb->grade)
+    return -1;
+  if (sa->grade == sb->grade) 
+    return compareStudentByName(a, b);
   return 0;
 }
 

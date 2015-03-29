@@ -19,7 +19,7 @@ countwords test.txt                 : 10  of 10
 countwords cosmos.txt               : 15  of 15 
 test_mysort test1                   : 4   of 4  
 test_mysort test2                   : 4   of 4  
-test_mysort test3                   : 0   of 4  
+test_mysort test3                   : 4   of 4  
 test_mysort test4                   : 4   of 4  
 test_mysort test5                   : 4   of 4  
 test_bits test1                     : 4   of 4  
