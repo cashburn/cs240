@@ -246,7 +246,7 @@ IRCServer::processRequest( int fd )
 		}
 	}
 	t = temp;
-	for (int i = lastSpace + 1; i < commandLineLength; i++) {
+	for (int i = lastSpace + 1; i <= commandLineLength; i++) {
 		*t = commandLine[i];
 		t++;
 		if ((commandLine[i] == ' ') || (commandLine[i] == '\0')) {
