@@ -124,7 +124,7 @@ main( int argc, char ** argv )
 
 //
 // Commands:
-//   Commands are started y the client.
+//   Commands are started by the client.
 //
 //   Request: ADD-USER <USER> <PASSWD>\r\n
 //   Answer: OK\r\n or DENIED\r\n
@@ -206,7 +206,7 @@ IRCServer::processRequest( int fd )
         commandLine[ commandLineLength ] = 0;
 
 	printf("RECEIVED: %s\n", commandLine);
-
+	/*
 	printf("The commandLine has the following format:\n");
 	printf("COMMAND <user> <password> <arguments>. See below.\n");
 	printf("You need to separate the commandLine into those components\n");
@@ -216,7 +216,54 @@ IRCServer::processRequest( int fd )
 	const char * user = "peter";
 	const char * password = "spider";
 	const char * args = "";
-
+	*/
+	const char * command;
+	const char * user;
+	const char * password;
+	const char * args;
+	int lastSpace = 0;
+	char * temp = (char *) malloc(1024 * sizeof(char));
+	for (int i = 0; i < commandLineLength; i++) {
+		char * t = temp;
+		*t = commandLine[commandLineLength];
+		t++;
+		if (commandLine[commandLineLength] == ' ') {
+			*t = 0;
+			command = strdup(temp);
+			lastSpace = i;
+			break;
+		}
+	}
+	for (int i = lastSpace; i < commandLineLength; i++) {
+		char * t = temp;
+		*t = commandLine[commandLineLength];
+		t++;
+		if (commandLine[commandLineLength] == ' ') {
+			*t = 0;
+			user = strdup(temp);
+			lastSpace = i;
+			break;
+		}
+	}
+	for (int i = lastSpace; i < commandLineLength; i++) {
+		char * t = temp;
+		*t = commandLine[commandLineLength];
+		t++;
+		if (commandLine[commandLineLength] == ' ') {
+			*t = 0;
+			password = strdup(temp);
+			lastSpace = i;
+			break;
+		}
+	}
+	char * t = temp;
+	for (int i = lastSpace; i < commandLineLength; i++) {
+		*t = commandLine[commandLineLength];
+		t++;
+	}
+	*t = 0;
+	args = strdup(temp);
+	free(temp);
 	printf("command=%s\n", command);
 	printf("user=%s\n", user);
 	printf( "password=%s\n", password );
