@@ -112,7 +112,7 @@ bool HashTableVoidIterator::nextBucket() {
         }
         _currentBucket++;
     }
-    _currentBucket = 0;
-    _currentEntry = _hashTable->_buckets[_currentBucket];
+    //_currentBucket = 0;
+    //_currentEntry = _hashTable->_buckets[_currentBucket];
     return false;
 }
