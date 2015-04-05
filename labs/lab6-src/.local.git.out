@@ -13,3 +13,10 @@
  create mode 100644 labs/lab6-src/prog.org.out
  create mode 100644 labs/lab6-src/prog.out
  create mode 100644 labs/lab6-src/total.out
+[master 383fb7c] otal of otalmax
+ 8 files changed, 27 insertions(+), 22 deletions(-)
+ rewrite labs/lab6-src/HashTableVoidTest (64%)
+ delete mode 100644 labs/lab6-src/diff.out
+ delete mode 100644 labs/lab6-src/prog.org.out
+ delete mode 100644 labs/lab6-src/prog.out
+ delete mode 100644 labs/lab6-src/total.out
