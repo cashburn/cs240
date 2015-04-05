@@ -105,7 +105,7 @@ bool HashTableVoidIterator::next(const char * & key, void * & data) {
 }
 
 bool HashTableVoidIterator::nextBucket() {
-    while ((_currentBucket++ < 2039)) {
+    while ((++_currentBucket < 2039)) {
         if(_hashTable->_buckets[_currentBucket] != NULL) {
             _currentEntry = _hashTable->_buckets[_currentBucket];
             return true;

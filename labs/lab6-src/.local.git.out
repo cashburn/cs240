@@ -38,3 +38,9 @@
  3 files changed, 4 insertions(+), 2 deletions(-)
 [master 1561f4d] otal of otalmax
  3 files changed, 3 insertions(+), 2 deletions(-)
+[master b50daff] 8 of 12
+ 7 files changed, 11 insertions(+)
+ create mode 100644 labs/lab6-src/diff.out
+ create mode 100644 labs/lab6-src/prog.org.out
+ create mode 100644 labs/lab6-src/prog.out
+ create mode 100644 labs/lab6-src/total.out
