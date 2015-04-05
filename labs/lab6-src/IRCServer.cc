@@ -249,7 +249,7 @@ IRCServer::processRequest( int fd )
 	for (int i = lastSpace + 1; i < commandLineLength; i++) {
 		*t = commandLine[i];
 		t++;
-		if (commandLine[i] == ' ') {
+		if ((commandLine[i] == ' ') || (commandLine[i] == '\0')) {
 			*t = 0;
 			password = strdup(temp);
 			lastSpace = i;
