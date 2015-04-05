@@ -225,9 +225,9 @@ IRCServer::processRequest( int fd )
 	char * temp = (char *) malloc(1024 * sizeof(char));
 	char * t = temp;
 	for (int i = 0; i < commandLineLength; i++) {
-		*t = commandLine[commandLineLength];
+		*t = commandLine[i];
 		t++;
-		if (commandLine[commandLineLength] == ' ') {
+		if (commandLine[i] == ' ') {
 			*t = 0;
 			command = strdup(temp);
 			lastSpace = i;
@@ -236,9 +236,9 @@ IRCServer::processRequest( int fd )
 	}
 	t = temp;
 	for (int i = lastSpace; i < commandLineLength; i++) {
-		*t = commandLine[commandLineLength];
+		*t = commandLine[i];
 		t++;
-		if (commandLine[commandLineLength] == ' ') {
+		if (commandLine[i] == ' ') {
 			*t = 0;
 			user = strdup(temp);
 			lastSpace = i;
@@ -247,9 +247,9 @@ IRCServer::processRequest( int fd )
 	}
 	t = temp;
 	for (int i = lastSpace; i < commandLineLength; i++) {
-		*t = commandLine[commandLineLength];
+		*t = commandLine[i];
 		t++;
-		if (commandLine[commandLineLength] == ' ') {
+		if (commandLine[i] == ' ') {
 			*t = 0;
 			password = strdup(temp);
 			lastSpace = i;
@@ -258,7 +258,7 @@ IRCServer::processRequest( int fd )
 	}
 	t = temp;
 	for (int i = lastSpace; i < commandLineLength; i++) {
-		*t = commandLine[commandLineLength];
+		*t = commandLine[i];
 		t++;
 	}
 	*t = 0;
