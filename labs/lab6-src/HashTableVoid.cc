@@ -89,28 +89,29 @@ HashTableVoidIterator::HashTableVoidIterator(HashTableVoid * hashTable) {
 
 // Returns true if there is a next element. Stores data value in data.
 bool HashTableVoidIterator::next(const char * & key, void * & data) {
-    //_currentBucket++;
-    //_currentEntry = _hashTable._buckets[_currentBucket];
-    bool next = false;
-    while (1) {
-        while ((_currentEntry == NULL) && (_currentBucket < _hashTable->TableSize)) {
-            _currentBucket++;
-            _currentEntry = _hashTable->_buckets[_currentBucket];
-            next = true;
-        }
-        if (_currentBucket == _hashTable->TableSize)
-            return false;
-        if (next) {
-            _currentEntry->_data = data;
-            return true;
-        }
-        if (_currentEntry->_next != NULL) {
-            _currentEntry = _currentEntry->_next;
-            _currentEntry->_data = data;
-            return true;
-        }
-        _currentBucket++;
+    if (_currentEntry->_next != NULL) {
+        _currentEntry = _currentEntry->_next;
+        key = _currentEntry->_key;
+        data = _currentEntry->_data;
+        return true;
+    }
+    if (nextBucket()) {
+        key = _currentEntry->_key;
+        data = _currentEntry->_data;
+        return true;
     }
     return false;
 }
 
+bool HashTableVoidIterator::nextBucket() {
+    while ((_currentBucket < HashTableVoid::TableSize)) {
+        if(_hashTable->_buckets[_currentBucket] != NULL) {
+            _currentEntry = _hashTable->_buckets[_currentBucket];
+            return true;
+        }
+        _currentBucket++;
+    }
+    _currentBucket = 0;
+    _currentEntry = _hashTable->_buckets[_currentBucket];
+    return false;
+}

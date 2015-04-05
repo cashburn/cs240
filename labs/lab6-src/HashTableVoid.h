@@ -48,5 +48,6 @@ class HashTableVoidIterator {
  public:
   HashTableVoidIterator(HashTableVoid * hashTable);
   bool next(const char * & key, void * & data);
+  bool nextBucket();
 };
 
