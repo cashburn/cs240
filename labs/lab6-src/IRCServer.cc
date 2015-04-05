@@ -225,36 +225,36 @@ IRCServer::processRequest( int fd )
 	char * temp = (char *) malloc(1024 * sizeof(char));
 	char * t = temp;
 	for (int i = 0; i < commandLineLength; i++) {
-		*t = commandLine[i];
-		t++;
 		if (commandLine[i] == ' ') {
 			*t = 0;
 			command = strdup(temp);
 			lastSpace = i;
 			break;
 		}
+		*t = commandLine[i];
+		t++;
 	}
 	t = temp;
 	for (int i = lastSpace + 1; i < commandLineLength; i++) {
-		*t = commandLine[i];
-		t++;
 		if (commandLine[i] == ' ') {
 			*t = 0;
 			user = strdup(temp);
 			lastSpace = i;
 			break;
 		}
+		*t = commandLine[i];
+		t++;
 	}
 	t = temp;
 	for (int i = lastSpace + 1; i <= commandLineLength; i++) {
-		*t = commandLine[i];
-		t++;
 		if ((commandLine[i] == ' ') || (commandLine[i] == '\0')) {
 			*t = 0;
 			password = strdup(temp);
 			lastSpace = i;
 			break;
 		}
+		*t = commandLine[i];
+		t++;
 	}
 	t = temp;
 	for (int i = lastSpace + 1; i < commandLineLength; i++) {
