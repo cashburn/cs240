@@ -223,8 +223,8 @@ IRCServer::processRequest( int fd )
 	const char * args;
 	int lastSpace = 0;
 	char * temp = (char *) malloc(1024 * sizeof(char));
+	char * t = temp;
 	for (int i = 0; i < commandLineLength; i++) {
-		char * t = temp;
 		*t = commandLine[commandLineLength];
 		t++;
 		if (commandLine[commandLineLength] == ' ') {
@@ -234,8 +234,8 @@ IRCServer::processRequest( int fd )
 			break;
 		}
 	}
+	t = temp;
 	for (int i = lastSpace; i < commandLineLength; i++) {
-		char * t = temp;
 		*t = commandLine[commandLineLength];
 		t++;
 		if (commandLine[commandLineLength] == ' ') {
@@ -245,8 +245,8 @@ IRCServer::processRequest( int fd )
 			break;
 		}
 	}
+	t = temp;
 	for (int i = lastSpace; i < commandLineLength; i++) {
-		char * t = temp;
 		*t = commandLine[commandLineLength];
 		t++;
 		if (commandLine[commandLineLength] == ' ') {
@@ -256,7 +256,7 @@ IRCServer::processRequest( int fd )
 			break;
 		}
 	}
-	char * t = temp;
+	t = temp;
 	for (int i = lastSpace; i < commandLineLength; i++) {
 		*t = commandLine[commandLineLength];
 		t++;
