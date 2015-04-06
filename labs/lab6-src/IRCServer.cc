@@ -306,9 +306,29 @@ void
 IRCServer::initialize()
 {
 	// Open password file
+	FILE * passFile = fopen("passwords.txt","rw+");
 
 	// Initialize users in room
-
+	char * temp = (char *) malloc(1024 * sizeof(char));
+	char * user;
+	char * password;
+	char * t = temp;
+	int c;
+	while ((c = fgetc(passFile)) != EOF) {
+		if (c == ' ') {
+			t = 0;
+			user = strdup(temp);
+			t = temp;
+		}
+		else if (c == '\n') {
+			t = 0;
+			password = strdup(temp);
+			t = temp;
+			addUser(1, user, password, "");
+		}
+		*t = c;
+		t++;
+	}
 	// Initalize message list
 
 }
