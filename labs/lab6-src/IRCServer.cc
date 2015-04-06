@@ -330,6 +330,10 @@ IRCServer::initialize()
 		*t = c;
 		t++;
 	}
+	*t = 0;
+	password = strdup(temp);
+	t = temp;
+	addUser(1, user, password, "");
 	// Initalize message list
 
 }
