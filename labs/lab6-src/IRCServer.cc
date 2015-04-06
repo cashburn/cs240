@@ -316,12 +316,12 @@ IRCServer::initialize()
 	int c;
 	while ((c = fgetc(passFile)) != EOF) {
 		if (c == ' ') {
-			t = 0;
+			*t = 0;
 			user = strdup(temp);
 			t = temp;
 		}
 		else if (c == '\n') {
-			t = 0;
+			*t = 0;
 			password = strdup(temp);
 			t = temp;
 			addUser(1, user, password, "");
