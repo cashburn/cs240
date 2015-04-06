@@ -325,6 +325,7 @@ IRCServer::initialize()
 			password = strdup(temp);
 			t = temp;
 			addUser(1, user, password, "");
+			continue;
 		}
 		*t = c;
 		t++;

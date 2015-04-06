@@ -74,3 +74,6 @@
 [master aa83969] otal of otalmax
  3 files changed, 23 insertions(+), 1 deletion(-)
  rewrite labs/lab6-src/IRCServer (87%)
+[master 840751b] otal of otalmax
+ 4 files changed, 7 insertions(+)
+ create mode 100644 labs/lab6-src/passwords.txt
