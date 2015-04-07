@@ -411,7 +411,7 @@ IRCServer::getUsersInRoom(int fd, const char * user, const char * password, cons
 }
 
 void
-IRCServer::getAllUsers(int fd, const char * user, const char * password,const  char * args) {
+IRCServer::getAllUsers(int fd, const char * user, const char * password, const  char * args) {
 	HashTableVoidIterator iterator(&passwords);
 	FILE * fssock = fdopen(fd,"r+");
 	if (!checkPassword(fd, user, password)) {
