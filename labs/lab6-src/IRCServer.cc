@@ -405,5 +405,6 @@ IRCServer::getAllUsers(int fd, const char * user, const char * password,const  c
 	while (iterator.next(key, data)) {
 		fprintf(fssock,"%s\r\n",key);
 	}
+	fclose(fssock);
 }
 
