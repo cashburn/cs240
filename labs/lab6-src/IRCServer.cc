@@ -315,6 +315,7 @@ IRCServer::initialize()
 	char * user;
 	char * password;
 	char * t = temp;
+	int last;
 	int c;
 	while ((c = fgetc(passFile)) != EOF) {
 		if (c == ' ') {
@@ -323,7 +324,8 @@ IRCServer::initialize()
 			t = temp;
 			continue;
 		}
-		else if (c == '\r') {
+		else if ((c == '\n') && (last == '\r')) {
+			t--;
 			*t = 0;
 			password = strdup(temp);
 			t = temp;
@@ -332,6 +334,7 @@ IRCServer::initialize()
 			continue;
 		}
 		*t = c;
+		last = c;
 		t++;
 	}
 	/**t = 0;
