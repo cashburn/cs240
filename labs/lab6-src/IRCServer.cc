@@ -7,7 +7,7 @@ const char * usage =
 "                                                               \n"
 "To use it in one window type:                                  \n"
 "                                                               \n"
-"   IRCServer <port>                                          \n"
+"   IRCServer <port>                                            \n"
 "                                                               \n"
 "Where 1024 < port < 65536.                                     \n"
 "                                                               \n"
@@ -31,8 +31,10 @@ const char * usage =
 #include <time.h>
 
 #include "IRCServer.h"
+#include "HashTableVoid.h"
 
 int QueueLength = 5;
+HashTableVoid hash;
 
 int
 IRCServer::open_server_socket(int port) {
@@ -345,21 +347,19 @@ IRCServer::checkPassword(int fd, const char * user, const char * password) {
 }
 
 void
-IRCServer::addUser(int fd, const char * user, const char * password, const char * args)
-{
+IRCServer::addUser(int fd, const char * user, const char * password, const char * args) {
 	// Here add a new user. For now always return OK.
-
+	hash.insertItem(user, (void*) password);
 	const char * msg =  "OK\r\n";
 	write(fd, msg, strlen(msg));
-	write(fd, user, strlen(user));
-	write(fd, password, strlen(password));
+	//write(fd, user, strlen(user));
+	//write(fd, password, strlen(password));
 
 	return;		
 }
 
 void
-IRCServer::enterRoom(int fd, const char * user, const char * password, const char * args)
-{
+IRCServer::enterRoom(int fd, const char * user, const char * password, const char * args) {
 }
 
 void
