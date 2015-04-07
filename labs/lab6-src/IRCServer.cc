@@ -31,10 +31,10 @@ const char * usage =
 #include <time.h>
 
 #include "IRCServer.h"
-#include "HashTableVoid.h"
+#include "HashTableVoid.cc"
 
 int QueueLength = 5;
-//HashTableVoid hash;
+HashTableVoid * passwords;
 
 int
 IRCServer::open_server_socket(int port) {
@@ -118,7 +118,7 @@ main( int argc, char ** argv )
 	int port = atoi( argv[1] );
 
 	IRCServer ircServer;
-
+	passwords = new HashTableVoid;
 	// It will never return
 	ircServer.runServer(port);
 	
