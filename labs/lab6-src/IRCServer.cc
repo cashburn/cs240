@@ -349,7 +349,11 @@ IRCServer::initialize()
 bool
 IRCServer::checkPassword(int fd, const char * user, const char * password) {
 	char ** stored;
-	//if(passwords.find(user, (void**)stored))
+	if(passwords.find(user, (void**) stored)) {
+		if (!strcmp(password, *stored))
+			return true;
+	}
+	return false;
 }
 
 void
@@ -376,7 +380,12 @@ IRCServer::addUser(int fd, const char * user, const char * password, const char 
 
 	return;		
 }
+void createRoom(int fd, const char * user, const char * password, const char * args) {
 
+}
+void listRoom(int fd, const char * user, const char * password, const char * args) {
+
+}
 void
 IRCServer::enterRoom(int fd, const char * user, const char * password, const char * args) {
 }
@@ -405,6 +414,11 @@ void
 IRCServer::getAllUsers(int fd, const char * user, const char * password,const  char * args) {
 	HashTableVoidIterator iterator(&passwords);
 	FILE * fssock = fdopen(fd,"r+");
+	if (!checkPassword(fd, user, password)) {
+		fprintf(fssock,"DENIED\r\n");
+		fclose(fssock);
+		return;
+	}
 	const char * key;
 	void * data;
 	while (iterator.next(key, data)) {
