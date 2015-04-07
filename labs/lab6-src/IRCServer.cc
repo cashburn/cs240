@@ -323,7 +323,7 @@ IRCServer::initialize()
 			t = temp;
 			continue;
 		}
-		else if (c == '\n') {
+		else if (c == '\r') {
 			*t = 0;
 			password = strdup(temp);
 			t = temp;
