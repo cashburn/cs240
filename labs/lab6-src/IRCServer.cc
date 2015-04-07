@@ -321,6 +321,7 @@ IRCServer::initialize()
 			*t = 0;
 			user = strdup(temp);
 			t = temp;
+			continue;
 		}
 		else if (c == '\n') {
 			*t = 0;
