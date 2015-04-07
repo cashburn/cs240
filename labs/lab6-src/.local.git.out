@@ -138,3 +138,6 @@
  rewrite labs/lab6-src/IRCServer (73%)
 [master b978d07] otal of otalmax
  3 files changed, 4 insertions(+)
+[master 948cfd9] otal of otalmax
+ 4 files changed, 9 insertions(+), 6 deletions(-)
+ rewrite labs/lab6-src/IRCServer (63%)

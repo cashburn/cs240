@@ -334,13 +334,16 @@ IRCServer::initialize()
 		*t = c;
 		t++;
 	}
-	*t = 0;
+	/**t = 0;
 	password = strdup(temp);
 	t = temp;
 	if ((user != NULL) && (password != NULL))
 		addUser(1, user, password, "initialize");
-	// Initalize message list
+		*/
+	free(temp);
 	fclose(passFile);
+	// Initalize message list
+	
 }
 
 bool
