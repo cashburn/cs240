@@ -327,7 +327,8 @@ IRCServer::initialize()
 			*t = 0;
 			password = strdup(temp);
 			t = temp;
-			addUser(1, user, password, "initialize");
+			if ((user != NULL) && (password != NULL))
+				addUser(1, user, password, "initialize");
 			continue;
 		}
 		*t = c;
@@ -336,9 +337,10 @@ IRCServer::initialize()
 	*t = 0;
 	password = strdup(temp);
 	t = temp;
-	addUser(1, user, password, "initialize");
+	if ((user != NULL) && (password != NULL))
+		addUser(1, user, password, "initialize");
 	// Initalize message list
-
+	fclose(passFile);
 }
 
 bool
@@ -363,7 +365,7 @@ IRCServer::addUser(int fd, const char * user, const char * password, const char 
 	write(fd, msg, strlen(msg));
 	if (strcmp(args, "initialize")) {
 		FILE * passFile = fopen("passwords.txt","a+");
-		fprintf(passFile, "%s %s", user, password);
+		fprintf(passFile, "%s %s\r\n", user, password);
 		fclose(passFile);
 	}
 	//write(fd, user, strlen(user));
@@ -405,6 +407,7 @@ IRCServer::getAllUsers(int fd, const char * user, const char * password,const  c
 	while (iterator.next(key, data)) {
 		fprintf(fssock,"%s\r\n",key);
 	}
+	fprintf(fssock,"\r\n");
 	fclose(fssock);
 }
 
