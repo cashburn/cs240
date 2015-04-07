@@ -399,10 +399,11 @@ IRCServer::getUsersInRoom(int fd, const char * user, const char * password, cons
 void
 IRCServer::getAllUsers(int fd, const char * user, const char * password,const  char * args) {
 	HashTableVoidIterator iterator(&passwords);
+	FILE * fssock = fdopen(fd,"r+");
 	const char * key;
 	void * data;
 	while (iterator.next(key, data)) {
-		write(fd, key, strlen(key));
+		fprintf(fssock,"%s\r\n",key);
 	}
 }
 
