@@ -101,3 +101,9 @@
  3 files changed, 6 insertions(+)
 >>>>>>> b0fe742503dc90170fe818fb99ec911d56bf6444
 [master 6efd076] otal of otalmax
+[master f54a7be] 12 of 12
+ 6 files changed, 7 insertions(+)
+ create mode 100644 labs/lab6-src/diff.out
+ create mode 100644 labs/lab6-src/prog.org.out
+ create mode 100644 labs/lab6-src/prog.out
+ create mode 100644 labs/lab6-src/total.out
