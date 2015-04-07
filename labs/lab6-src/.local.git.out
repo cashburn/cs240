@@ -151,3 +151,6 @@
  create mode 100644 labs/lab6-src/prog.org.out
  create mode 100644 labs/lab6-src/prog.out
  create mode 100644 labs/lab6-src/total.out
+[master 0e4c438] otal of otalmax
+ 3 files changed, 17 insertions(+), 1 deletion(-)
+ rewrite labs/lab6-src/IRCServer (89%)
