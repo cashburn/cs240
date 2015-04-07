@@ -353,7 +353,7 @@ IRCServer::addUser(int fd, const char * user, const char * password, const char 
 	const char * msg;
 	char ** temp;
 	if(!passwords.find(user, (void**) temp)) {
-		if(passwords.insertItem(user, (void*) password))
+		if(!passwords.insertItem(user, (void*) password))
 			msg =  "OK\r\n";
 		else
 			msg = "DENIED\r\n";
