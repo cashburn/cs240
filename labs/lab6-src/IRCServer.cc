@@ -7,7 +7,7 @@ const char * usage =
 "                                                               \n"
 "To use it in one window type:                                  \n"
 "                                                               \n"
-"   IRCServer <port>                                          \n"
+"   IRCServer <port>                                            \n"
 "                                                               \n"
 "Where 1024 < port < 65536.                                     \n"
 "                                                               \n"
@@ -31,8 +31,10 @@ const char * usage =
 #include <time.h>
 
 #include "IRCServer.h"
+#include "HashTableVoid.h"
 
 int QueueLength = 5;
+//HashTableVoid hash;
 
 int
 IRCServer::open_server_socket(int port) {
@@ -124,7 +126,7 @@ main( int argc, char ** argv )
 
 //
 // Commands:
-//   Commands are started y the client.
+//   Commands are started by the client.
 //
 //   Request: ADD-USER <USER> <PASSWD>\r\n
 //   Answer: OK\r\n or DENIED\r\n
@@ -206,7 +208,7 @@ IRCServer::processRequest( int fd )
         commandLine[ commandLineLength ] = 0;
 
 	printf("RECEIVED: %s\n", commandLine);
-
+	/*
 	printf("The commandLine has the following format:\n");
 	printf("COMMAND <user> <password> <arguments>. See below.\n");
 	printf("You need to separate the commandLine into those components\n");
@@ -216,7 +218,54 @@ IRCServer::processRequest( int fd )
 	const char * user = "peter";
 	const char * password = "spider";
 	const char * args = "";
-
+	*/
+	const char * command;
+	const char * user;
+	const char * password;
+	const char * args;
+	int lastSpace = 0;
+	char * temp = (char *) malloc(1024 * sizeof(char));
+	char * t = temp;
+	for (int i = 0; i < commandLineLength; i++) {
+		if (commandLine[i] == ' ') {
+			*t = 0;
+			command = strdup(temp);
+			lastSpace = i;
+			break;
+		}
+		*t = commandLine[i];
+		t++;
+	}
+	t = temp;
+	for (int i = lastSpace + 1; i < commandLineLength; i++) {
+		if (commandLine[i] == ' ') {
+			*t = 0;
+			user = strdup(temp);
+			lastSpace = i;
+			break;
+		}
+		*t = commandLine[i];
+		t++;
+	}
+	t = temp;
+	for (int i = lastSpace + 1; i <= commandLineLength; i++) {
+		if ((commandLine[i] == ' ') || (commandLine[i] == '\0')) {
+			*t = 0;
+			password = strdup(temp);
+			lastSpace = i;
+			break;
+		}
+		*t = commandLine[i];
+		t++;
+	}
+	t = temp;
+	for (int i = lastSpace + 1; i < commandLineLength; i++) {
+		*t = commandLine[i];
+		t++;
+	}
+	*t = 0;
+	args = strdup(temp);
+	free(temp);
 	printf("command=%s\n", command);
 	printf("user=%s\n", user);
 	printf( "password=%s\n", password );
@@ -259,9 +308,34 @@ void
 IRCServer::initialize()
 {
 	// Open password file
+	FILE * passFile = fopen("passwords.txt","rw+");
 
 	// Initialize users in room
-
+	char * temp = (char *) malloc(1024 * sizeof(char));
+	char * user;
+	char * password;
+	char * t = temp;
+	int c;
+	while ((c = fgetc(passFile)) != EOF) {
+		if (c == ' ') {
+			*t = 0;
+			user = strdup(temp);
+			t = temp;
+		}
+		else if (c == '\n') {
+			*t = 0;
+			password = strdup(temp);
+			t = temp;
+			addUser(1, user, password, "");
+			continue;
+		}
+		*t = c;
+		t++;
+	}
+	*t = 0;
+	password = strdup(temp);
+	t = temp;
+	addUser(1, user, password, "");
 	// Initalize message list
 
 }
@@ -273,19 +347,19 @@ IRCServer::checkPassword(int fd, const char * user, const char * password) {
 }
 
 void
-IRCServer::addUser(int fd, const char * user, const char * password, const char * args)
-{
+IRCServer::addUser(int fd, const char * user, const char * password, const char * args) {
 	// Here add a new user. For now always return OK.
-
+	//hash.insertItem(user, (void*) password);
 	const char * msg =  "OK\r\n";
 	write(fd, msg, strlen(msg));
+	//write(fd, user, strlen(user));
+	//write(fd, password, strlen(password));
 
 	return;		
 }
 
 void
-IRCServer::enterRoom(int fd, const char * user, const char * password, const char * args)
-{
+IRCServer::enterRoom(int fd, const char * user, const char * password, const char * args) {
 }
 
 void

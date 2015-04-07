@@ -56,6 +56,7 @@
  create mode 100644 labs/lab6-src/prog.org.out
  create mode 100644 labs/lab6-src/prog.out
  create mode 100644 labs/lab6-src/total.out
+<<<<<<< HEAD
 [master 37447bd] otal of otalmax
  6 files changed, 4 deletions(-)
  rewrite labs/lab6-src/HashTableVoidTest (97%)
@@ -70,3 +71,32 @@
  create mode 100644 labs/lab6-src/prog.org.out
  create mode 100644 labs/lab6-src/prog.out
  create mode 100644 labs/lab6-src/total.out
+=======
+[master 5390d7b] otal of otalmax
+ 2 files changed, 50 insertions(+), 3 deletions(-)
+ rewrite labs/lab6-src/IRCServer (80%)
+[master 1431f4a] otal of otalmax
+ 3 files changed, 7 insertions(+), 4 deletions(-)
+[master 9dc2066] otal of otalmax
+ 3 files changed, 9 insertions(+), 7 deletions(-)
+[master 3192acc] otal of otalmax
+ 3 files changed, 5 insertions(+), 3 deletions(-)
+[master c13431b] otal of otalmax
+ 3 files changed, 3 insertions(+), 1 deletion(-)
+[master 17feac3] otal of otalmax
+ 3 files changed, 3 insertions(+), 1 deletion(-)
+[master 4603149] otal of otalmax
+ 3 files changed, 8 insertions(+), 6 deletions(-)
+[master aa83969] otal of otalmax
+ 3 files changed, 23 insertions(+), 1 deletion(-)
+ rewrite labs/lab6-src/IRCServer (87%)
+[master 840751b] otal of otalmax
+ 4 files changed, 7 insertions(+)
+ create mode 100644 labs/lab6-src/passwords.txt
+[master 99be05c] otal of otalmax
+ 3 files changed, 4 insertions(+)
+[master 9929a47] otal of otalmax
+ 3 files changed, 4 insertions(+), 2 deletions(-)
+[master 1e50e1a] otal of otalmax
+ 3 files changed, 6 insertions(+)
+>>>>>>> b0fe742503dc90170fe818fb99ec911d56bf6444
