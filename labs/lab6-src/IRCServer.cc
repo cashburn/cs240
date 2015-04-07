@@ -34,7 +34,7 @@ const char * usage =
 #include "HashTableVoid.cc"
 
 int QueueLength = 5;
-HashTableVoid * passwords;
+HashTableVoid passwords;
 
 int
 IRCServer::open_server_socket(int port) {
@@ -118,7 +118,7 @@ main( int argc, char ** argv )
 	int port = atoi( argv[1] );
 
 	IRCServer ircServer;
-	passwords = new HashTableVoid;
+	//passwords = new HashTableVoid;
 	// It will never return
 	ircServer.runServer(port);
 	
@@ -308,7 +308,7 @@ void
 IRCServer::initialize()
 {
 	// Open password file
-	FILE * passFile = fopen("passwords.txt","rw+");
+	FILE * passFile = fopen("passwords.txt","a+");
 
 	// Initialize users in room
 	char * temp = (char *) malloc(1024 * sizeof(char));
@@ -326,7 +326,7 @@ IRCServer::initialize()
 			*t = 0;
 			password = strdup(temp);
 			t = temp;
-			addUser(1, user, password, "");
+			addUser(1, user, password, "initialize");
 			continue;
 		}
 		*t = c;
@@ -335,7 +335,7 @@ IRCServer::initialize()
 	*t = 0;
 	password = strdup(temp);
 	t = temp;
-	addUser(1, user, password, "");
+	addUser(1, user, password, "initialize");
 	// Initalize message list
 
 }
@@ -349,9 +349,22 @@ IRCServer::checkPassword(int fd, const char * user, const char * password) {
 void
 IRCServer::addUser(int fd, const char * user, const char * password, const char * args) {
 	// Here add a new user. For now always return OK.
-	//hash.insertItem(user, (void*) password);
-	const char * msg =  "OK\r\n";
+	const char * msg;
+	char ** temp;
+	if(!passwords.find(user, (void**) temp)) {
+		if(passwords.insertItem(user, (void*) password))
+			msg =  "OK\r\n";
+		else
+			msg = "DENIED\r\n";
+	}
+	else
+		msg = "DENIED\r\n";
 	write(fd, msg, strlen(msg));
+	if (strcmp(args, "initialize")) {
+		FILE * passFile = fopen("passwords.txt","a+");
+		fprintf(passFile, "%s %s", user, password);
+		fclose(passFile);
+	}
 	//write(fd, user, strlen(user));
 	//write(fd, password, strlen(password));
 
@@ -383,8 +396,12 @@ IRCServer::getUsersInRoom(int fd, const char * user, const char * password, cons
 }
 
 void
-IRCServer::getAllUsers(int fd, const char * user, const char * password,const  char * args)
-{
-
+IRCServer::getAllUsers(int fd, const char * user, const char * password,const  char * args) {
+	HashTableVoidIterator iterator(&passwords);
+	const char * key;
+	void * data;
+	while (iterator.next(key, data)) {
+		write(fd, key, strlen(key));
+	}
 }
 
