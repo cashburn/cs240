@@ -163,3 +163,6 @@
  3 files changed, 3 insertions(+), 1 deletion(-)
 [master a5cb8d3] otal of otalmax
  3 files changed, 6 insertions(+), 1 deletion(-)
+[master 7dc779a] otal of otalmax
+ 3 files changed, 54 insertions(+), 6 deletions(-)
+ rewrite labs/lab6-src/IRCServer (86%)

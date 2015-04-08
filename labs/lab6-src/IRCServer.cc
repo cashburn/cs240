@@ -284,6 +284,12 @@ IRCServer::processRequest( int fd )
 	if (!strcmp(command, "ADD-USER")) {
 		addUser(fd, user, password, args);
 	}
+	else if (!strcmp(command, "CREATE-ROOM")) {
+		createRoom(fd, user, password, args);
+	}
+	else if (!strcmp(command, "LIST-ROOMS")) {
+		listRooms(fd, user, password, args);
+	}
 	else if (!strcmp(command, "ENTER-ROOM")) {
 		enterRoom(fd, user, password, args);
 	}
@@ -421,7 +427,7 @@ void IRCServer::createRoom(int fd, const char * user, const char * password, con
 	fprintf(fssock,"OK\r\n");
 	fclose(fssock);
 }
-void IRCServer::listRoom(int fd, const char * user, const char * password, const char * args) {
+void IRCServer::listRooms(int fd, const char * user, const char * password, const char * args) {
 	FILE * fssock = fdopen(fd,"r+");
 	if (!checkPassword(fd, user, password)) {
 		fprintf(fssock,"DENIED\r\n");

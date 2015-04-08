@@ -16,7 +16,7 @@ public:
 	void processRequest( int socket );
 	void addUser(int fd, const char * user, const char * password, const char * args);
 	void createRoom(int fd, const char * user, const char * password, const char * args);
-	void listRoom(int fd, const char * user, const char * password, const char * args);
+	void listRooms(int fd, const char * user, const char * password, const char * args);
 	void enterRoom(int fd, const char * user, const char * password, const char * args);
 	void leaveRoom(int fd, const char * user, const char * password, const char * args);
 	void sendMessage(int fd, const char * user, const char * password, const char * args);
