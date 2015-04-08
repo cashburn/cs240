@@ -436,6 +436,7 @@ void IRCServer::listRooms(int fd, const char * user, const char * password, cons
 	}
 	for (int i = 0; i < nRooms; i++) {
 		fprintf(fssock,"%s\r\n", roomList[nRooms].name);
+		fprintf(stdout,"%s\r\n", roomList[nRooms].name);
 	}
 	fprintf(fssock,"\r\n");
 	fclose(fssock);
