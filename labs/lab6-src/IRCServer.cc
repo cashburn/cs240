@@ -36,6 +36,16 @@ const char * usage =
 int QueueLength = 5;
 HashTableVoid passwords;
 
+struct ChatRoom {
+	char * name;
+	char ** messages; //Only 100 messages at once
+	char ** usersInRoom; //Resizeable array--initialize to 10
+	int maxUsers;
+};
+int maxRooms;
+int nRooms;
+ChatRoom * roomList; //Resizeable--initialize to 5
+
 int
 IRCServer::open_server_socket(int port) {
 
@@ -118,7 +128,7 @@ main( int argc, char ** argv )
 	int port = atoi( argv[1] );
 
 	IRCServer ircServer;
-	//passwords = new HashTableVoid;
+	
 	// It will never return
 	ircServer.runServer(port);
 	
@@ -345,8 +355,10 @@ IRCServer::initialize()
 		*/
 	free(temp);
 	fclose(passFile);
-	// Initalize message list
-	
+	// Initalize room list
+	maxRooms = 5;
+	nRooms = 0;
+	roomList = (ChatRoom *) malloc(maxRooms * sizeof(ChatRoom));
 }
 
 bool
@@ -383,10 +395,44 @@ IRCServer::addUser(int fd, const char * user, const char * password, const char 
 
 	return;		
 }
-void createRoom(int fd, const char * user, const char * password, const char * args) {
-
+void IRCServer::createRoom(int fd, const char * user, const char * password, const char * args) {
+	FILE * fssock = fdopen(fd,"r+");
+	if (!checkPassword(fd, user, password)) {
+		fprintf(fssock,"DENIED\r\n");
+		fclose(fssock);
+		return;
+	}
+	if (nRooms == maxRooms) {
+		maxRooms = 2 * maxRooms;
+		roomList = (ChatRoom *) realloc(roomList, maxRooms * sizeof(ChatRoom));
+	}
+	for (int i = 0; i < nRooms; i++) {
+		if (!strcmp(args, roomList[nRooms].name)) {
+			fprintf(fssock,"DENIED\r\n");
+			fclose(fssock);
+			return;
+		}
+	}
+	roomList[nRooms].name = strdup(args);
+	roomList[nRooms].messages = (char **) malloc(100 * sizeof(char *));
+	roomList[nRooms].maxUsers = 10;
+	roomList[nRooms].usersInRoom = (char **) malloc(roomList[nRooms].maxUsers * sizeof(char *));
+	nRooms++;
+	fprintf(fssock,"OK\r\n");
+	fclose(fssock);
 }
-void listRoom(int fd, const char * user, const char * password, const char * args) {
+void IRCServer::listRoom(int fd, const char * user, const char * password, const char * args) {
+	FILE * fssock = fdopen(fd,"r+");
+	if (!checkPassword(fd, user, password)) {
+		fprintf(fssock,"DENIED\r\n");
+		fclose(fssock);
+		return;
+	}
+	for (int i = 0; i < nRooms; i++) {
+		fprintf(fssock,"%s\r\n", roomList[nRooms].name);
+	}
+	fprintf(fssock,"\r\n");
+	fclose(fssock);
 
 }
 void
