@@ -413,7 +413,7 @@ void IRCServer::createRoom(int fd, const char * user, const char * password, con
 		roomList = (ChatRoom *) realloc(roomList, maxRooms * sizeof(ChatRoom));
 	}
 	for (int i = 0; i < nRooms; i++) {
-		if (!strcmp(args, roomList[nRooms].name)) {
+		if (!strcmp(args, roomList[i].name)) {
 			fprintf(fssock,"DENIED\r\n");
 			fclose(fssock);
 			return;
@@ -435,8 +435,7 @@ void IRCServer::listRooms(int fd, const char * user, const char * password, cons
 		return;
 	}
 	for (int i = 0; i < nRooms; i++) {
-		fprintf(fssock,"%s\r\n", roomList[nRooms].name);
-		printf("%s\r\n", roomList[nRooms].name);
+		fprintf(fssock,"%s\r\n", roomList[i].name);
 	}
 	fprintf(fssock,"\r\n");
 	fclose(fssock);
