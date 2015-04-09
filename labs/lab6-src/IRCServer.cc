@@ -479,23 +479,40 @@ IRCServer::enterRoom(int fd, const char * user, const char * password, const cha
 }
 
 void
-IRCServer::leaveRoom(int fd, const char * user, const char * password, const char * args)
-{
+IRCServer::leaveRoom(int fd, const char * user, const char * password, const char * args) {
+	FILE * fssock = fdopen(fd,"r+");
+	if (!checkPassword(fd, user, password)) {
+		fprintf(fssock,"DENIED\r\n");
+		fclose(fssock);
+		return;
+	}
+	for (int i = 0; i < nRooms; i++) {
+		if (!strcmp(args, roomList[i].name)) {
+			for (int j = 0; j < roomList[i].nUsers; j++) {
+				if (!strcmp(roomList[i].usersInRoom[roomList[i].nUsers], user)) {
+					free(roomList[i].usersInRoom[j]);
+					fprintf(fssock,"OK\r\n");
+					fclose(fssock);
+					return;
+				}
+			}
+		}
+	}
+	fprintf(fssock,"DENIED\r\n");
+	fclose(fssock);
+	return;
 }
 
 void
-IRCServer::sendMessage(int fd, const char * user, const char * password, const char * args)
-{
+IRCServer::sendMessage(int fd, const char * user, const char * password, const char * args) {
 }
 
 void
-IRCServer::getMessages(int fd, const char * user, const char * password, const char * args)
-{
+IRCServer::getMessages(int fd, const char * user, const char * password, const char * args) {
 }
 
 void
-IRCServer::getUsersInRoom(int fd, const char * user, const char * password, const char * args)
-{
+IRCServer::getUsersInRoom(int fd, const char * user, const char * password, const char * args) {
 }
 
 void
