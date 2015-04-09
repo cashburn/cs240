@@ -40,6 +40,7 @@ struct ChatRoom {
 	char * name;
 	char ** messages; //Only 100 messages at once
 	char ** usersInRoom; //Resizeable array--initialize to 10
+	int nUsers;
 	int maxUsers;
 };
 int maxRooms;
@@ -423,6 +424,7 @@ void IRCServer::createRoom(int fd, const char * user, const char * password, con
 	roomList[nRooms].messages = (char **) malloc(100 * sizeof(char *));
 	roomList[nRooms].maxUsers = 10;
 	roomList[nRooms].usersInRoom = (char **) malloc(roomList[nRooms].maxUsers * sizeof(char *));
+	roomList[nRooms].nUsers = 10;
 	nRooms++;
 	fprintf(fssock,"OK\r\n");
 	fclose(fssock);
@@ -443,6 +445,25 @@ void IRCServer::listRooms(int fd, const char * user, const char * password, cons
 }
 void
 IRCServer::enterRoom(int fd, const char * user, const char * password, const char * args) {
+	FILE * fssock = fdopen(fd,"r+");
+	if (!checkPassword(fd, user, password)) {
+		fprintf(fssock,"DENIED\r\n");
+		fclose(fssock);
+		return;
+	}
+	for (int i = 0; i < nRooms; i++) {
+		if (!strcmp(args, roomList[i].name)) {
+			if (roomList[i].nUsers == roomList[i].maxUsers) {
+				roomList[i].maxUsers = 2 * roomList[i].maxUsers;
+				roomList[i].usersInRoom = (char **) realloc(roomList[i].usersInRoom, roomList[i].maxUsers * sizeof(char *));
+			}
+			roomList[i].usersInRoom[roomList[i].nUsers] = strdup(user);
+			roomList[i].nUsers++;
+			fprintf(fssock,"OK\r\n");
+			fclose(fssock);
+			return;
+		}
+	}
 }
 
 void
