@@ -457,6 +457,15 @@ IRCServer::enterRoom(int fd, const char * user, const char * password, const cha
 				roomList[i].maxUsers = 2 * roomList[i].maxUsers;
 				roomList[i].usersInRoom = (char **) realloc(roomList[i].usersInRoom, roomList[i].maxUsers * sizeof(char *));
 			}
+			bool already = false;
+			for (int j = 0; j < roomList[i].nUsers; j++) {
+				if (!strcmp(roomList[i].usersInRoom[roomList[i].nUsers], user)) {
+					already = true;
+					break;
+				}
+			}
+			if (already)
+				break;
 			roomList[i].usersInRoom[roomList[i].nUsers] = strdup(user);
 			roomList[i].nUsers++;
 			fprintf(fssock,"OK\r\n");
@@ -464,6 +473,9 @@ IRCServer::enterRoom(int fd, const char * user, const char * password, const cha
 			return;
 		}
 	}
+	fprintf(fssock,"DENIED\r\n");
+	fclose(fssock);
+	return;
 }
 
 void
