@@ -424,7 +424,7 @@ void IRCServer::createRoom(int fd, const char * user, const char * password, con
 	roomList[nRooms].messages = (char **) malloc(100 * sizeof(char *));
 	roomList[nRooms].maxUsers = 10;
 	roomList[nRooms].usersInRoom = (char **) malloc(roomList[nRooms].maxUsers * sizeof(char *));
-	roomList[nRooms].nUsers = 10;
+	roomList[nRooms].nUsers = 0;
 	nRooms++;
 	fprintf(fssock,"OK\r\n");
 	fclose(fssock);
