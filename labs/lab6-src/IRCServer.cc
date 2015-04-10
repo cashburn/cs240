@@ -513,6 +513,26 @@ IRCServer::getMessages(int fd, const char * user, const char * password, const c
 
 void
 IRCServer::getUsersInRoom(int fd, const char * user, const char * password, const char * args) {
+	FILE * fssock = fdopen(fd,"r+");
+	if (!checkPassword(fd, user, password)) {
+		fprintf(fssock,"DENIED\r\n");
+		fclose(fssock);
+		return;
+	}
+	for (int i = 0; i < nRooms; i++) {
+		if (!strcmp(args, roomList[i].name)) {
+			for (int j = 0; j < roomList[i].nUsers; j++) {
+					fprintf(fssock,"%s\r\n",roomList[i].usersInRoom[j]);
+			}
+			fprintf(fssock,"\r\n");
+			fclose(fssock);
+			return;
+		}
+	}
+	
+	fprintf(fssock,"DENIED\r\n");
+	fclose(fssock);
+	return;
 }
 
 void
