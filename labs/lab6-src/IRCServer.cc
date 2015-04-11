@@ -549,7 +549,22 @@ IRCServer::getMessages(int fd, const char * user, const char * password, const c
 		return;
 	}
 	int lastMessageNum;
-	char * room = (char *) malloc (strlen(args) * sizeof(char));
+	int argLength = strlen(args);
+	char * room;
+	char * s = strdup(args);
+	char * temp = (char *) malloc (argLength * sizeof(char));
+	char * t = temp;
+	while (*s) {
+		if (*s == ' ') {
+			*t = 0;
+			lastMessageNum = atoi(temp);
+			s++;
+			room = strdup(s);
+		}
+		*t = *s;
+		s++;
+		t++;
+	}
 	int n = 0;
 	sscanf(args, "%d %s", &lastMessageNum, room);
 	for (int i = 0; i < nRooms; i++) {
