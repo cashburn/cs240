@@ -35,14 +35,20 @@ const char * usage =
 
 int QueueLength = 5;
 HashTableVoid passwords;
-
+struct Message {
+	char * user;
+	char * message;
+};
 struct ChatRoom {
 	char * name;
-	char ** messages; //Only 100 messages at once
+	Message * messages; //Only 100 messages at once
 	char ** usersInRoom; //Resizeable array--initialize to 10
 	int nUsers;
 	int maxUsers;
+	int nMessages;
+	int nLists;
 };
+int maxMessages;
 int maxRooms;
 int nRooms;
 ChatRoom * roomList; //Resizeable--initialize to 5
@@ -180,9 +186,7 @@ main( int argc, char ** argv )
 //            \r\n
 //
 
-void
-IRCServer::processRequest( int fd )
-{
+void IRCServer::processRequest( int fd ) {
 	// Buffer used to store the comand received from the client
 	const int MaxCommandLine = 1024;
 	char commandLine[ MaxCommandLine + 1 ];
@@ -363,6 +367,7 @@ IRCServer::initialize()
 	free(temp);
 	fclose(passFile);
 	// Initalize room list
+	maxMessages = 100;
 	maxRooms = 5;
 	nRooms = 0;
 	roomList = (ChatRoom *) malloc(maxRooms * sizeof(ChatRoom));
@@ -421,7 +426,8 @@ void IRCServer::createRoom(int fd, const char * user, const char * password, con
 		}
 	}
 	roomList[nRooms].name = strdup(args);
-	roomList[nRooms].messages = (char **) malloc(100 * sizeof(char *));
+	roomList[nRooms].messages = (Message *) malloc(maxMessages * sizeof(Message));
+	roomList[nRooms].nMessages = 0;
 	roomList[nRooms].maxUsers = 10;
 	roomList[nRooms].usersInRoom = (char **) malloc(roomList[nRooms].maxUsers * sizeof(char *));
 	roomList[nRooms].nUsers = 0;
@@ -505,10 +511,69 @@ IRCServer::leaveRoom(int fd, const char * user, const char * password, const cha
 
 void
 IRCServer::sendMessage(int fd, const char * user, const char * password, const char * args) {
+	FILE * fssock = fdopen(fd,"r+");
+	if (!checkPassword(fd, user, password)) {
+		fprintf(fssock,"DENIED\r\n");
+		fclose(fssock);
+		return;
+	}
+	for (int i = 0; i < nRooms; i++) {
+		if (strstr(args, roomList[i].name) == args) {
+			if (roomList[i].nMessages == maxMessages) {
+				roomList[i].nMessages = 0;
+				roomList[i].nLists++;
+			}
+			for (int j = 0; j < roomList[i].nUsers; j++) {
+				if (!strcmp(roomList[i].usersInRoom[j], user)) {
+					roomList[i].messages[roomList[i].nMessages].message = strdup(args + (sizeof(char) * strlen(roomList[i].name)));
+					roomList[i].messages[roomList[i].nMessages].user = strdup(user);
+					fprintf(fssock,"OK\r\n");
+					fclose(fssock);
+					return;
+					roomList[i].nMessages++;
+				}
+			}
+			
+		}
+	}
+	fprintf(fssock,"DENIED\r\n");
+	fclose(fssock);
 }
 
 void
 IRCServer::getMessages(int fd, const char * user, const char * password, const char * args) {
+	FILE * fssock = fdopen(fd,"r+");
+	if (!checkPassword(fd, user, password)) {
+		fprintf(fssock,"DENIED\r\n");
+		fclose(fssock);
+		return;
+	}
+	int lastMessageNum;
+	char * room;
+	int n = 0;
+	sscanf(args, "%d %s", lastMessageNum, room);
+	for (int i = 0; i < nRooms; i++) {
+		if (strcmp(room, roomList[i].name) == 0) {
+			if (lastMessageNum >= maxMessages) {
+				lastMessageNum = maxMessages - lastMessageNum;
+				n++;
+			}
+			for (int j = lastMessageNum; j < roomList[i].nMessages; j++) {
+				if (j == maxMessages) {
+					j = 0;
+					n++;
+				}
+				fprintf(fssock,"%d <%s> %s", j + (maxMessages * n), roomList[i].messages[j].user, roomList[i].messages[j].message);
+
+			}
+			fprintf(fssock,"\r\n");
+			fclose(fssock);
+			return;
+		}
+	}
+	fprintf(fssock,"DENIED\r\n");
+	fclose(fssock);
+	return;
 }
 
 void
