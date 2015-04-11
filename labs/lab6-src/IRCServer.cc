@@ -567,7 +567,7 @@ IRCServer::getMessages(int fd, const char * user, const char * password, const c
 		t++;
 	}
 	int n = 0;
-	sscanf(args, "%d %s", &lastMessageNum, room);
+	//sscanf(args, "%d %s", &lastMessageNum, room);
 	for (int i = 0; i < nRooms; i++) {
 		if (strcmp(room, roomList[i].name) == 0) {
 			if (lastMessageNum >= maxMessages) {
