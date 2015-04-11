@@ -560,6 +560,7 @@ IRCServer::getMessages(int fd, const char * user, const char * password, const c
 			lastMessageNum = atoi(temp);
 			s++;
 			room = strdup(s);
+			break;
 		}
 		*t = *s;
 		s++;
