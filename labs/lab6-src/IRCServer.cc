@@ -577,10 +577,10 @@ IRCServer::getMessages(int fd, const char * user, const char * password, const c
 				n++;
 			}
 			for (int j = lastMessageNum; j < roomList[i].nMessages; j++) {
-				if (j == maxMessages) {
+				/*if (j == maxMessages) {
 					j = 0;
 					n++;
-				}
+				}*/
 				fprintf(fssock,"%d <%s> %s\r\n", roomList[i].messages[j].index, roomList[i].messages[j].user, roomList[i].messages[j].message);
 
 			}
