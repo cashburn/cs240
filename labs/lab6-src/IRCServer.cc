@@ -465,7 +465,7 @@ IRCServer::enterRoom(int fd, const char * user, const char * password, const cha
 			}
 			bool already = false;
 			for (int j = 0; j < roomList[i].nUsers; j++) {
-				if (!strcmp(roomList[i].usersInRoom[roomList[i].nUsers], user)) {
+				if (!strcmp(roomList[i].usersInRoom[j], user)) {
 					already = true;
 					break;
 				}
