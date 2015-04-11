@@ -520,15 +520,15 @@ IRCServer::sendMessage(int fd, const char * user, const char * password, const c
 	}
 	for (int i = 0; i < nRooms; i++) {
 		if (strstr(args, roomList[i].name) == args) {
-			if (roomList[i].nMessages == maxMessages) {
+			/*if (roomList[i].nMessages == maxMessages) {
 				roomList[i].nMessages = 0;
 				roomList[i].nLists++;
-			}
+			}*/
 			for (int j = 0; j < roomList[i].nUsers; j++) {
 				if (!strcmp(roomList[i].usersInRoom[j], user)) {
-					roomList[i].messages[roomList[i].nMessages].message = strdup(args + (sizeof(char) * strlen(roomList[i].name)));
-					roomList[i].messages[roomList[i].nMessages].user = strdup(user);
-					roomList[i].messages[roomList[i].nMessages].index = roomList[i].nMessages + (maxMessages * roomList[i].nLists);
+					roomList[i].messages[roomList[i].nMessages - (maxMessages * roomList[i].nLists)].message = strdup(args + (sizeof(char) * strlen(roomList[i].name)));
+					roomList[i].messages[roomList[i].nMessages - (maxMessages * roomList[i].nLists)].user = strdup(user);
+					roomList[i].messages[roomList[i].nMessages - (maxMessages * roomList[i].nLists)].index = roomList[i].nMessages;
 					roomList[i].nMessages++;
 					fprintf(fssock,"OK\r\n");
 					fclose(fssock);
