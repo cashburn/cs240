@@ -38,6 +38,7 @@ HashTableVoid passwords;
 struct Message {
 	char * user;
 	char * message;
+	int index;
 };
 struct ChatRoom {
 	char * name;
@@ -527,6 +528,7 @@ IRCServer::sendMessage(int fd, const char * user, const char * password, const c
 				if (!strcmp(roomList[i].usersInRoom[j], user)) {
 					roomList[i].messages[roomList[i].nMessages].message = strdup(args + (sizeof(char) * strlen(roomList[i].name)));
 					roomList[i].messages[roomList[i].nMessages].user = strdup(user);
+					roomList[i].messages[roomList[i].nMessages].index = roomList[i].nMessages + (maxMessages * roomList[i].nLists);
 					roomList[i].nMessages++;
 					fprintf(fssock,"OK\r\n");
 					fclose(fssock);
@@ -579,7 +581,7 @@ IRCServer::getMessages(int fd, const char * user, const char * password, const c
 					j = 0;
 					n++;
 				}
-				fprintf(fssock,"%d <%s> %s\r\n", j + (maxMessages * n), roomList[i].messages[j].user, roomList[i].messages[j].message);
+				fprintf(fssock,"%d <%s> %s\r\n", roomList[i].messages[j].index, roomList[i].messages[j].user, roomList[i].messages[j].message);
 
 			}
 			fprintf(fssock,"\r\n");
