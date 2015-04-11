@@ -579,7 +579,7 @@ IRCServer::getMessages(int fd, const char * user, const char * password, const c
 					j = 0;
 					n++;
 				}
-				fprintf(fssock,"%d <%s> %s", j + (maxMessages * n), roomList[i].messages[j].user, roomList[i].messages[j].message);
+				fprintf(fssock,"%d <%s> %s\r\n", j + (maxMessages * n), roomList[i].messages[j].user, roomList[i].messages[j].message);
 
 			}
 			fprintf(fssock,"\r\n");
