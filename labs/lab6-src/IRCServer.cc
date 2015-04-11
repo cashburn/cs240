@@ -527,10 +527,10 @@ IRCServer::sendMessage(int fd, const char * user, const char * password, const c
 				if (!strcmp(roomList[i].usersInRoom[j], user)) {
 					roomList[i].messages[roomList[i].nMessages].message = strdup(args + (sizeof(char) * strlen(roomList[i].name)));
 					roomList[i].messages[roomList[i].nMessages].user = strdup(user);
+					roomList[i].nMessages++;
 					fprintf(fssock,"OK\r\n");
 					fclose(fssock);
 					return;
-					roomList[i].nMessages++;
 				}
 			}
 			
