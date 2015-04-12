@@ -520,10 +520,10 @@ IRCServer::sendMessage(int fd, const char * user, const char * password, const c
 	}
 	for (int i = 0; i < nRooms; i++) {
 		if (strstr(args, roomList[i].name) == args) {
-			/*if (roomList[i].nMessages == maxMessages) {
-				roomList[i].nMessages = 0;
+			if (roomList[i].nMessages == maxMessages) {
+				//roomList[i].nMessages = 0;
 				roomList[i].nLists++;
-			}*/
+			}
 			for (int j = 0; j < roomList[i].nUsers; j++) {
 				if (!strcmp(roomList[i].usersInRoom[j], user)) {
 					roomList[i].messages[roomList[i].nMessages - (maxMessages * roomList[i].nLists)].message = strdup(args + (sizeof(char) * strlen(roomList[i].name)));
@@ -572,10 +572,13 @@ IRCServer::getMessages(int fd, const char * user, const char * password, const c
 	//sscanf(args, "%d %s", &lastMessageNum, room);
 	for (int i = 0; i < nRooms; i++) {
 		if (strcmp(room, roomList[i].name) == 0) {
-			if (lastMessageNum >= maxMessages) {
+			if (lastMessageNum < roomList[i].nMessages - (maxMessages * roomList[i].nLists)) {
+				lastMessageNum = roomList[i].nMessages - (maxMessages * roomList[i].nLists);
+			}
+			/*if (lastMessageNum >= maxMessages) {
 				lastMessageNum = maxMessages - lastMessageNum;
 				n++;
-			}
+			}*/
 			for (int j = lastMessageNum; j < roomList[i].nMessages; j++) {
 				/*if (j == maxMessages) {
 					j = 0;
