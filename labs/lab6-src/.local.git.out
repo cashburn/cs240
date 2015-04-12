@@ -223,3 +223,6 @@ nothing to commit, working directory clean
  3 files changed, 6 insertions(+), 4 deletions(-)
 [master 2cbb6c2] otal of otalmax
  3 files changed, 5 insertions(+), 3 deletions(-)
+[master 5c319c6] otal of otalmax
+ 5 files changed, 25 insertions(+), 1 deletion(-)
+ create mode 100755 labs/lab6-src/Tess.sh

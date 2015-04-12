@@ -580,7 +580,7 @@ IRCServer::getMessages(int fd, const char * user, const char * password, const c
 				n++;
 			}
 			for (int j = lastMessageNum; j < roomList[i].nMessages; j++) {
-				if ((j % maxMessages) == 0) {
+				if (j && ((j % maxMessages) == 0)) {
 					n++;
 				}
 				fprintf(fssock,"%d <%s> %s\r\n", roomList[i].messages[j-(n*maxMessages)].index, roomList[i].messages[j-(n*maxMessages)].user, roomList[i].messages[j-(n*maxMessages)].message);
