@@ -216,3 +216,6 @@ nothing to commit, working directory clean
  3 files changed, 8 insertions(+), 5 deletions(-)
 [master f11fa99] otal of otalmax
  3 files changed, 4 insertions(+), 2 deletions(-)
+[master cf9220c] otal of otalmax
+ 4 files changed, 37 insertions(+), 548 deletions(-)
+ rewrite labs/lab6-src/test.sh (97%)
