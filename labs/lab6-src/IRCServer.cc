@@ -575,10 +575,10 @@ IRCServer::getMessages(int fd, const char * user, const char * password, const c
 			if (lastMessageNum < roomList[i].nMessages - (maxMessages * roomList[i].nLists)) {
 				lastMessageNum = roomList[i].nMessages - (maxMessages * roomList[i].nLists);
 			}
-			/*if (lastMessageNum >= maxMessages) {
-				lastMessageNum = maxMessages - lastMessageNum;
+			if (lastMessageNum >= maxMessages) {
+				//lastMessageNum = maxMessages - lastMessageNum;
 				n++;
-			}*/
+			}
 			for (int j = lastMessageNum; j < roomList[i].nMessages; j++) {
 				if ((j % maxMessages) == 0) {
 					n++;
