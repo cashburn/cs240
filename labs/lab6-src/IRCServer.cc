@@ -498,6 +498,7 @@ IRCServer::leaveRoom(int fd, const char * user, const char * password, const cha
 			for (int j = 0; j < roomList[i].nUsers; j++) {
 				if (!strcmp(roomList[i].usersInRoom[j], user)) {
 					free(roomList[i].usersInRoom[j]);
+					roomList[i].nUsers--;
 					fprintf(fssock,"OK\r\n");
 					fclose(fssock);
 					return;
