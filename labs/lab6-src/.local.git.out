@@ -228,3 +228,6 @@ nothing to commit, working directory clean
  create mode 100755 labs/lab6-src/Tess.sh
 [master a3fd0a6] otal of otalmax
  3 files changed, 4 insertions(+), 1 deletion(-)
+[master f8198a3] otal of otalmax
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ rewrite labs/lab6-src/IRCServer (94%)
