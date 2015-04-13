@@ -231,3 +231,10 @@ nothing to commit, working directory clean
 [master f8198a3] otal of otalmax
  1 file changed, 0 insertions(+), 0 deletions(-)
  rewrite labs/lab6-src/IRCServer (94%)
+[master f6e8035] otal of otalmax
+ 5 files changed, 4 deletions(-)
+ rewrite labs/lab6-src/IRCServer (95%)
+ delete mode 100644 labs/lab6-src/diff.out
+ delete mode 100644 labs/lab6-src/prog.org.out
+ delete mode 100644 labs/lab6-src/prog.out
+ delete mode 100644 labs/lab6-src/total.out
