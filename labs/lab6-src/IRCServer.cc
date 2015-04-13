@@ -330,7 +330,7 @@ void
 IRCServer::initialize()
 {
 	// Open password file
-	FILE * passFile = fopen("passwords.txt","a+");
+	FILE * passFile = fopen("password.txt","a+");
 
 	// Initialize users in room
 	char * temp = (char *) malloc(1024 * sizeof(char));
@@ -399,7 +399,7 @@ IRCServer::addUser(int fd, const char * user, const char * password, const char 
 		msg = "DENIED\r\n"; //another deny for catch-all
 	write(fd, msg, strlen(msg)); //sends the variable msg back through the network (either OK or DENIED)
 	if (strcmp(args, "initialize")) { //I have a password file that I'm adding the users to, and this makes sure it's not already there
-		FILE * passFile = fopen("passwords.txt","a+"); //open the password file with "append" priviledges
+		FILE * passFile = fopen("password.txt","a+"); //open the password file with "append" priviledges
 		fprintf(passFile, "%s %s\r\n", user, password); //write the username and password into the file
 		fclose(passFile); //close the password file
 	}
