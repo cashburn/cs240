@@ -533,7 +533,7 @@ IRCServer::sendMessage(int fd, const char * user, const char * password, const c
 			}
 			for (int j = 0; j < roomList[i].nUsers; j++) {
 				if (!strcmp(roomList[i].usersInRoom[j], user)) {
-					roomList[i].messages[roomList[i].nMessages - (maxMessages * roomList[i].nLists)].message = strdup(args + (sizeof(char) * strlen(roomList[i].name)));
+					roomList[i].messages[roomList[i].nMessages - (maxMessages * roomList[i].nLists)].message = strdup(args + (sizeof(char) * (strlen(roomList[i].name) + 1)));
 					roomList[i].messages[roomList[i].nMessages - (maxMessages * roomList[i].nLists)].user = strdup(user);
 					roomList[i].messages[roomList[i].nMessages - (maxMessages * roomList[i].nLists)].index = roomList[i].nMessages;
 					roomList[i].nMessages++;
@@ -588,7 +588,7 @@ IRCServer::getMessages(int fd, const char * user, const char * password, const c
 						//lastMessageNum = maxMessages - lastMessageNum;
 						n++;
 					}
-					for (int j = lastMessageNum; j < roomList[i].nMessages; j++) {
+					for (int j = lastMessageNum+1; j < roomList[i].nMessages; j++) { //CHANGE THE INITIALIZATION BACK!!!
 						if (j && ((j % maxMessages) == 0)) {
 							n++;
 						}
