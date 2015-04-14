@@ -919,5 +919,5 @@ CS240: lab6. cashburn
 ./test-server9.sh ./IRCServer 2029   : 5   of 5  
 ./test-server10.sh ./IRCServer 2029   : 5   of 5  
 -------------------------------------------------
-CS240: lab6. cashburn Tue Apr 14 12:54:06 EDT 2015  Total:  62 of 62
+CS240: lab6. cashburn Tue Apr 14 14:37:14 EDT 2015  Total:  62 of 62
 
