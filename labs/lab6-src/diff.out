@@ -1,0 +1,26 @@
+2a3,18
+> ADD-USER superman clarkkent
+> response:
+> OK
+> 
+> ADD-USER spiderman peterpark
+> response:
+> OK
+> 
+> ADD-USER aquaman xyz
+> response:
+> OK
+> 
+> ADD-USER mary poppins
+> response:
+> OK
+> 
+3a20,27
+> GET-ALL-USERS superman clarkkent
+> response:
+> aquaman
+> mary
+> spiderman
+> superman
+> 
+> 

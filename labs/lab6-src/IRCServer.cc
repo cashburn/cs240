@@ -49,6 +49,7 @@ struct ChatRoom {
 	int nMessages;
 	int nLists;
 };
+int nUsers;
 int maxMessages;
 int maxRooms;
 int nRooms;
@@ -390,8 +391,10 @@ IRCServer::addUser(int fd, const char * user, const char * password, const char 
 	const char * msg;
 	char ** temp;
 	if(!passwords.find(user, (void**) temp)) {
-		if(!passwords.insertItem(user, (void*) password))
+		if(!passwords.insertItem(user, (void*) password)) {
 			msg =  "OK\r\n";
+			nUsers++;
+		}
 		else
 			msg = "DENIED\r\n";
 	}
@@ -411,7 +414,7 @@ IRCServer::addUser(int fd, const char * user, const char * password, const char 
 void IRCServer::createRoom(int fd, const char * user, const char * password, const char * args) {
 	FILE * fssock = fdopen(fd,"r+");
 	if (!checkPassword(fd, user, password)) {
-		fprintf(fssock,"DENIED\r\n");
+		fprintf(fssock,"ERROR (Wrong password)\r\n");
 		fclose(fssock);
 		return;
 	}
@@ -439,7 +442,7 @@ void IRCServer::createRoom(int fd, const char * user, const char * password, con
 void IRCServer::listRooms(int fd, const char * user, const char * password, const char * args) {
 	FILE * fssock = fdopen(fd,"r+");
 	if (!checkPassword(fd, user, password)) {
-		fprintf(fssock,"DENIED\r\n");
+		fprintf(fssock,"ERROR (Wrong password)\r\n");
 		fclose(fssock);
 		return;
 	}
@@ -454,7 +457,7 @@ void
 IRCServer::enterRoom(int fd, const char * user, const char * password, const char * args) {
 	FILE * fssock = fdopen(fd,"r+");
 	if (!checkPassword(fd, user, password)) {
-		fprintf(fssock,"DENIED\r\n");
+		fprintf(fssock,"ERROR (Wrong password)\r\n");
 		fclose(fssock);
 		return;
 	}
@@ -471,16 +474,17 @@ IRCServer::enterRoom(int fd, const char * user, const char * password, const cha
 					break;
 				}
 			}
-			if (already)
-				break;
-			roomList[i].usersInRoom[roomList[i].nUsers] = strdup(user);
-			roomList[i].nUsers++;
+			if (!already) {
+				roomList[i].usersInRoom[roomList[i].nUsers] = strdup(user);
+				roomList[i].nUsers++;
+			}
 			fprintf(fssock,"OK\r\n");
 			fclose(fssock);
 			return;
+			
 		}
 	}
-	fprintf(fssock,"DENIED\r\n");
+	fprintf(fssock,"ERROR (No room)\r\n");
 	fclose(fssock);
 	return;
 }
@@ -489,7 +493,7 @@ void
 IRCServer::leaveRoom(int fd, const char * user, const char * password, const char * args) {
 	FILE * fssock = fdopen(fd,"r+");
 	if (!checkPassword(fd, user, password)) {
-		fprintf(fssock,"DENIED\r\n");
+		fprintf(fssock,"ERROR (Wrong password)\r\n");
 		fclose(fssock);
 		return;
 	}
@@ -515,7 +519,7 @@ void
 IRCServer::sendMessage(int fd, const char * user, const char * password, const char * args) {
 	FILE * fssock = fdopen(fd,"r+");
 	if (!checkPassword(fd, user, password)) {
-		fprintf(fssock,"DENIED\r\n");
+		fprintf(fssock,"ERROR (Wrong password)\r\n");
 		fclose(fssock);
 		return;
 	}
@@ -539,7 +543,7 @@ IRCServer::sendMessage(int fd, const char * user, const char * password, const c
 			
 		}
 	}
-	fprintf(fssock,"DENIED\r\n");
+	fprintf(fssock,"ERROR (user not in room)\r\n");
 	fclose(fssock);
 }
 
@@ -547,7 +551,7 @@ void
 IRCServer::getMessages(int fd, const char * user, const char * password, const char * args) {
 	FILE * fssock = fdopen(fd,"r+");
 	if (!checkPassword(fd, user, password)) {
-		fprintf(fssock,"DENIED\r\n");
+		fprintf(fssock,"ERROR (Wrong password)\r\n");
 		fclose(fssock);
 		return;
 	}
@@ -573,26 +577,30 @@ IRCServer::getMessages(int fd, const char * user, const char * password, const c
 	//sscanf(args, "%d %s", &lastMessageNum, room);
 	for (int i = 0; i < nRooms; i++) {
 		if (strcmp(room, roomList[i].name) == 0) {
-			if (roomList[i].nLists && (lastMessageNum < roomList[i].nMessages - (maxMessages * roomList[i].nLists))) {
-				lastMessageNum = roomList[i].nMessages - (maxMessages * roomList[i].nLists);
-			}
-			if (lastMessageNum >= maxMessages) {
-				//lastMessageNum = maxMessages - lastMessageNum;
-				n++;
-			}
-			for (int j = lastMessageNum; j < roomList[i].nMessages; j++) {
-				if (j && ((j % maxMessages) == 0)) {
-					n++;
-				}
-				fprintf(fssock,"%d <%s> %s\r\n", roomList[i].messages[j-(n*maxMessages)].index, roomList[i].messages[j-(n*maxMessages)].user, roomList[i].messages[j-(n*maxMessages)].message);
+			for (int j = 0; j < roomList[i].nUsers; j++) {
+				if (!strcmp(roomList[i].usersInRoom[j], user)) {
+					if (roomList[i].nLists && (lastMessageNum < roomList[i].nMessages - (maxMessages * roomList[i].nLists))) {
+						lastMessageNum = roomList[i].nMessages - (maxMessages * roomList[i].nLists);
+					}
+					if (lastMessageNum >= maxMessages) {
+						//lastMessageNum = maxMessages - lastMessageNum;
+						n++;
+					}
+					for (int j = lastMessageNum; j < roomList[i].nMessages; j++) {
+						if (j && ((j % maxMessages) == 0)) {
+							n++;
+						}
+						fprintf(fssock,"%d <%s> %s\r\n", roomList[i].messages[j-(n*maxMessages)].index, roomList[i].messages[j-(n*maxMessages)].user, roomList[i].messages[j-(n*maxMessages)].message);
 
+					}
+					fprintf(fssock,"\r\n");
+					fclose(fssock);
+					return;
+				}
 			}
-			fprintf(fssock,"\r\n");
-			fclose(fssock);
-			return;
 		}
 	}
-	fprintf(fssock,"DENIED\r\n");
+	fprintf(fssock,"ERROR (user not in room)\r\n");
 	fclose(fssock);
 	return;
 }
@@ -601,12 +609,22 @@ void
 IRCServer::getUsersInRoom(int fd, const char * user, const char * password, const char * args) {
 	FILE * fssock = fdopen(fd,"r+");
 	if (!checkPassword(fd, user, password)) {
-		fprintf(fssock,"DENIED\r\n");
+		fprintf(fssock,"ERROR (Wrong password)\r\n");
 		fclose(fssock);
 		return;
 	}
+
 	for (int i = 0; i < nRooms; i++) {
 		if (!strcmp(args, roomList[i].name)) {
+			for (int a = 0; a < roomList[i].nUsers; a++) {
+				for (int b = 0; b < roomList[i].nUsers - 1; b++) {
+					if (strcmp(roomList[i].usersInRoom[b],roomList[i].usersInRoom[b+1]) > 0) {
+						char * temp = roomList[i].usersInRoom[b];
+						roomList[i].usersInRoom[b] = roomList[i].usersInRoom[b+1];
+						roomList[i].usersInRoom[b+1] = temp;
+					}
+				}
+			}
 			for (int j = 0; j < roomList[i].nUsers; j++) {
 					fprintf(fssock,"%s\r\n",roomList[i].usersInRoom[j]);
 			}
@@ -626,15 +644,32 @@ IRCServer::getAllUsers(int fd, const char * user, const char * password, const  
 	HashTableVoidIterator iterator(&passwords);
 	FILE * fssock = fdopen(fd,"r+");
 	if (!checkPassword(fd, user, password)) {
-		fprintf(fssock,"DENIED\r\n");
+		fprintf(fssock,"ERROR (Wrong password)\r\n");
 		fclose(fssock);
 		return;
 	}
 	const char * key;
 	void * data;
+	char ** users = (char **) malloc(nUsers * sizeof(char *));
+	int n = 0;
 	while (iterator.next(key, data)) {
-		fprintf(fssock,"%s\r\n",key);
+		users[n++] = strdup(key);
+		//fprintf(fssock,"%s\r\n",key);
 	}
+	for (int i = 0; i < nUsers; i++) {
+		for (int j = 0; j < nUsers - 1; j++) {
+			if (strcmp(users[j],users[j+1]) > 0) {
+				char * temp = users[j];
+				users[j] = users[j+1];
+				users[j+1] = temp;
+			}
+		}
+	}
+	for (int i = 0; i < nUsers; i++) {
+		fprintf(fssock,"%s\r\n",users[i]);
+		free(users[i]);
+	}
+	free(users);
 	fprintf(fssock,"\r\n");
 	fclose(fssock);
 }
