@@ -435,3 +435,10 @@ nothing to commit, working directory clean
  delete mode 100644 labs/lab6-src/talk-server.out
  rewrite labs/lab6-src/testall.txt (99%)
  delete mode 100644 labs/lab6-src/total.out
+[master ea400e0] 42 of 62
+ 9 files changed, 1664 insertions(+), 3 deletions(-)
+ create mode 100644 labs/lab6-src/diff.out
+ create mode 100644 labs/lab6-src/prog.org.out
+ create mode 100644 labs/lab6-src/prog.out
+ create mode 100644 labs/lab6-src/talk-server.out
+ create mode 100644 labs/lab6-src/total.out
