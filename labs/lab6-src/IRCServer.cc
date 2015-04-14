@@ -507,7 +507,7 @@ IRCServer::leaveRoom(int fd, const char * user, const char * password, const cha
 			}
 		}
 	}
-	fprintf(fssock,"DENIED\r\n");
+	fprintf(fssock,"ERROR (No user in room)\r\n");
 	fclose(fssock);
 	return;
 }
@@ -587,17 +587,21 @@ IRCServer::getMessages(int fd, const char * user, const char * password, const c
 						if (j && ((j % maxMessages) == 0)) {
 							n++;
 						}
-						fprintf(fssock,"%d <%s> %s\r\n", roomList[i].messages[j-(n*maxMessages)].index, roomList[i].messages[j-(n*maxMessages)].user, roomList[i].messages[j-(n*maxMessages)].message);
+						fprintf(fssock,"%d %s %s\r\n", roomList[i].messages[j-(n*maxMessages)].index, roomList[i].messages[j-(n*maxMessages)].user, roomList[i].messages[j-(n*maxMessages)].message);
 
 					}
-					fprintf(fssock,"\r\n");
+					if (lastMessageNum >= roomList[i].nMessages) {
+						fprintf(fssock,"NO-NEW-MESSAGES\r\n");
+					}
+					else
+						fprintf(fssock,"\r\n");
 					fclose(fssock);
 					return;
 				}
 			}
 		}
 	}
-	fprintf(fssock,"ERROR (user not in room)\r\n");
+	fprintf(fssock,"ERROR (User not in room)\r\n");
 	fclose(fssock);
 	return;
 }
@@ -614,7 +618,7 @@ IRCServer::getUsersInRoom(int fd, const char * user, const char * password, cons
 	for (int i = 0; i < nRooms; i++) {
 		if (!strcmp(args, roomList[i].name)) {
 			for (int a = 0; a < roomList[i].nUsers; a++) {
-				for (int b = 0; b < roomList[i].nUsers - 1; b++) {
+				for (int b = 0; b < roomList[i].nUsers - 2; b++) {
 					if (strcmp(roomList[i].usersInRoom[b],roomList[i].usersInRoom[b+1]) > 0) {
 						char * temp = roomList[i].usersInRoom[b];
 						roomList[i].usersInRoom[b] = roomList[i].usersInRoom[b+1];

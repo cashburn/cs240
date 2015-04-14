@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-Start Test 2
-Add Users
-Create Room
-Enter room
-Print users in room
-=======
 Start Test 10
 Add Users
 ADD-USER superman clarkkent
@@ -32,11 +25,11 @@ OK
 Enter room
 ENTER-ROOM superman clarkkent python-programming
 response:
-DENIED
+ERROR (No room)
 
 ENTER-ROOM aquaman xyz python-programming
 response:
-DENIED
+ERROR (Wrong password)
 
 ENTER-ROOM spiderman peterpark c-programming
 response:
@@ -44,7 +37,7 @@ OK
 
 ENTER-ROOM aquaman xyz c-programming
 response:
-DENIED
+ERROR (Wrong password)
 
 ENTER-ROOM mary poppins c-programming
 response:
@@ -53,7 +46,7 @@ OK
 Print users in room
 GET-USERS-IN-ROOM unknown clarkkent java-programming
 response:
-DENIED
+ERROR (Wrong password)
 
 GET-USERS-IN-ROOM mary poppins java-programming
 response:
@@ -62,45 +55,45 @@ response:
 Enter another user
 ENTER-ROOM spiderman peterpark c-programming
 response:
-DENIED
+OK
 
 Print users in room
 GET-USERS-IN-ROOM unknown peterpark c-programming
 response:
-DENIED
+ERROR (Wrong password)
 
 Send message
 SEND-MESSAGE superman clarkkent c-programming Hi everybody!
 response:
-DENIED
+ERROR (user not in room)
 
 SEND-MESSAGE unknown poppins c-programming Welcome to the talk program!
 response:
-DENIED
+ERROR (Wrong password)
 
 Send message
 SEND-MESSAGE superman clarkkent java-programming Welcome to java-programming!
 response:
-DENIED
+ERROR (user not in room)
 
 SEND-MESSAGE aquaman xyz java-programming Java is based on C++!
 response:
-DENIED
+ERROR (Wrong password)
 
 Get messages
 GET-MESSAGES mary poppins 0 java-programming
 response:
-
+ERROR (User not in room)
 
 Get messages
 GET-MESSAGES superman clarkkent 0 c-programming
 response:
-
+ERROR (User not in room)
 
 Get messages from 0
 GET-MESSAGES mary poppins 10000 c-programming
 response:
-
+NO-NEW-MESSAGES
 
 LEAVE-ROOM mary poppins c-programming
 response:
@@ -109,7 +102,6 @@ OK
 Get messages from 2
 GET-MESSAGES superman clarkkent 4 java-programming
 response:
+ERROR (User not in room)
 
-
->>>>>>> 94992f8adc22d618aedb7432dd36720437e4a5f3
 Killing Server

@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-Start Test 2
-=======
 Start Test 10
 Add Users
 ADD-USER superman clarkkent
@@ -108,4 +105,3 @@ response:
 ERROR (User not in room)
 
 Killing Server
->>>>>>> 94992f8adc22d618aedb7432dd36720437e4a5f3
