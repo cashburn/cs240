@@ -623,7 +623,7 @@ IRCServer::getUsersInRoom(int fd, const char * user, const char * password, cons
 	for (int i = 0; i < nRooms; i++) {
 		if (!strcmp(args, roomList[i].name)) {
 			for (int a = 0; a < roomList[i].nUsers; a++) {
-				for (int b = 0; b < roomList[i].nUsers - 2; b++) {
+				for (int b = 0; b < roomList[i].nUsers - 1; b++) {
 					if (strcmp(roomList[i].usersInRoom[b],roomList[i].usersInRoom[b+1]) > 0) {
 						char * temp = roomList[i].usersInRoom[b];
 						roomList[i].usersInRoom[b] = roomList[i].usersInRoom[b+1];
