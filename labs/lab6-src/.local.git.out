@@ -231,6 +231,7 @@ nothing to commit, working directory clean
 [master f8198a3] otal of otalmax
  1 file changed, 0 insertions(+), 0 deletions(-)
  rewrite labs/lab6-src/IRCServer (94%)
+<<<<<<< HEAD
 [master 0d0e767] otal of otalmax
  3 files changed, 68 insertions(+), 32 deletions(-)
  rewrite IRCServer (65%)
@@ -243,3 +244,45 @@ nothing to commit, working directory clean
  delete mode 100644 total.out
 [master 189666a] otal of otalmax
  3 files changed, 20 insertions(+)
+=======
+[master f6e8035] otal of otalmax
+ 5 files changed, 4 deletions(-)
+ rewrite labs/lab6-src/IRCServer (95%)
+ delete mode 100644 labs/lab6-src/diff.out
+ delete mode 100644 labs/lab6-src/prog.org.out
+ delete mode 100644 labs/lab6-src/prog.out
+ delete mode 100644 labs/lab6-src/total.out
+[master fcfaa30] 12 of 62
+ 10 files changed, 262 insertions(+)
+ create mode 100644 labs/lab6-src/diff.out
+ create mode 100644 labs/lab6-src/password.txt
+ create mode 100644 labs/lab6-src/prog.org.out
+ create mode 100644 labs/lab6-src/prog.out
+ create mode 100644 labs/lab6-src/talk-server.out
+ create mode 100644 labs/lab6-src/total.out
+[master f5cf289] otal of otalmax
+ 9 files changed, 10 insertions(+), 240 deletions(-)
+ delete mode 100644 labs/lab6-src/diff.out
+ delete mode 100644 labs/lab6-src/password.txt
+ delete mode 100644 labs/lab6-src/prog.org.out
+ delete mode 100644 labs/lab6-src/prog.out
+ delete mode 100644 labs/lab6-src/talk-server.out
+ delete mode 100644 labs/lab6-src/total.out
+[master 933d304] 12 of 62
+ 8 files changed, 291 insertions(+)
+ create mode 100644 labs/lab6-src/diff.out
+ create mode 100644 labs/lab6-src/password.txt
+ create mode 100644 labs/lab6-src/prog.org.out
+ create mode 100644 labs/lab6-src/prog.out
+ create mode 100644 labs/lab6-src/talk-server.out
+ create mode 100644 labs/lab6-src/total.out
+>>>>>>> 94992f8adc22d618aedb7432dd36720437e4a5f3
+[master 0259ffe] otal of otalmax
+ 12 files changed, 389 insertions(+), 35 deletions(-)
+ create mode 100644 diff.out
+ create mode 100644 password.txt
+ delete mode 100644 passwords.txt
+ create mode 100644 prog.org.out
+ create mode 100644 prog.out
+ create mode 100644 talk-server.out
+ create mode 100644 total.out
