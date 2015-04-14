@@ -393,3 +393,6 @@ nothing to commit, working directory clean
  create mode 100644 prog.out
  create mode 100644 talk-server.out
  create mode 100644 total.out
+[master 48952cc] otal of otalmax
+ 4 files changed, 15 insertions(+), 7 deletions(-)
+ rewrite labs/lab6-src/IRCServer (88%)
