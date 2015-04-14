@@ -498,8 +498,13 @@ IRCServer::leaveRoom(int fd, const char * user, const char * password, const cha
 		if (!strcmp(args, roomList[i].name)) {
 			for (int j = 0; j < roomList[i].nUsers; j++) {
 				if (!strcmp(roomList[i].usersInRoom[j], user)) {
-					free(roomList[i].usersInRoom[j]);
-					roomList[i].nUsers--;
+					for (int b = j; b < roomList[i].nUsers - 1; b++) {
+						char * temp = roomList[i].usersInRoom[b];
+						roomList[i].usersInRoom[b] = roomList[i].usersInRoom[b+1];
+						roomList[i].usersInRoom[b+1] = temp;
+				
+					}
+					free(roomList[i].usersInRoom[--roomList[i].nUsers]);
 					fprintf(fssock,"OK\r\n");
 					fclose(fssock);
 					return;
@@ -528,7 +533,7 @@ IRCServer::sendMessage(int fd, const char * user, const char * password, const c
 			}
 			for (int j = 0; j < roomList[i].nUsers; j++) {
 				if (!strcmp(roomList[i].usersInRoom[j], user)) {
-					roomList[i].messages[roomList[i].nMessages - (maxMessages * roomList[i].nLists)].message = strdup(args + (sizeof(char) * strlen(roomList[i].name)));
+					roomList[i].messages[roomList[i].nMessages - (maxMessages * roomList[i].nLists)].message = strdup(args + (sizeof(char) * (strlen(roomList[i].name) + 1)));
 					roomList[i].messages[roomList[i].nMessages - (maxMessages * roomList[i].nLists)].user = strdup(user);
 					roomList[i].messages[roomList[i].nMessages - (maxMessages * roomList[i].nLists)].index = roomList[i].nMessages;
 					roomList[i].nMessages++;
@@ -583,7 +588,7 @@ IRCServer::getMessages(int fd, const char * user, const char * password, const c
 						//lastMessageNum = maxMessages - lastMessageNum;
 						n++;
 					}
-					for (int j = lastMessageNum; j < roomList[i].nMessages; j++) {
+					for (int j = lastMessageNum+1; j < roomList[i].nMessages; j++) { //CHANGE THE INITIALIZATION BACK!!!
 						if (j && ((j % maxMessages) == 0)) {
 							n++;
 						}
@@ -618,7 +623,7 @@ IRCServer::getUsersInRoom(int fd, const char * user, const char * password, cons
 	for (int i = 0; i < nRooms; i++) {
 		if (!strcmp(args, roomList[i].name)) {
 			for (int a = 0; a < roomList[i].nUsers; a++) {
-				for (int b = 0; b < roomList[i].nUsers - 2; b++) {
+				for (int b = 0; b < roomList[i].nUsers - 1; b++) {
 					if (strcmp(roomList[i].usersInRoom[b],roomList[i].usersInRoom[b+1]) > 0) {
 						char * temp = roomList[i].usersInRoom[b];
 						roomList[i].usersInRoom[b] = roomList[i].usersInRoom[b+1];

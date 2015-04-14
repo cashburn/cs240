@@ -393,6 +393,7 @@ nothing to commit, working directory clean
  create mode 100644 prog.out
  create mode 100644 talk-server.out
  create mode 100644 total.out
+<<<<<<< HEAD
 [master b76008c] otal of otalmax
  8 files changed, 7 insertions(+), 216 deletions(-)
  delete mode 100644 diff.out
@@ -407,3 +408,84 @@ nothing to commit, working directory clean
  create mode 100644 prog.out
  create mode 100644 talk-server.out
  create mode 100644 total.out
+=======
+[master 48952cc] otal of otalmax
+ 4 files changed, 15 insertions(+), 7 deletions(-)
+ rewrite labs/lab6-src/IRCServer (88%)
+[master 89d748c] otal of otalmax
+ 7 files changed, 3 insertions(+), 216 deletions(-)
+ rewrite labs/lab6-src/HashTableVoidTest (97%)
+ delete mode 100644 labs/lab6-src/diff.out
+ delete mode 100644 labs/lab6-src/prog.org.out
+ delete mode 100644 labs/lab6-src/prog.out
+ delete mode 100644 labs/lab6-src/talk-server.out
+ delete mode 100644 labs/lab6-src/total.out
+[master 3c5bc0f] 27 of 62
+ 9 files changed, 242 insertions(+), 19 deletions(-)
+ create mode 100644 labs/lab6-src/diff.out
+ create mode 100644 labs/lab6-src/prog.org.out
+ create mode 100644 labs/lab6-src/prog.out
+ create mode 100644 labs/lab6-src/talk-server.out
+ create mode 100644 labs/lab6-src/total.out
+ rewrite labs/lab6-src/total.txt (63%)
+[master c3940ae] otal of otalmax
+ 7 files changed, 14 insertions(+), 1889 deletions(-)
+ delete mode 100644 labs/lab6-src/diff.out
+ delete mode 100644 labs/lab6-src/prog.org.out
+ delete mode 100644 labs/lab6-src/prog.out
+ delete mode 100644 labs/lab6-src/talk-server.out
+ rewrite labs/lab6-src/testall.txt (99%)
+ delete mode 100644 labs/lab6-src/total.out
+[master a234e2a] 27 of 62
+ 8 files changed, 1893 insertions(+)
+ create mode 100644 labs/lab6-src/diff.out
+ create mode 100644 labs/lab6-src/prog.org.out
+ create mode 100644 labs/lab6-src/prog.out
+ create mode 100644 labs/lab6-src/talk-server.out
+ create mode 100644 labs/lab6-src/total.out
+[master 2dc0536] otal of otalmax
+ 9 files changed, 14 insertions(+), 1890 deletions(-)
+ delete mode 100644 labs/lab6-src/diff.out
+ delete mode 100644 labs/lab6-src/prog.org.out
+ delete mode 100644 labs/lab6-src/prog.out
+ delete mode 100644 labs/lab6-src/talk-server.out
+ rewrite labs/lab6-src/testall.txt (99%)
+ delete mode 100644 labs/lab6-src/total.out
+[master ea400e0] 42 of 62
+ 9 files changed, 1664 insertions(+), 3 deletions(-)
+ create mode 100644 labs/lab6-src/diff.out
+ create mode 100644 labs/lab6-src/prog.org.out
+ create mode 100644 labs/lab6-src/prog.out
+ create mode 100644 labs/lab6-src/talk-server.out
+ create mode 100644 labs/lab6-src/total.out
+[master 63e1c55] otal of otalmax
+ 9 files changed, 14 insertions(+), 1658 deletions(-)
+ delete mode 100644 labs/lab6-src/diff.out
+ delete mode 100644 labs/lab6-src/prog.org.out
+ delete mode 100644 labs/lab6-src/prog.out
+ delete mode 100644 labs/lab6-src/talk-server.out
+ rewrite labs/lab6-src/testall.txt (99%)
+ delete mode 100644 labs/lab6-src/total.out
+[master 967e846] 47 of 62
+ 9 files changed, 1593 insertions(+), 1 deletion(-)
+ create mode 100644 labs/lab6-src/diff.out
+ create mode 100644 labs/lab6-src/prog.org.out
+ create mode 100644 labs/lab6-src/prog.out
+ create mode 100644 labs/lab6-src/talk-server.out
+ create mode 100644 labs/lab6-src/total.out
+[master bb6a3cf] otal of otalmax
+ 9 files changed, 15 insertions(+), 1590 deletions(-)
+ delete mode 100644 labs/lab6-src/diff.out
+ delete mode 100644 labs/lab6-src/prog.org.out
+ delete mode 100644 labs/lab6-src/prog.out
+ delete mode 100644 labs/lab6-src/talk-server.out
+ rewrite labs/lab6-src/testall.txt (99%)
+ delete mode 100644 labs/lab6-src/total.out
+[master dcc4390] 62 of 62
+ 9 files changed, 1146 insertions(+), 3 deletions(-)
+ create mode 100644 labs/lab6-src/diff.out
+ create mode 100644 labs/lab6-src/prog.org.out
+ create mode 100644 labs/lab6-src/prog.out
+ create mode 100644 labs/lab6-src/talk-server.out
+ create mode 100644 labs/lab6-src/total.out
+>>>>>>> 58c14da4a528c9870773c03cf05de80eae710854
