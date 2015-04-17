@@ -1,5 +1,5 @@
 
-goal: hello entry panned radio TestIRCServer timer git
+goal: hello entry panned radio talk-client TestIRCServer timer git
 
 hello: hello.c
 	gcc hello.c -o hello `pkg-config --cflags --libs gtk+-2.0`
@@ -13,6 +13,9 @@ entry: entry.c
 
 radio: radio.c
 	gcc radio.c -o radio `pkg-config --cflags --libs gtk+-2.0`
+
+talk-client: talk-client.c
+	gcc -pthread -g -o talk-client talk-client.c `pkg-config --cflags --libs gtk+-2.0`
 
 timer: timer.c
 	gcc timer.c -o timer `pkg-config --cflags --libs gtk+-2.0`
