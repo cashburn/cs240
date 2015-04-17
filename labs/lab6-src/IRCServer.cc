@@ -588,7 +588,7 @@ IRCServer::getMessages(int fd, const char * user, const char * password, const c
 						//lastMessageNum = maxMessages - lastMessageNum;
 						n++;
 					}
-					for (int j = lastMessageNum+1; j < roomList[i].nMessages; j++) { //CHANGE THE INITIALIZATION BACK!!!
+					for (int j = lastMessageNum; j < roomList[i].nMessages; j++) { 
 						if (j && ((j % maxMessages) == 0)) {
 							n++;
 						}
