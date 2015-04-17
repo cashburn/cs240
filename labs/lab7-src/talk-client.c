@@ -17,7 +17,7 @@ char * user;
 char * password;
 char * sport;
 int port;
-
+pthread_t thread;
 #define MAX_MESSAGES 100
 #define MAX_MESSAGE_LEN 300
 #define MAX_RESPONSE (20 * 1024)
@@ -162,7 +162,7 @@ void * getMessagesThread(void * arg) {
 
 void startGetMessageThread()
 {
-	pthread_create(NULL, NULL, getMessagesThread, NULL);
+	pthread_create(&thread, NULL, getMessagesThread, NULL);
 }
 
 
