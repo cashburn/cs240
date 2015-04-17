@@ -16,7 +16,7 @@ static void entry_toggle_editable( GtkWidget *checkbutton,
   gtk_editable_set_editable (GTK_EDITABLE (entry),
                              GTK_TOGGLE_BUTTON (checkbutton)->active);
 }
-
+//e.g. for password
 static void entry_toggle_visibility( GtkWidget *checkbutton,
                                      GtkWidget *entry )
 {
@@ -48,7 +48,7 @@ int main( int   argc,
                               window);
 
     vbox = gtk_vbox_new (FALSE, 0);
-    gtk_container_add (GTK_CONTAINER (window), vbox);
+    gtk_container_add (GTK_CONTAINER (window), vbox); //Use add when adding container/box to container
     gtk_widget_show (vbox);
 
     entry = gtk_entry_new ();
@@ -61,7 +61,7 @@ int main( int   argc,
     gtk_editable_insert_text (GTK_EDITABLE (entry), " world", -1, &tmp_pos);
     gtk_editable_select_region (GTK_EDITABLE (entry),
 			        0, GTK_ENTRY (entry)->text_length);
-    gtk_box_pack_start (GTK_BOX (vbox), entry, TRUE, TRUE, 0);
+    gtk_box_pack_start (GTK_BOX (vbox), entry, TRUE, TRUE, 0); //Use pack_start when adding widget to container
     gtk_widget_show (entry);
 
     hbox = gtk_hbox_new (FALSE, 0);
