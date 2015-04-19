@@ -3,7 +3,7 @@
 #include <gtk/gtk.h>
    
 /* Create the list of "messages" */
-static GtkWidget *create_list( void )
+static GtkWidget * create_list( void )
 {
 
     GtkWidget *scrolled_window;
@@ -31,11 +31,8 @@ static GtkWidget *create_list( void )
     for (i = 0; i < 10; i++) {
         gchar *msg = g_strdup_printf ("Message #%d", i);
         gtk_list_store_append (GTK_LIST_STORE (model), &iter);
-        gtk_list_store_set (GTK_LIST_STORE (model), 
-	                    &iter,
-                            0, msg,
-	                    -1);
-	g_free (msg);
+        gtk_list_store_set (GTK_LIST_STORE (model), &iter, 0, msg, -1);
+        g_free (msg);
     }
    
     cell = gtk_cell_renderer_text_new ();

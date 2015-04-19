@@ -11,6 +11,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <pthread.h>
+#include <gtk/gtk.h>
 
 char * host;
 char * user;
@@ -191,7 +192,7 @@ int main(int argc, char **argv) {
 
 	// Start message thread
 	startGetMessageThread();
-
+	/*  COMMOAND LINE CODE
 	while (1) {
 		printPrompt();
 
@@ -225,7 +226,7 @@ int main(int argc, char **argv) {
 		else {
 			// Send message
 		}
-	}
+	}*/
 	
 	printf("TEST ENDS\n");
 	return 0;

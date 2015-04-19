@@ -1,6 +1,7 @@
 
 goal: hello entry panned packbox radio talk-client TestIRCServer timer git
 
+
 hello: hello.c
 	gcc hello.c -o hello `pkg-config --cflags --libs gtk+-2.0`
 

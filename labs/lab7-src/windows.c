@@ -1,12 +1,34 @@
 #include <gtk/gtk.h>
 
+GtkWidget *tree_view;
+GtkTextBuffer *buffer;
+
+void on_changed(GtkWidget *widget, gpointer statusbar) 
+{
+  GtkTreeIter iter;
+  GtkTreeModel *model;
+  char *value;
+
+
+  if (gtk_tree_selection_get_selected(
+      GTK_TREE_SELECTION(widget), &model, &iter)) {
+    if (!gtk_tree_model_iter_has_child(model, &iter))
+        return;
+    gtk_tree_model_get(model, &iter, 0, &value,  -1);
+    gtk_statusbar_push(GTK_STATUSBAR(statusbar),
+        gtk_statusbar_get_context_id(GTK_STATUSBAR(statusbar), 
+            value), value);
+    g_free(value);
+  }
+}
+
 static GtkWidget * create_list( void )
 {
 
     GtkWidget *scrolled_window;
-    GtkWidget *tree_view;
-    GtkListStore *model;
-    GtkTreeIter iter;
+    //GtkWidget *tree_view;
+    GtkTreeStore *model;
+    GtkTreeIter toplevel, child;
     GtkCellRenderer *cell;
     GtkTreeViewColumn *column;
 
@@ -18,7 +40,7 @@ static GtkWidget * create_list( void )
             GTK_POLICY_AUTOMATIC, 
             GTK_POLICY_AUTOMATIC);
    
-    model = gtk_list_store_new (1, G_TYPE_STRING);
+    model = gtk_tree_store_new (1, G_TYPE_STRING);
     tree_view = gtk_tree_view_new ();
     gtk_container_add (GTK_CONTAINER (scrolled_window), tree_view);
     gtk_tree_view_set_model (GTK_TREE_VIEW (tree_view), GTK_TREE_MODEL (model));
@@ -26,15 +48,21 @@ static GtkWidget * create_list( void )
    
     /* Add some messages to the window */
     for (i = 0; i < 10; i++) {
-        gchar *msg = g_strdup_printf ("Message #%d", i);
-        gtk_list_store_append (GTK_LIST_STORE (model), &iter);
-        gtk_list_store_set (GTK_LIST_STORE (model), &iter, 0, msg, -1);
+        gchar *msg = g_strdup_printf ("Room %d", i);
+        gtk_tree_store_append (model, &toplevel, NULL);
+        gtk_tree_store_set (model, &toplevel, 0, msg, -1);
         g_free (msg);
+        for (int j = 0; j < 10; j++) {
+            gchar *msg = g_strdup_printf ("User %d", j);
+            gtk_tree_store_append (model, &child, &toplevel);
+            gtk_tree_store_set (model, &child, 0, msg, -1);
+            g_free (msg);
+        }
     }
    
     cell = gtk_cell_renderer_text_new ();
 
-    column = gtk_tree_view_column_new_with_attributes ("Messages",
+    column = gtk_tree_view_column_new_with_attributes ("Chat Rooms",
                                                        cell,
                                                        "text", 0,
                                                        NULL);
@@ -68,11 +96,10 @@ static void insert_text( GtkTextBuffer *buffer )
 }
    
 /* Create a scrolled text area that displays a "message" */
-static GtkWidget *create_text( void )
+static GtkWidget *create_text(GtkTextBuffer *buffer)
 {
    GtkWidget *scrolled_window;
    GtkWidget *view;
-   GtkTextBuffer *buffer;
 
    view = gtk_text_view_new ();
    buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
@@ -95,14 +122,19 @@ int main( int argc, char *argv[])
   GtkWidget *window;
   GtkWidget *table;
 
+  GtkWidget *hpaned;
+  GtkWidget *statusbar;
+  GtkWidget *vbox;
+
   GtkWidget *title;
   GtkWidget *activate;
   GtkWidget *halign;
   GtkWidget *halign2;
 
   GtkWidget *valign;
-  GtkWidget *list;
-  GtkWidget *wins;
+  GtkWidget *roomList;
+  GtkTreeSelection *selection;
+  GtkWidget *text;
 
   GtkWidget *help;
   GtkWidget *ok;
@@ -114,42 +146,42 @@ int main( int argc, char *argv[])
   gtk_widget_set_size_request (window, 500, 300);
   gtk_window_set_resizable(GTK_WINDOW(window), TRUE);
 
-  gtk_window_set_title(GTK_WINDOW(window), "Windows");
+  gtk_window_set_title(GTK_WINDOW(window), "IRC Client");
 
   gtk_container_set_border_width(GTK_CONTAINER(window), 15);
 
-  table = gtk_table_new(8, 4, FALSE);
-  gtk_table_set_col_spacings(GTK_TABLE(table), 3);
+  //table = gtk_table_new(8, 4, FALSE);
+  //gtk_table_set_col_spacings(GTK_TABLE(table), 3);
+  
+  vbox = gtk_vbox_new(FALSE, 2);
+  gtk_container_add(GTK_CONTAINER(window), vbox);
 
-  title = gtk_label_new("Windows");
-  halign = gtk_alignment_new(0, 0, 0, 0);
-  gtk_container_add(GTK_CONTAINER(halign), title);
-  gtk_table_attach(GTK_TABLE(table), halign, 0, 1, 0, 1, 
-      GTK_FILL, GTK_FILL, 0, 0);
+  hpaned = gtk_hpaned_new ();
+  gtk_container_add (GTK_CONTAINER (vbox), hpaned);
 
-  wins = gtk_text_view_new();
-  gtk_text_view_set_editable(GTK_TEXT_VIEW(wins), FALSE);
-  gtk_text_view_set_cursor_visible(GTK_TEXT_VIEW(wins), FALSE);
-  gtk_table_attach(GTK_TABLE(table), wins, 0, 1, 1, 3,
-      GTK_FILL | GTK_EXPAND, GTK_FILL | GTK_EXPAND, 1, 1);
+  statusbar = gtk_statusbar_new();
+  gtk_box_pack_start(GTK_BOX(vbox), statusbar, FALSE, TRUE, 1);
 
-  /*activate = gtk_button_new_with_label("Activate");
-  gtk_widget_set_size_request(activate, 50, 30);
-  gtk_table_attach(GTK_TABLE(table), activate, 3, 4, 1, 2, 
-      GTK_FILL, GTK_SHRINK, 1, 1);
-  */
-  //valign = gtk_alignment_new(0, 0, 0, 0);
-  //close = gtk_button_new_with_label("Close");
+  roomList = create_list ();
+  gtk_widget_set_size_request(roomList, 130, 100);
 
-  list = create_list ();
+  gtk_paned_add1 (GTK_PANED (hpaned), roomList);
+
+  selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(tree_view));
+
+  text = create_text(buffer);
+  //gtk_text_view_set_editable(GTK_TEXT_VIEW(text), TRUE);
+  //gtk_text_view_set_cursor_visible(GTK_TEXT_VIEW(text), FALSE);
+  gtk_paned_add2 (GTK_PANED (hpaned), text);
+  //gtk_table_attach(GTK_TABLE(table), text, 3, 4, 1, 3,
+      //GTK_FILL | GTK_EXPAND, GTK_FILL | GTK_EXPAND, 1, 1);
+
+  
  
-  //gtk_widget_set_size_request(close, 70, 30);
-  //gtk_container_add(GTK_CONTAINER(valign), list); //originally close, not list
-  gtk_table_set_row_spacing(GTK_TABLE(table), 1, 3);
-  gtk_widget_set_size_request(list, 100, 70);
-  gtk_table_attach(GTK_TABLE(table), list, 2, 7, 1, 3, 
-      GTK_FILL, GTK_FILL | GTK_EXPAND, 1, 1);
-
+  //gtk_table_set_row_spacing(GTK_TABLE(table), 1, 3);
+  //gtk_table_attach(GTK_TABLE(table), roomList, 0, 2, 1, 2, 
+      //GTK_FILL, GTK_FILL | GTK_EXPAND, 1, 1);
+/*
   halign2 = gtk_alignment_new(0, 1, 0, 0);
   help = gtk_button_new_with_label("Help");
   gtk_container_add(GTK_CONTAINER(halign2), help);
@@ -157,16 +189,14 @@ int main( int argc, char *argv[])
   gtk_table_set_row_spacing(GTK_TABLE(table), 3, 6);
   gtk_table_attach(GTK_TABLE(table), halign2, 0, 1, 4, 5, 
       GTK_FILL, GTK_FILL, 0, 0);
-
-  /*ok = gtk_button_new_with_label("OK");
-  gtk_widget_set_size_request(ok, 70, 30);
-  gtk_table_attach(GTK_TABLE(table), ok, 3, 4, 4, 5, 
-      GTK_FILL, GTK_FILL, 0, 0);
-  */
-  gtk_container_add(GTK_CONTAINER(window), table);
+*/
+  
+  //gtk_container_add(GTK_CONTAINER(window), table);
 
   g_signal_connect_swapped(G_OBJECT(window), "destroy",
         G_CALLBACK(gtk_main_quit), G_OBJECT(window));
+  g_signal_connect(selection, "changed", 
+      G_CALLBACK(on_changed), statusbar);
 
   gtk_widget_show_all(window);
   gtk_main();
