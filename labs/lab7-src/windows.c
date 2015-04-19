@@ -1,13 +1,51 @@
 #include <gtk/gtk.h>
+#include <stdio.h>
 
 GtkWidget *tree_view;
+GtkWidget *text_view;
 GtkTextBuffer *buffer;
 
+static void insert_text( GtkTextBuffer *buffer )
+{
+   GtkTextIter iter;
+ 
+   gtk_text_buffer_get_iter_at_offset (buffer, &iter, 0);
+
+   gtk_text_buffer_insert (buffer, &iter,   
+    "From: pathfinder@nasa.gov\n"
+    "To: mom@nasa.gov\n"
+    "Subject: Made it!\n"
+    "\n"
+    "We just got in this morning. The weather has been\n"
+    "great - clear but cold, and there are lots of fun sights.\n"
+    "Sojourner says hi. See you soon.\n"
+    " -Path\n", -1);
+}
+static GtkWidget *create_text(GtkTextBuffer *buffer)
+{
+   GtkWidget *scrolled_window;
+
+   text_view = gtk_text_view_new ();
+   buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (text_view));
+
+   scrolled_window = gtk_scrolled_window_new (NULL, NULL);
+   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window),
+                   GTK_POLICY_AUTOMATIC,
+           GTK_POLICY_AUTOMATIC);
+
+   gtk_container_add (GTK_CONTAINER (scrolled_window), text_view);
+   insert_text (buffer);
+
+   gtk_widget_show_all (scrolled_window);
+
+   return scrolled_window;
+}
 void on_changed(GtkWidget *widget, gpointer statusbar) 
 {
   GtkTreeIter iter;
   GtkTreeModel *model;
   char *value;
+  gchar *text;
 
 
   if (gtk_tree_selection_get_selected(
@@ -18,7 +56,16 @@ void on_changed(GtkWidget *widget, gpointer statusbar)
     gtk_statusbar_push(GTK_STATUSBAR(statusbar),
         gtk_statusbar_get_context_id(GTK_STATUSBAR(statusbar), 
             value), value);
+    GtkTextIter iter2;
+    buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (text_view));
+    gtk_text_buffer_get_iter_at_offset (buffer, &iter2, 0);
+
+    gtk_text_buffer_set_text (buffer,(gchar*) value, -1);
     g_free(value);
+    //printf("%s",buffer);
+
+    
+        
   }
 }
 
@@ -78,45 +125,13 @@ when our window is realized. We could also force our window to be
 realized with gtk_widget_realize, but it would have to be part of
 a hierarchy first */
 
-static void insert_text( GtkTextBuffer *buffer )
-{
-   GtkTextIter iter;
- 
-   gtk_text_buffer_get_iter_at_offset (buffer, &iter, 0);
-
-   gtk_text_buffer_insert (buffer, &iter,   
-    "From: pathfinder@nasa.gov\n"
-    "To: mom@nasa.gov\n"
-    "Subject: Made it!\n"
-    "\n"
-    "We just got in this morning. The weather has been\n"
-    "great - clear but cold, and there are lots of fun sights.\n"
-    "Sojourner says hi. See you soon.\n"
-    " -Path\n", -1);
-}
    
 /* Create a scrolled text area that displays a "message" */
-static GtkWidget *create_text(GtkTextBuffer *buffer)
-{
-   GtkWidget *scrolled_window;
-   GtkWidget *view;
 
-   view = gtk_text_view_new ();
-   buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
 
-   scrolled_window = gtk_scrolled_window_new (NULL, NULL);
-   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window),
-                   GTK_POLICY_AUTOMATIC,
-           GTK_POLICY_AUTOMATIC);
+void edit_text( GtkTextBuffer *buffer) {
 
-   gtk_container_add (GTK_CONTAINER (scrolled_window), view);
-   insert_text (buffer);
-
-   gtk_widget_show_all (scrolled_window);
-
-   return scrolled_window;
 }
-
 int main( int argc, char *argv[])
 {
   GtkWidget *window;
