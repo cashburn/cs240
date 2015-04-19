@@ -539,3 +539,10 @@ nothing to commit, working directory clean
  create mode 100644 labs/lab6-src/prog.out
  create mode 100644 labs/lab6-src/talk-server.out
  create mode 100644 labs/lab6-src/total.out
+[master 280af7f] otal of otalmax
+ 6 files changed, 7 insertions(+), 216 deletions(-)
+ delete mode 100644 labs/lab6-src/diff.out
+ delete mode 100644 labs/lab6-src/prog.org.out
+ delete mode 100644 labs/lab6-src/prog.out
+ delete mode 100644 labs/lab6-src/talk-server.out
+ delete mode 100644 labs/lab6-src/total.out
