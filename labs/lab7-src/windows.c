@@ -5,42 +5,29 @@ GtkWidget *tree_view;
 GtkWidget *text_view;
 GtkTextBuffer *buffer;
 
-static void insert_text( GtkTextBuffer *buffer )
-{
-   GtkTextIter iter;
- 
-   gtk_text_buffer_get_iter_at_offset (buffer, &iter, 0);
-
-   gtk_text_buffer_insert (buffer, &iter,   
-    "From: pathfinder@nasa.gov\n"
-    "To: mom@nasa.gov\n"
-    "Subject: Made it!\n"
-    "\n"
-    "We just got in this morning. The weather has been\n"
-    "great - clear but cold, and there are lots of fun sights.\n"
-    "Sojourner says hi. See you soon.\n"
-    " -Path\n", -1);
-}
-static GtkWidget *create_text(GtkTextBuffer *buffer)
+static GtkWidget *create_text()
 {
    GtkWidget *scrolled_window;
+   //GtkWidget *text_view;
 
-   text_view = gtk_text_view_new ();
-   buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (text_view));
-
+   text_view = gtk_text_view_new();
+   //buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (text_view));
+   gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW (text_view),GTK_WRAP_WORD);
+   gtk_text_view_set_indent (GTK_TEXT_VIEW (text_view), -15);
+   gtk_text_view_set_left_margin (GTK_TEXT_VIEW (text_view), 10);
    scrolled_window = gtk_scrolled_window_new (NULL, NULL);
    gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window),
                    GTK_POLICY_AUTOMATIC,
            GTK_POLICY_AUTOMATIC);
 
    gtk_container_add (GTK_CONTAINER (scrolled_window), text_view);
-   insert_text (buffer);
+   //insert_text (buffer);
 
    gtk_widget_show_all (scrolled_window);
 
    return scrolled_window;
 }
-void on_changed(GtkWidget *widget, gpointer statusbar) 
+void on_changed(GtkWidget *widget, gpointer text_view) 
 {
   GtkTreeIter iter;
   GtkTreeModel *model;
@@ -53,9 +40,9 @@ void on_changed(GtkWidget *widget, gpointer statusbar)
     if (!gtk_tree_model_iter_has_child(model, &iter))
         return;
     gtk_tree_model_get(model, &iter, 0, &value,  -1);
-    gtk_statusbar_push(GTK_STATUSBAR(statusbar),
+    /*gtk_statusbar_push(GTK_STATUSBAR(statusbar),
         gtk_statusbar_get_context_id(GTK_STATUSBAR(statusbar), 
-            value), value);
+            value), value);*/
     GtkTextIter iter2;
     buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (text_view));
     gtk_text_buffer_get_iter_at_offset (buffer, &iter2, 0);
@@ -138,9 +125,12 @@ int main( int argc, char *argv[])
   GtkWidget *table;
 
   GtkWidget *hpaned;
-  GtkWidget *statusbar;
-  GtkWidget *vbox;
-
+  //GtkWidget *statusbar;
+  GtkWidget *vpaned;
+  GtkWidget *box;
+  GtkWidget *text_entry;
+  GtkTextBuffer *buffer2;
+  //GtkWidget *text_view;
   GtkWidget *title;
   GtkWidget *activate;
   GtkWidget *halign;
@@ -152,7 +142,7 @@ int main( int argc, char *argv[])
   GtkWidget *text;
 
   GtkWidget *help;
-  GtkWidget *ok;
+  GtkWidget *button;
 
   gtk_init(&argc, &argv);
 
@@ -167,27 +157,35 @@ int main( int argc, char *argv[])
 
   //table = gtk_table_new(8, 4, FALSE);
   //gtk_table_set_col_spacings(GTK_TABLE(table), 3);
-  
-  vbox = gtk_vbox_new(FALSE, 2);
-  gtk_container_add(GTK_CONTAINER(window), vbox);
+  box = gtk_hbox_new (TRUE, 0);
+  vpaned = gtk_vpaned_new();
+  gtk_container_add(GTK_CONTAINER(window), vpaned);
 
   hpaned = gtk_hpaned_new ();
-  gtk_container_add (GTK_CONTAINER (vbox), hpaned);
+  gtk_container_add (GTK_CONTAINER (vpaned), hpaned);
 
-  statusbar = gtk_statusbar_new();
-  gtk_box_pack_start(GTK_BOX(vbox), statusbar, FALSE, TRUE, 1);
+  text_entry = create_text();
+  gtk_box_pack_start (GTK_BOX (box), text_entry, TRUE, TRUE, 0);
+  gtk_container_add (GTK_CONTAINER(vpaned), box);
+  //statusbar = gtk_statusbar_new();
+  //gtk_box_pack_start(GTK_BOX(vbox), statusbar, FALSE, TRUE, 1);
 
   roomList = create_list ();
-  gtk_widget_set_size_request(roomList, 130, 100);
+  gtk_widget_set_size_request(roomList, 130, 225);
 
   gtk_paned_add1 (GTK_PANED (hpaned), roomList);
 
   selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(tree_view));
 
-  text = create_text(buffer);
+  text = create_text();
   //gtk_text_view_set_editable(GTK_TEXT_VIEW(text), TRUE);
   //gtk_text_view_set_cursor_visible(GTK_TEXT_VIEW(text), FALSE);
   gtk_paned_add2 (GTK_PANED (hpaned), text);
+  gtk_widget_set_size_request(text_entry, 300, 100);
+
+  button = gtk_button_new_with_label ("Send");
+  gtk_box_pack_start (GTK_BOX (box), button, FALSE, FALSE, 0);
+  //gtk_widget_show (button);
   //gtk_table_attach(GTK_TABLE(table), text, 3, 4, 1, 3,
       //GTK_FILL | GTK_EXPAND, GTK_FILL | GTK_EXPAND, 1, 1);
 
@@ -211,7 +209,9 @@ int main( int argc, char *argv[])
   g_signal_connect_swapped(G_OBJECT(window), "destroy",
         G_CALLBACK(gtk_main_quit), G_OBJECT(window));
   g_signal_connect(selection, "changed", 
-      G_CALLBACK(on_changed), statusbar);
+      G_CALLBACK(on_changed), text_view);
+  /*g_signal_connect(selection, "changed", 
+      G_CALLBACK(on_changed), statusbar);*/
 
   gtk_widget_show_all(window);
   gtk_main();
