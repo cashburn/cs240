@@ -165,7 +165,7 @@ int main( int argc, char *argv[])
   gtk_container_add (GTK_CONTAINER (vpaned), hpaned);
 
   text_entry = create_text();
-  gtk_box_pack_start (GTK_BOX (box), text_entry, TRUE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX (box), text_entry, TRUE, TRUE, 0); //MAKE TABLE, NOT BOX!!
   gtk_container_add (GTK_CONTAINER(vpaned), box);
   //statusbar = gtk_statusbar_new();
   //gtk_box_pack_start(GTK_BOX(vbox), statusbar, FALSE, TRUE, 1);
