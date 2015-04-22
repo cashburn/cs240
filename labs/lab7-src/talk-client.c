@@ -331,7 +331,7 @@ int main(int argc, char **argv) {
 
 	GtkWidget *window;
   	GtkWidget *table;
-  	GtkWidget *vbox;
+  	GtkWidget *bigPane;
   	GtkWidget *hpaned;
   	GtkWidget *vpaned;
 
@@ -352,15 +352,16 @@ int main(int argc, char **argv) {
 	gtk_window_set_title(GTK_WINDOW(window), "IRC Client");
 	gtk_container_set_border_width(GTK_CONTAINER(window), 15);
 
-	vbox = gtk_vbox_new(FALSE, 0);
-	gtk_container_add(GTK_CONTAINER(window), vbox);
+	bigPane = gtk_vpaned_new();
+	gtk_container_add(GTK_CONTAINER(window), bigPane);
 
 	toolbar = gtk_toolbar_new();
 	gtk_toolbar_set_style(GTK_TOOLBAR(toolbar), GTK_TOOLBAR_ICONS);
 	gtk_container_set_border_width(GTK_CONTAINER(toolbar), 2);
+	gtk_container_add(GTK_CONTAINER(bigPane), toolbar);
 
 	vpaned = gtk_vpaned_new();
-	//gtk_container_add(GTK_CONTAINER(window), vpaned);
+	gtk_container_add(GTK_CONTAINER(bigPane), vpaned);
 
 	hpaned = gtk_hpaned_new ();
   	gtk_container_add (GTK_CONTAINER (vpaned), hpaned);
@@ -382,8 +383,8 @@ int main(int argc, char **argv) {
 	gtk_table_attach(GTK_TABLE(table), textEntry, 0, 3, 0, 1,
       GTK_FILL | GTK_EXPAND, GTK_FILL | GTK_EXPAND, 1, 1);
 
-	gtk_box_pack_start(GTK_BOX(vbox), toolbar, FALSE, FALSE, 5);
-	gtk_box_pack_start(GTK_BOX(vbox), vpaned, FALSE, FALSE, 5);
+	//gtk_box_pack_start(GTK_BOX(vbox), toolbar, FALSE, FALSE, 5);
+	//gtk_box_pack_start(GTK_BOX(vbox), vpaned, FALSE, FALSE, 5);
 
 	g_signal_connect_swapped(G_OBJECT(window), "destroy",
         G_CALLBACK(gtk_main_quit), G_OBJECT(window));
