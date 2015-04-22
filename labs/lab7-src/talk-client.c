@@ -136,11 +136,12 @@ void listRooms() {
     GtkTreeViewColumn *column;
 
 	char * response = (char *) malloc(MAX_RESPONSE * sizeof(char));
+	char * responsePoint = response;
 	char * msg = (char *) malloc(MAX_RESPONSE * sizeof(char));
 	char * s = msg;
 	sendCommand(host, port, "LIST-ROOMS", user, password, "", response);
-	while (response) {
-		*s = *response;
+	while (responsePoint) {
+		*s = *responsePoint;
 		if (*s == '\r') {
 			*s = 0;
 			if(strlen(msg) <= 0) {
@@ -149,12 +150,13 @@ void listRooms() {
 			gtk_tree_store_append (treeModel, &toplevel, NULL);
         	gtk_tree_store_set (treeModel, &toplevel, 0, msg, -1);
         	s = msg;
-        	response++;
-        	response++;
+        	responsePoint++;
+        	responsePoint++;
         	char * response2 = (char *) malloc(MAX_RESPONSE * sizeof(char));
+        	char *responsePoint2 = response2;
         	sendCommand(host, port, "GET-USERS-IN-ROOM", user, password, msg, response2);
-        	while (response2) {
-        		*s = *response2;
+        	while (responsePoint2) {
+        		*s = *responsePoint2;
 				if (*s == '\r') {
 					*s = 0;
 					if(strlen(msg) <= 0) {
@@ -163,18 +165,18 @@ void listRooms() {
 					gtk_tree_store_append (treeModel, &child, &toplevel);
 		        	gtk_tree_store_set (treeModel, &child, 0, msg, -1);
 		        	s = msg;
-		        	response2++;
-		        	response2++;
+		        	responsePoint2++;
+		        	responsePoint2++;
 		        	continue;
 		        }
 		        s++;
-		        response2++;
+		        responsePoint2++;
 		    }
 		    free(response2);
 		    continue;
 		}
 		s++;
-		response++;
+		responsePoint++;
 	}
 	free(msg);
 	free(response);
