@@ -381,7 +381,7 @@ int main(int argc, char **argv) {
 	else {
 		add_user();
 	}
-
+	listRooms();
 	// Enter room
 	//enterRoom();
 
