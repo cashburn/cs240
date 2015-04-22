@@ -381,7 +381,7 @@ int main(int argc, char **argv) {
 	else {
 		add_user();
 	}
-	listRooms();
+
 	// Enter room
 	//enterRoom();
 
@@ -462,6 +462,11 @@ int main(int argc, char **argv) {
     	G_CALLBACK(roomSelected), text);
 
   	gtk_widget_show_all(window);
+
+
+  	listRooms();
+
+  	
   	gtk_main();
 
 	/*  COMMOAND LINE CODE
