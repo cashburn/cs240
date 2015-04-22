@@ -331,16 +331,16 @@ int main(int argc, char **argv) {
 
 	GtkWidget *window;
   	GtkWidget *table;
-
+  	GtkWidget *vbox;
   	GtkWidget *hpaned;
   	GtkWidget *vpaned;
 
+  	GtkWidget *toolbar;
   	GtkWidget *textEntry;
   	GtkWidget *textView;
   	GtkWidget *button;
   	GtkWidget *roomList;
   	GtkWidget *text;
-  	//GtkWidget *tree_view;
   	GtkTreeSelection *roomSelection;
 
   	gtk_init(&argc, &argv);
@@ -352,8 +352,15 @@ int main(int argc, char **argv) {
 	gtk_window_set_title(GTK_WINDOW(window), "IRC Client");
 	gtk_container_set_border_width(GTK_CONTAINER(window), 15);
 
+	vbox = gtk_vbox_new(FALSE, 0);
+	gtk_container_add(GTK_CONTAINER(window), vbox);
+
+	toolbar = gtk_toolbar_new();
+	gtk_toolbar_set_style(GTK_TOOLBAR(toolbar), GTK_TOOLBAR_ICONS);
+	gtk_container_set_border_width(GTK_CONTAINER(toolbar), 2);
+
 	vpaned = gtk_vpaned_new();
-	gtk_container_add(GTK_CONTAINER(window), vpaned);
+	//gtk_container_add(GTK_CONTAINER(window), vpaned);
 
 	hpaned = gtk_hpaned_new ();
   	gtk_container_add (GTK_CONTAINER (vpaned), hpaned);
@@ -366,7 +373,7 @@ int main(int argc, char **argv) {
   	textView = create_text1();
   	gtk_paned_add2 (GTK_PANED (hpaned), textView);
 
-	table = gtk_table_new(4, 1, FALSE);
+	table = gtk_table_new(4, 2, FALSE);
 	gtk_container_add (GTK_CONTAINER(vpaned), table);
 	textEntry = create_text2();
 
@@ -374,6 +381,9 @@ int main(int argc, char **argv) {
 	gtk_table_attach(GTK_TABLE(table), button, 3, 4, 0, 1, 0, 0, 1, 1);
 	gtk_table_attach(GTK_TABLE(table), textEntry, 0, 3, 0, 1,
       GTK_FILL | GTK_EXPAND, GTK_FILL | GTK_EXPAND, 1, 1);
+
+	gtk_box_pack_start(GTK_BOX(vbox), toolbar, FALSE, FALSE, 5);
+	gtk_box_pack_start(GTK_BOX(vbox), vpaned, FALSE, FALSE, 5);
 
 	g_signal_connect_swapped(G_OBJECT(window), "destroy",
         G_CALLBACK(gtk_main_quit), G_OBJECT(window));
