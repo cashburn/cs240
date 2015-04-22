@@ -367,8 +367,8 @@ int main(int argc, char **argv) {
 	refresh = gtk_tool_button_new_from_stock(GTK_STOCK_REFRESH);
 	createRoom = gtk_tool_button_new_from_stock(GTK_STOCK_HOME);
 	logout = gtk_tool_button_new_from_stock(GTK_STOCK_QUIT);
-	gtk_toolbar_insert(GTK_TOOLBAR(toolbar), refresh, -1);
 	gtk_toolbar_insert(GTK_TOOLBAR(toolbar), createRoom, -1);
+	gtk_toolbar_insert(GTK_TOOLBAR(toolbar), refresh, -1);
 	gtk_toolbar_insert(GTK_TOOLBAR(toolbar), logout, -1);
 
 	vpaned = gtk_vpaned_new();
