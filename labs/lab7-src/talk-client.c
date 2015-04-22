@@ -361,7 +361,7 @@ int main(int argc, char **argv) {
 
 	toolbar = gtk_toolbar_new();
 	gtk_toolbar_set_style(GTK_TOOLBAR(toolbar), GTK_TOOLBAR_ICONS);
-	gtk_container_set_border_width(GTK_CONTAINER(toolbar), 2);
+	gtk_container_set_border_width(GTK_CONTAINER(toolbar), 0);
 	gtk_container_add(GTK_CONTAINER(bigPane), toolbar);
 
 	refresh = gtk_tool_button_new_from_stock(GTK_STOCK_REFRESH);
