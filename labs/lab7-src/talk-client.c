@@ -190,19 +190,20 @@ void * getMessagesThread(void * arg) {
 	// This code will be executed simultaneously with main()
 	// Get messages to get last message number. Discard the initial Messages
 	
-	while (1) {
+	//while (1) {
 		// Get messages after last message number received.
-		g_timeout_add(5000, (GSourceFunc) time_handler, (gpointer) NULL);
+		
 		// Print messages
 
 		// Sleep for ten seconds
 		//usleep(2*1000*1000);
-	}
+	//}
 }
 
 void startGetMessageThread()
 {
-	pthread_create(&thread, NULL, getMessagesThread, NULL);
+	//pthread_create(&thread, NULL, getMessagesThread, NULL);
+	g_timeout_add(5000, (GSourceFunc) time_handler, (gpointer) NULL);
 }
 
 static GtkWidget *create_text1()
