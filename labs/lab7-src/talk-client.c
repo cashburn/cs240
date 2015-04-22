@@ -181,7 +181,13 @@ time_handler(GtkWidget *widget)
   	curtime = time(NULL);
   	loctime = localtime(&curtime);
   	strftime(buffer, 256, "%T", loctime);
-  	printf("%s\n", buffer);
+
+  	GtkTextIter iter2;
+    messageBuffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (text_view));
+    gtk_text_buffer_get_iter_at_offset (messageBuffer, &iter2, 0);
+
+    gtk_text_buffer_set_text (messageBuffer,(gchar*) buffer, -1);
+  	//printf("%s\n", buffer);
   	//gtk_widget_queue_draw(widget);
   	return TRUE;
 }
