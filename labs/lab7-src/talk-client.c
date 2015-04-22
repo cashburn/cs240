@@ -118,6 +118,16 @@ void add_user() {
 		printf("User %s added\n", user);
 	}
 }
+int login() {
+	char response[ MAX_RESPONSE ];
+	sendCommand(host, port, "LOGIN", user, password, "", response);
+	
+	if (!strcmp(response,"OK\r\n")) {
+		printf("User %s exists\n", user);
+		return 1;
+	}
+	return 0;
+}
 
 void enter_room() {
 }
@@ -307,8 +317,11 @@ int main(int argc, char **argv) {
 
 	// Convert port to number
 	sscanf(sport, "%d", &port);
-
-	add_user();
+	if (login()) {
+	}
+	else {
+		add_user();
+	}
 
 	// Enter room
 	enter_room();
