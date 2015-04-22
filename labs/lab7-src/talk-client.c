@@ -336,6 +336,10 @@ int main(int argc, char **argv) {
   	GtkWidget *vpaned;
 
   	GtkWidget *toolbar;
+  	GtkToolItem *refresh;
+  	GtkToolItem *createRoom;
+  	GtkToolItem *logout;
+
   	GtkWidget *textEntry;
   	GtkWidget *textView;
   	GtkWidget *button;
@@ -359,6 +363,13 @@ int main(int argc, char **argv) {
 	gtk_toolbar_set_style(GTK_TOOLBAR(toolbar), GTK_TOOLBAR_ICONS);
 	gtk_container_set_border_width(GTK_CONTAINER(toolbar), 2);
 	gtk_container_add(GTK_CONTAINER(bigPane), toolbar);
+
+	refresh = gtk_tool_button_new_from_stock(GTK_STOCK_REFRESH);
+	createRoom = gtk_tool_button_new_from_stock(GTK_STOCK_HOME);
+	logout = gtk_tool_button_new_from_stock(GTK_STOCK_QUIT);
+	gtk_toolbar_insert(GTK_TOOLBAR(toolbar), refresh, -1);
+	gtk_toolbar_insert(GTK_TOOLBAR(toolbar), createRoom, -1);
+	gtk_toolbar_insert(GTK_TOOLBAR(toolbar), logout, -1);
 
 	vpaned = gtk_vpaned_new();
 	gtk_container_add(GTK_CONTAINER(bigPane), vpaned);
