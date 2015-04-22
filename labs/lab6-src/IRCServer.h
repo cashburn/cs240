@@ -15,6 +15,7 @@ public:
 	bool checkPassword(int fd, const char * user, const char * password);
 	void processRequest( int socket );
 	void addUser(int fd, const char * user, const char * password, const char * args);
+	void login(int fd, const char * user, const char * password, const char * args);
 	void createRoom(int fd, const char * user, const char * password, const char * args);
 	void listRooms(int fd, const char * user, const char * password, const char * args);
 	void enterRoom(int fd, const char * user, const char * password, const char * args);

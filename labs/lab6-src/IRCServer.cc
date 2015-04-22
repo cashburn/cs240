@@ -294,6 +294,9 @@ void IRCServer::processRequest( int fd ) {
 	else if (!strcmp(command, "CREATE-ROOM")) {
 		createRoom(fd, user, password, args);
 	}
+	else if (!strcmp(command, "LOGIN")) {
+		login(fd, user, password, args);
+	}
 	else if (!strcmp(command, "LIST-ROOMS")) {
 		listRooms(fd, user, password, args);
 	}
@@ -678,5 +681,17 @@ IRCServer::getAllUsers(int fd, const char * user, const char * password, const  
 	free(users);
 	fprintf(fssock,"\r\n");
 	fclose(fssock);
+}
+void
+IRCServer::login(int fd, const char * user, const char * password, const char * args) {
+	const char * msg;
+	if (checkPassword(fd, user, password)) {
+		msg = "OK\r\n";
+	}
+	else
+		msg = "DENIED\r\n"; //another deny for catch-all
+	write(fd, msg, strlen(msg)); //sends the variable msg back through the network (either OK or DENIED)
+	
+	return;	//exit the function!
 }
 
