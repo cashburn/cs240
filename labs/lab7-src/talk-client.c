@@ -19,6 +19,7 @@ char * password;
 char * sport;
 int port;
 pthread_t thread;
+GtkWidget *tree_view;
 #define MAX_MESSAGES 100
 #define MAX_MESSAGE_LEN 300
 #define MAX_RESPONSE (20 * 1024)
@@ -298,7 +299,7 @@ int main(int argc, char **argv) {
   	GtkWidget *button;
   	GtkWidget *roomList;
   	GtkWidget *text;
-  	GtkWidget *tree_view;
+  	//GtkWidget *tree_view;
   	GtkTreeSelection *roomSelection;
 
   	gtk_init(&argc, &argv);

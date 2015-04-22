@@ -6,3 +6,7 @@
  4 files changed, 299 insertions(+), 1 deletion(-)
  create mode 100755 labs/lab7-src/packbox
  create mode 100644 labs/lab7-src/packbox.c
+[master 5302ead] Make IRCclient
+ 5 files changed, 158 insertions(+), 9 deletions(-)
+ rewrite labs/lab7-src/panned (92%)
+ rewrite labs/lab7-src/talk-client (91%)
