@@ -20,3 +20,7 @@
  create mode 100755 labs/lab7-src/windowstest
 [master 4630f68] Make IRCclient
  4 files changed, 5 insertions(+), 2 deletions(-)
+[master e49dd47] Make IRCclient
+ 4 files changed, 19 insertions(+), 2 deletions(-)
+ create mode 100644 labs/lab6-src/password.txt
+ rewrite labs/lab7-src/talk-client (70%)
