@@ -149,7 +149,7 @@ void listRooms() {
         	response++;
         	response++;
         	char * response2 = (char *) malloc(MAX_RESPONSE * sizeof(char));
-        	sendCommand(host, port, "GET-USERS-IN-ROOM", user, password, "", response2);
+        	sendCommand(host, port, "GET-USERS-IN-ROOM", user, password, msg, response2);
         	while (response2) {
         		*s = *response2;
 				if (*s == '\r') {
@@ -466,7 +466,7 @@ int main(int argc, char **argv) {
 
   	listRooms();
 
-  	
+
   	gtk_main();
 
 	/*  COMMOAND LINE CODE
