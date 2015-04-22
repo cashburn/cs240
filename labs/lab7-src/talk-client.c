@@ -143,6 +143,9 @@ void listRooms() {
 		*s = *response;
 		if (*s == '\r') {
 			*s = 0;
+			if(strlen(msg) <= 0) {
+				continue;
+			}
 			gtk_tree_store_append (treeModel, &toplevel, NULL);
         	gtk_tree_store_set (treeModel, &toplevel, 0, msg, -1);
         	s = msg;
@@ -154,6 +157,9 @@ void listRooms() {
         		*s = *response2;
 				if (*s == '\r') {
 					*s = 0;
+					if(strlen(msg) <= 0) {
+						continue;
+					}
 					gtk_tree_store_append (treeModel, &child, &toplevel);
 		        	gtk_tree_store_set (treeModel, &child, 0, msg, -1);
 		        	s = msg;
