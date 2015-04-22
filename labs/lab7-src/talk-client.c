@@ -129,17 +129,24 @@ int login() {
 	return 0;
 }
 
-void enter_room() {
+void listRooms() {
+	char response[ MAX_RESPONSE ];
+	sendCommand(host, port, "LIST-ROOMS", user, password, "", response);
+	
+	
 }
 
-void leave_room() {
+void enterRoom(char * roomName) {
 }
 
-void get_messages() {
+void leaveRoom() {
+}
+
+void getMessages() {
 
 }
 
-void send_message(char * msg) {
+void sendMessage(char * msg) {
 }
 
 void print_users_in_room() {
@@ -162,17 +169,34 @@ void printHelp() {
 	printf("Anything that does not start with \"-\" will be a message to the chat room\n");
 }
 
+static gboolean
+time_handler(GtkWidget *widget)
+{
+	char buffer[20];
+  	//if (widget->window == NULL) return FALSE;
+
+  	time_t curtime;
+  	struct tm *loctime;
+
+  	curtime = time(NULL);
+  	loctime = localtime(&curtime);
+  	strftime(buffer, 256, "%T", loctime);
+  	printf("%s\n", buffer);
+  	//gtk_widget_queue_draw(widget);
+  	return TRUE;
+}
+
 void * getMessagesThread(void * arg) {
 	// This code will be executed simultaneously with main()
 	// Get messages to get last message number. Discard the initial Messages
 	
 	while (1) {
 		// Get messages after last message number received.
-
+		g_timeout_add(5000, (GSourceFunc) time_handler, (gpointer) NULL);
 		// Print messages
 
 		// Sleep for ten seconds
-		usleep(2*1000*1000);
+		//usleep(2*1000*1000);
 	}
 }
 
@@ -324,7 +348,7 @@ int main(int argc, char **argv) {
 	}
 
 	// Enter room
-	enter_room();
+	//enterRoom();
 
 	// Start message thread
 	startGetMessageThread();
