@@ -330,7 +330,7 @@ static GtkWidget * create_list()
     GtkTreeViewColumn *column;
 
     int i;
-   
+   	printf("Create List\n");
     /* Create a new scrolled window, with scrollbars only if needed */
     scrolled_window = gtk_scrolled_window_new (NULL, NULL);
     gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window),
@@ -355,7 +355,7 @@ static GtkWidget * create_list()
   
     gtk_tree_view_append_column (GTK_TREE_VIEW (tree_view),
                  GTK_TREE_VIEW_COLUMN (column));
-
+    printf("Create List Finished\n");
     return scrolled_window;
 }
 
