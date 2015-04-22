@@ -351,7 +351,7 @@ int main(int argc, char **argv) {
 
   	window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
 	gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER);
-	gtk_widget_set_size_request (window, 500, 300);
+	gtk_widget_set_size_request (window, 500, 400);
 	gtk_window_set_resizable(GTK_WINDOW(window), TRUE);
 	gtk_window_set_title(GTK_WINDOW(window), "IRC Client");
 	gtk_container_set_border_width(GTK_CONTAINER(window), 15);
@@ -361,7 +361,7 @@ int main(int argc, char **argv) {
 
 	toolbar = gtk_toolbar_new();
 	gtk_toolbar_set_style(GTK_TOOLBAR(toolbar), GTK_TOOLBAR_ICONS);
-	gtk_container_set_border_width(GTK_CONTAINER(toolbar), 0);
+	gtk_container_set_border_width(GTK_CONTAINER(toolbar), 2);
 	gtk_container_add(GTK_CONTAINER(bigPane), toolbar);
 
 	refresh = gtk_tool_button_new_from_stock(GTK_STOCK_REFRESH);
