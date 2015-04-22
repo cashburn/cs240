@@ -20,6 +20,10 @@ char * sport;
 int port;
 pthread_t thread;
 GtkWidget *tree_view;
+GtkWidget *text_view;
+GtkWidget *text_entry;
+GtkTextBuffer *messageBuffer;
+GtkTextBuffer *sendBuffer;
 #define MAX_MESSAGES 100
 #define MAX_MESSAGE_LEN 300
 #define MAX_RESPONSE (20 * 1024)
@@ -167,13 +171,13 @@ void startGetMessageThread()
 	pthread_create(&thread, NULL, getMessagesThread, NULL);
 }
 
-static GtkWidget *create_text(GtkWidget *text_view)
+static GtkWidget *create_text1()
 {
    GtkWidget *scrolled_window;
    //GtkWidget *text_view;
 
    text_view = gtk_text_view_new();
-   //buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (text_view));
+   messageBuffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (text_view));
    gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW (text_view),GTK_WRAP_WORD);
    gtk_text_view_set_indent (GTK_TEXT_VIEW (text_view), -15);
    gtk_text_view_set_left_margin (GTK_TEXT_VIEW (text_view), 10);
@@ -190,9 +194,32 @@ static GtkWidget *create_text(GtkWidget *text_view)
    return scrolled_window;
 }
 
-void roomSelected(GtkWidget *widget, gpointer text_view) 
+static GtkWidget *create_text2()
 {
-	GtkTextBuffer *buffer;
+   GtkWidget *scrolled_window;
+   //GtkWidget *text_view;
+
+   text_entry = gtk_text_view_new();
+   sendBuffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (text_entry));
+   gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW (text_entry),GTK_WRAP_WORD);
+   gtk_text_view_set_indent (GTK_TEXT_VIEW (text_entry), -15);
+   gtk_text_view_set_left_margin (GTK_TEXT_VIEW (text_entry), 10);
+   scrolled_window = gtk_scrolled_window_new (NULL, NULL);
+   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window),
+                   GTK_POLICY_AUTOMATIC,
+           GTK_POLICY_AUTOMATIC);
+
+   gtk_container_add (GTK_CONTAINER (scrolled_window), text_entry);
+   //insert_text (buffer);
+
+   gtk_widget_show_all (scrolled_window);
+
+   return scrolled_window;
+}
+
+void roomSelected(GtkWidget *widget, gpointer textView) 
+{
+	//GtkTextBuffer *buffer;
   	GtkTreeIter iter;
 	GtkTreeModel *model;
   	char *value;
@@ -204,15 +231,15 @@ void roomSelected(GtkWidget *widget, gpointer text_view)
         	return;
     	gtk_tree_model_get(model, &iter, 0, &value,  -1);
     	GtkTextIter iter2;
-    	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (text_view));
-    	gtk_text_buffer_get_iter_at_offset (buffer, &iter2, 0);
+    	messageBuffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (text_view));
+    	gtk_text_buffer_get_iter_at_offset (messageBuffer, &iter2, 0);
 
-    	gtk_text_buffer_set_text (buffer,(gchar*) value, -1);
+    	gtk_text_buffer_set_text (messageBuffer,(gchar*) value, -1);
     	g_free(value);   
   	}
 }
 
-static GtkWidget * create_list(GtkWidget *tree_view)
+static GtkWidget * create_list()
 {
 
     GtkWidget *scrolled_window;
@@ -295,7 +322,8 @@ int main(int argc, char **argv) {
   	GtkWidget *hpaned;
   	GtkWidget *vpaned;
 
-  	GtkWidget *text_entry;
+  	GtkWidget *textEntry;
+  	GtkWidget *textView;
   	GtkWidget *button;
   	GtkWidget *roomList;
   	GtkWidget *text;
@@ -317,17 +345,17 @@ int main(int argc, char **argv) {
 	hpaned = gtk_hpaned_new ();
   	gtk_container_add (GTK_CONTAINER (vpaned), hpaned);
 
-  	roomList = create_list (tree_view);
+  	roomList = create_list ();
   	gtk_widget_set_size_request(roomList, 130, 225);
   	gtk_paned_add1 (GTK_PANED (hpaned), roomList);
 
   	roomSelection = gtk_tree_view_get_selection(GTK_TREE_VIEW(tree_view));
-  	text = create_text(text);
-  	gtk_paned_add2 (GTK_PANED (hpaned), text);
+  	textView = create_text1();
+  	gtk_paned_add2 (GTK_PANED (hpaned), textView);
 
 	table = gtk_table_new(4, 1, FALSE);
 	gtk_container_add (GTK_CONTAINER(vpaned), table);
-	text_entry = create_text(text_entry);
+	textEntry = create_text2();
 
 	button = gtk_button_new_with_label ("Send");
 	gtk_table_attach(GTK_TABLE(table), button, 3, 4, 0, 1, 0, 0, 1, 1);
