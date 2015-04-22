@@ -14,3 +14,7 @@
  6 files changed, 186 insertions(+), 10 deletions(-)
  rewrite labs/lab7-src/windows (75%)
  create mode 100644 labs/lab7-src/windowstest.c
+[master 7f9fc3a] Make IRCclient
+ 7 files changed, 87 insertions(+), 27 deletions(-)
+ rewrite labs/lab7-src/talk-client (70%)
+ create mode 100755 labs/lab7-src/windowstest

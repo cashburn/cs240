@@ -359,7 +359,7 @@ int main(int argc, char **argv) {
 
 	button = gtk_button_new_with_label ("Send");
 	gtk_table_attach(GTK_TABLE(table), button, 3, 4, 0, 1, 0, 0, 1, 1);
-	gtk_table_attach(GTK_TABLE(table), text_entry, 0, 3, 0, 1,
+	gtk_table_attach(GTK_TABLE(table), textEntry, 0, 3, 0, 1,
       GTK_FILL | GTK_EXPAND, GTK_FILL | GTK_EXPAND, 1, 1);
 
 	g_signal_connect_swapped(G_OBJECT(window), "destroy",
