@@ -24,6 +24,7 @@ GtkWidget *text_view;
 GtkWidget *text_entry;
 GtkTextBuffer *messageBuffer;
 GtkTextBuffer *sendBuffer;
+GtkTreeStore *treeModel;
 #define MAX_MESSAGES 100
 #define MAX_MESSAGE_LEN 300
 #define MAX_RESPONSE (20 * 1024)
@@ -130,10 +131,48 @@ int login() {
 }
 
 void listRooms() {
-	char response[ MAX_RESPONSE ];
+	GtkTreeIter toplevel, child;
+    GtkCellRenderer *cell;
+    GtkTreeViewColumn *column;
+
+	char * response = (char *) malloc(MAX_RESPONSE * sizeof(char));
+	char * msg = (char *) malloc(MAX_RESPONSE * sizeof(char));
+	char * s = msg;
 	sendCommand(host, port, "LIST-ROOMS", user, password, "", response);
-	
-	
+	while (response) {
+		*s = *response;
+		if (*s == '\r') {
+			*s = 0;
+			gtk_tree_store_append (treeModel, &toplevel, NULL);
+        	gtk_tree_store_set (treeModel, &toplevel, 0, msg, -1);
+        	s = msg;
+        	response++;
+        	response++;
+        	char * response2 = (char *) malloc(MAX_RESPONSE * sizeof(char));
+        	sendCommand(host, port, "GET-USERS-IN-ROOM", user, password, "", response2);
+        	while (response2) {
+        		*s = *response2;
+				if (*s == '\r') {
+					*s = 0;
+					gtk_tree_store_append (treeModel, &child, &toplevel);
+		        	gtk_tree_store_set (treeModel, &child, 0, msg, -1);
+		        	s = msg;
+		        	response2++;
+		        	response2++;
+		        	continue;
+		        }
+		        s++;
+		        response2++;
+		    }
+		    free(response2);
+		    continue;
+		}
+		s++;
+		response++;
+	}
+	free(msg);
+	free(response);
+  
 }
 
 void enterRoom(char * roomName) {
@@ -285,7 +324,7 @@ static GtkWidget * create_list()
 
     GtkWidget *scrolled_window;
     //GtkWidget *tree_view;
-    GtkTreeStore *model;
+    //GtkTreeStore *treeModel;
     GtkTreeIter toplevel, child;
     GtkCellRenderer *cell;
     GtkTreeViewColumn *column;
@@ -298,25 +337,14 @@ static GtkWidget * create_list()
             GTK_POLICY_AUTOMATIC, 
             GTK_POLICY_AUTOMATIC);
    
-    model = gtk_tree_store_new (1, G_TYPE_STRING);
+    treeModel = gtk_tree_store_new (1, G_TYPE_STRING);
     tree_view = gtk_tree_view_new ();
     gtk_container_add (GTK_CONTAINER (scrolled_window), tree_view);
-    gtk_tree_view_set_model (GTK_TREE_VIEW (tree_view), GTK_TREE_MODEL (model));
+    gtk_tree_view_set_model (GTK_TREE_VIEW (tree_view), GTK_TREE_MODEL (treeModel));
     gtk_widget_show (tree_view);
    
     /* Add some messages to the window */
-    for (i = 0; i < 10; i++) {
-        gchar *msg = g_strdup_printf ("Room %d", i);
-        gtk_tree_store_append (model, &toplevel, NULL);
-        gtk_tree_store_set (model, &toplevel, 0, msg, -1);
-        g_free (msg);
-        for (int j = 0; j < 10; j++) {
-            gchar *msg = g_strdup_printf ("User %d", j);
-            gtk_tree_store_append (model, &child, &toplevel);
-            gtk_tree_store_set (model, &child, 0, msg, -1);
-            g_free (msg);
-        }
-    }
+    
    
     cell = gtk_cell_renderer_text_new ();
 
