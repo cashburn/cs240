@@ -155,9 +155,9 @@ int main( int argc, char *argv[])
 
   gtk_container_set_border_width(GTK_CONTAINER(window), 15);
 
-  //table = gtk_table_new(8, 4, FALSE);
+  table = gtk_table_new(4, 1, FALSE);
   //gtk_table_set_col_spacings(GTK_TABLE(table), 3);
-  box = gtk_hbox_new (TRUE, 0);
+  //box = gtk_hbox_new (TRUE, 0);
   vpaned = gtk_vpaned_new();
   gtk_container_add(GTK_CONTAINER(window), vpaned);
 
@@ -165,8 +165,8 @@ int main( int argc, char *argv[])
   gtk_container_add (GTK_CONTAINER (vpaned), hpaned);
 
   text_entry = create_text();
-  gtk_box_pack_start (GTK_BOX (box), text_entry, TRUE, TRUE, 0); //MAKE TABLE, NOT BOX!!
-  gtk_container_add (GTK_CONTAINER(vpaned), box);
+  //gtk_box_pack_start (GTK_BOX (box), text_entry, TRUE, TRUE, 0); //MAKE TABLE, NOT BOX!!
+  gtk_container_add (GTK_CONTAINER(vpaned), table);
   //statusbar = gtk_statusbar_new();
   //gtk_box_pack_start(GTK_BOX(vbox), statusbar, FALSE, TRUE, 1);
 
@@ -181,18 +181,18 @@ int main( int argc, char *argv[])
   //gtk_text_view_set_editable(GTK_TEXT_VIEW(text), TRUE);
   //gtk_text_view_set_cursor_visible(GTK_TEXT_VIEW(text), FALSE);
   gtk_paned_add2 (GTK_PANED (hpaned), text);
-  gtk_widget_set_size_request(text_entry, 300, 100);
+  //gtk_widget_set_size_request(text_entry, 300, 100);
 
   button = gtk_button_new_with_label ("Send");
-  gtk_box_pack_start (GTK_BOX (box), button, FALSE, FALSE, 0);
+  //gtk_box_pack_start (GTK_BOX (box), button, FALSE, FALSE, 0);
   //gtk_widget_show (button);
-  //gtk_table_attach(GTK_TABLE(table), text, 3, 4, 1, 3,
-      //GTK_FILL | GTK_EXPAND, GTK_FILL | GTK_EXPAND, 1, 1);
+  gtk_table_attach(GTK_TABLE(table), text_entry, 0, 3, 0, 1,
+      GTK_FILL | GTK_EXPAND, GTK_FILL | GTK_EXPAND, 1, 1);
 
   
  
   //gtk_table_set_row_spacing(GTK_TABLE(table), 1, 3);
-  //gtk_table_attach(GTK_TABLE(table), roomList, 0, 2, 1, 2, 
+  gtk_table_attach(GTK_TABLE(table), button, 3, 4, 0, 1, 0, 0, 1, 1);
       //GTK_FILL, GTK_FILL | GTK_EXPAND, 1, 1);
 /*
   halign2 = gtk_alignment_new(0, 1, 0, 0);
