@@ -134,6 +134,8 @@ void listRooms() {
 	GtkTreeIter toplevel, child;
     GtkCellRenderer *cell;
     GtkTreeViewColumn *column;
+    GtkTreeModel *model;
+    GtkTreeIter *iter;
     char ** roomArray = (char **) malloc(MAX_RESPONSE * sizeof(char*));
     char ** userArray = (char **) malloc(MAX_RESPONSE * sizeof(char*));
 	char * response = (char *) malloc(MAX_RESPONSE * sizeof(char));
@@ -198,9 +200,17 @@ void listRooms() {
 		return;
 	}
 	for (int i = 0; i < nRooms; i++) {
-
+		if (!gtk_tree_model_iter_next(GTK_TREE_MODEL(treeModel), &toplevel)) {
+			gtk_tree_store_append (GTK_TREE_MODEL(treeModel), &toplevel, NULL);
+			gtk_tree_store_set (GTK_TREE_MODEL(treeModel), &toplevel, 0, roomArray[i], -1);
+			continue;
+		}
+		gtk_tree_model_get(model, &iter, 0, /*(gchar **)*/ &msg,  -1);
+		if (!strcmp(roomArray[i], msg)) {
+			continue;
+		}
+		gtk_tree_store_set (treeModel, &toplevel, 0, roomArray[i], -1);
 	}
-  
 }
 
 void enterRoom(char * roomName) {
@@ -254,6 +264,7 @@ time_handler(GtkWidget *widget)
     gtk_text_buffer_get_iter_at_offset (messageBuffer, &iter2, 0);
 
     gtk_text_buffer_set_text (messageBuffer,(gchar*) buffer, -1);
+    listRooms();
   	//printf("%s\n", buffer);
   	//gtk_widget_queue_draw(widget);
   	return TRUE;
