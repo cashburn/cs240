@@ -133,7 +133,7 @@ int login() {
 void nextInTree(GtkTreeIter *iter, GtkTreeIter *toplevel) {
 	if (!gtk_tree_model_iter_next(GTK_TREE_MODEL(treeModel), iter)) {
 			gtk_tree_store_append (treeModel, iter, toplevel);
-			gtk_tree_store_set (treeModel, iter, 0, "temp", -1);
+			gtk_tree_store_set (treeModel, iter, 0, "", -1);
 			//gtk_tree_store_set (treeModel, &toplevel, 0, roomArray[i], -1);
 		}
 }
@@ -191,7 +191,7 @@ void listRooms() {
 		s++;
 		responsePoint++;
 	}
-	free(msg);
+	
 	free(response);
 	//int listExists = 1;
 	if (!gtk_tree_model_get_iter_first(GTK_TREE_MODEL(treeModel), &toplevel)) {
@@ -201,7 +201,9 @@ void listRooms() {
 			for (int j = 0; j < nUsers; j++) {
 				gtk_tree_store_append (treeModel, &child, &toplevel);
 				gtk_tree_store_set (treeModel, &child, 0, userArray[j], -1);
+				free(userArray[j]);
 			}
+			free(roomArray[i]);
 		}
 		return;
 	}
@@ -215,6 +217,7 @@ void listRooms() {
 				for (int j = 0; j < nUsers; j++) {
 					gtk_tree_store_append (treeModel, &child, &toplevel);
 					gtk_tree_store_set (treeModel, &child, 0, userArray[j], -1);
+					free(userArray[j]);
 				}
 				continue;
 			}
@@ -225,8 +228,12 @@ void listRooms() {
 				}
 				
 			}
-		
+		free(roomArray[i]);
 	}
+	free(msg);
+	free(roomArray);
+	free(userArray);
+
 }
 
 void enterRoom(char * roomName) {
