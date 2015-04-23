@@ -135,7 +135,7 @@ void listRooms() {
     GtkCellRenderer *cell;
     GtkTreeViewColumn *column;
     GtkTreeModel *model;
-    GtkTreeIter *iter;
+    GtkTreeIter iter;
     char ** roomArray = (char **) malloc(MAX_RESPONSE * sizeof(char*));
     char ** userArray = (char **) malloc(MAX_RESPONSE * sizeof(char*));
 	char * response = (char *) malloc(MAX_RESPONSE * sizeof(char));
