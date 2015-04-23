@@ -130,6 +130,13 @@ int login() {
 	return 0;
 }
 
+void nextInTree(GtkTreeIter *iter, GtkTreeIter *toplevel) {
+	if (!gtk_tree_model_iter_next(GTK_TREE_MODEL(treeModel), iter)) {
+			gtk_tree_store_append (treeModel, iter, toplevel);
+			//gtk_tree_store_set (treeModel, &toplevel, 0, roomArray[i], -1);
+		}
+}
+
 void listRooms() {
 	GtkTreeIter toplevel, child;
     GtkCellRenderer *cell;
@@ -219,13 +226,6 @@ void listRooms() {
 			}
 		
 	}
-}
-
-void nextInTree(GtkTreeIter *iter, GtkTreeIter *toplevel) {
-	if (!gtk_tree_model_iter_next(GTK_TREE_MODEL(treeModel), iter)) {
-			gtk_tree_store_append (treeModel, iter, toplevel);
-			//gtk_tree_store_set (treeModel, &toplevel, 0, roomArray[i], -1);
-		}
 }
 
 void enterRoom(char * roomName) {
