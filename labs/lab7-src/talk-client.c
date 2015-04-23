@@ -134,8 +134,6 @@ void listRooms() {
 	GtkTreeIter toplevel, child;
     GtkCellRenderer *cell;
     GtkTreeViewColumn *column;
-    GtkTreeModel *model;
-    GtkTreeIter iter;
     char ** roomArray = (char **) malloc(MAX_RESPONSE * sizeof(char*));
     char ** userArray = (char **) malloc(MAX_RESPONSE * sizeof(char*));
 	char * response = (char *) malloc(MAX_RESPONSE * sizeof(char));
@@ -187,7 +185,7 @@ void listRooms() {
 	}
 	free(msg);
 	free(response);
-	int listExists = 1;
+	//int listExists = 1;
 	if (!gtk_tree_model_get_iter_first(GTK_TREE_MODEL(treeModel), &toplevel)) {
 		for (int i = 0; i < nRooms; i++) {
 			gtk_tree_store_append (treeModel, &toplevel, NULL);
@@ -199,18 +197,35 @@ void listRooms() {
 		}
 		return;
 	}
-	for (int i = 0; i < nRooms; i++) {
-		if (!gtk_tree_model_iter_next(GTK_TREE_MODEL(treeModel), &toplevel)) {
-			gtk_tree_store_append (treeModel, &toplevel, NULL);
+	for (int i = 0; i < nRooms; i++, nextInTree(&toplevel, NULL)) {
+		
+		gtk_tree_model_get(GTK_TREE_MODEL(treeModel), &toplevel, 0, /*(gchar **)*/ &msg,  -1);
+		if (strcmp(roomArray[i], msg)) {
 			gtk_tree_store_set (treeModel, &toplevel, 0, roomArray[i], -1);
-			continue;
 		}
-		gtk_tree_model_get(model, &iter, 0, /*(gchar **)*/ &msg,  -1);
-		if (!strcmp(roomArray[i], msg)) {
-			continue;
-		}
-		gtk_tree_store_set (treeModel, &toplevel, 0, roomArray[i], -1);
+			if (!gtk_tree_model_iter_children(GTK_TREE_MODEL(treeModel), &child, &toplevel)) {
+				for (int j = 0; j < nUsers; j++) {
+					gtk_tree_store_append (treeModel, &child, &toplevel);
+					gtk_tree_store_set (treeModel, &child, 0, userArray[j], -1);
+				}
+				continue;
+			}
+			for (int j = 0; j < nUsers; j++, nextInTree(&child, &toplevel)) {
+				gtk_tree_model_get(GTK_TREE_MODEL(treeModel), &child, 0, /*(gchar **)*/ &msg,  -1);
+				if (strcmp(userArray[j], msg)) {
+					gtk_tree_store_set (treeModel, &child, 0, userArray[j], -1);
+				}
+				
+			}
+		
 	}
+}
+
+void nextInTree(GtkTreeIter *iter, GtkTreeIter *toplevel) {
+	if (!gtk_tree_model_iter_next(GTK_TREE_MODEL(treeModel), iter)) {
+			gtk_tree_store_append (treeModel, iter, toplevel);
+			//gtk_tree_store_set (treeModel, &toplevel, 0, roomArray[i], -1);
+		}
 }
 
 void enterRoom(char * roomName) {
