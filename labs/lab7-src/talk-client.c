@@ -134,11 +134,14 @@ void listRooms() {
 	GtkTreeIter toplevel, child;
     GtkCellRenderer *cell;
     GtkTreeViewColumn *column;
-
+    char ** roomArray = (char **) malloc(MAX_RESPONSE * sizeof(char*));
+    char ** userArray = (char **) malloc(MAX_RESPONSE * sizeof(char*));
 	char * response = (char *) malloc(MAX_RESPONSE * sizeof(char));
 	char * responsePoint = response;
 	char * msg = (char *) malloc(MAX_RESPONSE * sizeof(char));
 	char * s = msg;
+	int nRooms = 0;
+	int nUsers = 0;
 	sendCommand(host, port, "LIST-ROOMS", user, password, "", response);
 	while (responsePoint) {
 		*s = *responsePoint;
@@ -147,8 +150,9 @@ void listRooms() {
 			if(strlen(msg) <= 0) {
 				break;
 			}
-			gtk_tree_store_append (treeModel, &toplevel, NULL);
-        	gtk_tree_store_set (treeModel, &toplevel, 0, msg, -1);
+			roomArray[nRooms++] = strdup(msg);
+			//gtk_tree_store_append (treeModel, &toplevel, NULL);
+        	//gtk_tree_store_set (treeModel, &toplevel, 0, msg, -1);
         	s = msg;
         	responsePoint++;
         	responsePoint++;
@@ -162,8 +166,9 @@ void listRooms() {
 					if(strlen(msg) <= 0) {
 						break;
 					}
-					gtk_tree_store_append (treeModel, &child, &toplevel);
-		        	gtk_tree_store_set (treeModel, &child, 0, msg, -1);
+					userArray[nUsers++] = strdup(msg);
+					//gtk_tree_store_append (treeModel, &child, &toplevel);
+		        	//gtk_tree_store_set (treeModel, &child, 0, msg, -1);
 		        	s = msg;
 		        	responsePoint2++;
 		        	responsePoint2++;
@@ -180,6 +185,21 @@ void listRooms() {
 	}
 	free(msg);
 	free(response);
+	int listExists = 1;
+	if (!gtk_tree_model_get_iter_first(treeModel, &toplevel)) {
+		for (int i = 0; i < nRooms; i++) {
+			gtk_tree_store_append (treeModel, &toplevel, NULL);
+			gtk_tree_store_set (treeModel, &toplevel, 0, roomArray[i], -1);
+			for (int j = 0; j < nUsers; j++) {
+				gtk_tree_store_append (treeModel, &child, &toplevel);
+				gtk_tree_store_set (treeModel, &child, 0, userArray[j], -1);
+			}
+		}
+		return;
+	}
+	for (int i = 0; i < nRooms; i++) {
+
+	}
   
 }
 
@@ -329,6 +349,8 @@ void roomSelected(GtkWidget *widget, gpointer textView)
 
 void refreshFunc(GtkWidget *widget, gpointer textView) {
 	listRooms();
+	getMessages();
+
 }
 
 static GtkWidget * create_list()
