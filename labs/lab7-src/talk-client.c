@@ -186,7 +186,7 @@ void listRooms() {
 	free(msg);
 	free(response);
 	int listExists = 1;
-	if (!gtk_tree_model_get_iter_first(treeModel, &toplevel)) {
+	if (!gtk_tree_model_get_iter_first(GTK_TREE_MODEL(treeModel), &toplevel)) {
 		for (int i = 0; i < nRooms; i++) {
 			gtk_tree_store_append (treeModel, &toplevel, NULL);
 			gtk_tree_store_set (treeModel, &toplevel, 0, roomArray[i], -1);
