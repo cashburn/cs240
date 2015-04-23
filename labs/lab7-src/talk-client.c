@@ -201,8 +201,8 @@ void listRooms() {
 	}
 	for (int i = 0; i < nRooms; i++) {
 		if (!gtk_tree_model_iter_next(GTK_TREE_MODEL(treeModel), &toplevel)) {
-			gtk_tree_store_append (GTK_TREE_MODEL(treeModel), &toplevel, NULL);
-			gtk_tree_store_set (GTK_TREE_MODEL(treeModel), &toplevel, 0, roomArray[i], -1);
+			gtk_tree_store_append (treeModel, &toplevel, NULL);
+			gtk_tree_store_set (treeModel, &toplevel, 0, roomArray[i], -1);
 			continue;
 		}
 		gtk_tree_model_get(model, &iter, 0, /*(gchar **)*/ &msg,  -1);
