@@ -327,6 +327,10 @@ void roomSelected(GtkWidget *widget, gpointer textView)
   	}
 }
 
+void refreshFunc(GtkWidget *widget, gpointer textView) {
+	listRooms();
+}
+
 static GtkWidget * create_list()
 {
 
@@ -468,6 +472,9 @@ int main(int argc, char **argv) {
         G_CALLBACK(gtk_main_quit), G_OBJECT(window));
   	g_signal_connect(roomSelection, "changed", 
     	G_CALLBACK(roomSelected), text);
+
+  	g_signal_connect(refresh, "clicked", 
+    	G_CALLBACK(refreshFunc), text);
 
   	gtk_widget_show_all(window);
 
