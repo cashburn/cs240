@@ -471,7 +471,7 @@ int main(int argc, char **argv) {
 	//enterRoom();
 
 	// Start message thread
-	startGetMessageThread();
+	//startGetMessageThread();
 
 	GtkWidget *window;
   	GtkWidget *table;
