@@ -436,7 +436,7 @@ void roomSelected(GtkWidget *widget, gpointer textView)
     	messageBuffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (text_view));
     	gtk_text_buffer_get_iter_at_offset (messageBuffer, &iter2, 0);
     	enterRoom(value);
-    	gtk_text_buffer_set_text (messageBuffer,(gchar*) value, -1);
+    	//gtk_text_buffer_set_text (messageBuffer,(gchar*) value, -1);
     	currentRoom = strdup(value);
     	g_free(value);   
   	}
