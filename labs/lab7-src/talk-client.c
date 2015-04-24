@@ -17,6 +17,7 @@ char * host;
 char * user;
 char * password;
 char * sport;
+char * currentRoom;
 int port;
 pthread_t thread;
 GtkWidget *tree_view;
@@ -284,7 +285,18 @@ void leaveRoom() {
 }
 
 void getMessages() {
+	char response[ MAX_RESPONSE ];
+	char args[ MAX_RESPONSE ];
+	sprintf(args, "%s %d", currentRoom, lastMessage);
+	sendCommand(host, port, "GET-MESSAGES", user, password, args, response);
+	if (!strcmp(response,"NO NEW MESSAGES\r\n")) {
+		return;
+	}
+	GtkTextIter iter2;
+    messageBuffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (text_view));
+    gtk_text_buffer_get_iter_at_offset (messageBuffer, &iter2, 0);
 
+    gtk_text_buffer_insert (messageBuffer, &iter2, (gchar*) response, -1);
 }
 
 void sendMessage(char * msg) {
@@ -327,7 +339,7 @@ time_handler(GtkWidget *widget)
     messageBuffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (text_view));
     gtk_text_buffer_get_iter_at_offset (messageBuffer, &iter2, 0);
 
-    gtk_text_buffer_set_text (messageBuffer,(gchar*) buffer, -1);
+    gtk_text_buffer_insert (messageBuffer,&iter2, (gchar*) buffer, -1);
     listRooms();
   	//printf("%s\n", buffer);
   	//gtk_widget_queue_draw(widget);
@@ -348,10 +360,16 @@ void * getMessagesThread(void * arg) {
 	//}
 }
 
+void refreshFunc(GtkWidget *widget) {
+	listRooms();
+	getMessages();
+
+}
+
 void startGetMessageThread()
 {
 	//pthread_create(&thread, NULL, getMessagesThread, NULL);
-	g_timeout_add(5000, (GSourceFunc) time_handler, (gpointer) NULL);
+	g_timeout_add(5000, (GSourceFunc) refreshFunc, (gpointer) NULL);
 }
 
 static GtkWidget *create_text1()
@@ -419,14 +437,9 @@ void roomSelected(GtkWidget *widget, gpointer textView)
     	gtk_text_buffer_get_iter_at_offset (messageBuffer, &iter2, 0);
     	enterRoom(value);
     	gtk_text_buffer_set_text (messageBuffer,(gchar*) value, -1);
+    	currentRoom = strdup(value);
     	g_free(value);   
   	}
-}
-
-void refreshFunc(GtkWidget *widget) {
-	listRooms();
-	getMessages();
-
 }
 
 static GtkWidget * create_list()
