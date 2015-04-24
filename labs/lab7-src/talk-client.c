@@ -445,6 +445,7 @@ void roomSelected(GtkWidget *widget, gpointer textView)
     	currentRoom = strdup(value);
     	g_free(value);   
   	}
+  	getMessages();
 }
 
 static GtkWidget * create_list()
