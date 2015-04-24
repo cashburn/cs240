@@ -272,6 +272,12 @@ void listRooms() {
 }
 
 void enterRoom(char * roomName) {
+	char response[ MAX_RESPONSE ];
+	sendCommand(host, port, "ENTER-ROOM", user, password, roomName, response);
+	
+	if (!strcmp(response,"OK\r\n")) {
+		printf("User %s added to %s\n", user, roomName);
+	}
 }
 
 void leaveRoom() {
@@ -410,7 +416,7 @@ void roomSelected(GtkWidget *widget, gpointer textView)
     	GtkTextIter iter2;
     	messageBuffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (text_view));
     	gtk_text_buffer_get_iter_at_offset (messageBuffer, &iter2, 0);
-
+    	enterRoom(value);
     	gtk_text_buffer_set_text (messageBuffer,(gchar*) value, -1);
     	g_free(value);   
   	}
