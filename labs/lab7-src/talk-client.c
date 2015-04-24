@@ -404,13 +404,14 @@ void roomSelected(GtkWidget *widget, gpointer textView)
 {
 	//GtkTextBuffer *buffer;
   	GtkTreeIter iter;
+  	GtkTreeIter parent;
 	GtkTreeModel *model;
   	char *value;
   	gchar *text;
 
   	if (gtk_tree_selection_get_selected(
       	GTK_TREE_SELECTION(widget), &model, &iter)) {
-    	if (!gtk_tree_model_iter_has_child(model, &iter))
+    	if (gtk_tree_model_iter_parent(model, &parent, &iter))
         	return;
     	gtk_tree_model_get(model, &iter, 0, &value,  -1);
     	GtkTextIter iter2;
@@ -422,7 +423,7 @@ void roomSelected(GtkWidget *widget, gpointer textView)
   	}
 }
 
-void refreshFunc(GtkWidget *widget, gpointer textView) {
+void refreshFunc(GtkWidget *widget) {
 	listRooms();
 	getMessages();
 
@@ -495,7 +496,7 @@ int main(int argc, char **argv) {
 	//enterRoom();
 
 	// Start message thread
-	//startGetMessageThread();
+	startGetMessageThread();
 
 	GtkWidget *window;
   	GtkWidget *table;
@@ -571,7 +572,7 @@ int main(int argc, char **argv) {
     	G_CALLBACK(roomSelected), text);
 
   	g_signal_connect(refresh, "clicked", 
-    	G_CALLBACK(refreshFunc), text);
+    	G_CALLBACK(refreshFunc), (gpointer) NULL);
 
   	gtk_widget_show_all(window);
 
