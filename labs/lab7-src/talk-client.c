@@ -292,11 +292,13 @@ void getMessages() {
 	if (!strcmp(response,"NO NEW MESSAGES\r\n")) {
 		return;
 	}
-	GtkTextIter iter2;
+	GtkTextIter start;
+	GtkTextIter end;
     messageBuffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (text_view));
-    gtk_text_buffer_get_iter_at_offset (messageBuffer, &iter2, 0);
+    gtk_text_buffer_get_start_iter (messageBuffer, &start);
+    gtk_text_buffer_get_end_iter (messageBuffer, &end);
 
-    gtk_text_buffer_insert (messageBuffer, &iter2, (gchar*) response, -1);
+    gtk_text_buffer_insert (messageBuffer, &end, (gchar*) response, -1);
 }
 
 void sendMessage(char * msg) {
@@ -432,10 +434,13 @@ void roomSelected(GtkWidget *widget, gpointer textView)
     	if (gtk_tree_model_iter_parent(model, &parent, &iter))
         	return;
     	gtk_tree_model_get(model, &iter, 0, &value,  -1);
-    	GtkTextIter iter2;
+    	GtkTextIter start;
+		GtkTextIter end;
     	messageBuffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (text_view));
-    	gtk_text_buffer_get_iter_at_offset (messageBuffer, &iter2, 0);
+    	gtk_text_buffer_get_start_iter (messageBuffer, &start);
+    	gtk_text_buffer_get_end_iter (messageBuffer, &end);
     	enterRoom(value);
+    	gtk_text_buffer_delete (messageBuffer, &start, &end);
     	//gtk_text_buffer_set_text (messageBuffer,(gchar*) value, -1);
     	currentRoom = strdup(value);
     	g_free(value);   
