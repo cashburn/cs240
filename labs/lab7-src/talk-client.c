@@ -552,7 +552,7 @@ int main(int argc, char **argv) {
   	gtk_widget_show_all(window);
 
 
-  	listRooms();
+  	//listRooms();
 
 
   	gtk_main();
