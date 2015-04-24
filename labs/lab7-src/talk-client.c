@@ -188,6 +188,7 @@ void listRooms() {
         	char * response2 = (char *) malloc(MAX_RESPONSE * sizeof(char));
         	char *responsePoint2 = response2;
         	sendCommand(host, port, "GET-USERS-IN-ROOM", user, password, msg, response2);
+        	nUsers = 0;
         	while (responsePoint2) {
         		*s = *responsePoint2;
 				if (*s == '\r') {
@@ -216,7 +217,7 @@ void listRooms() {
 	
 	free(response);
 	//int listExists = 1;
-	
+
 	//if (!gtk_tree_model_get_iter_first(GTK_TREE_MODEL(treeModel), &toplevel)) {
 		for (int i = 0; i < nRooms; i++) {
 			gtk_tree_store_append (treeModel, &toplevel, NULL);
