@@ -169,6 +169,7 @@ void listRooms() {
 			}
 			int newEntry = 0;
 			roomArray[nRooms].name = strdup(msg);
+			roomArray[nRooms].usersInRoom = (char **) malloc(MAX_RESPONSE * sizeof(char*));
 			/*if (!iterFirst) {
 				gtk_tree_store_append (treeModel, &toplevel, NULL);
 			}
