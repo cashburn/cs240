@@ -150,7 +150,10 @@ void listRooms() {
 	char * s = msg;
 	int nRooms = 0;
 	int nUsers = 0;
+	gboolean first = TRUE;
+	gboolean iterFirst = gtk_tree_model_get_iter_first(GTK_TREE_MODEL(treeModel), &toplevel);
 	sendCommand(host, port, "LIST-ROOMS", user, password, "", response);
+
 	while (responsePoint) {
 		*s = *responsePoint;
 		if (*s == '\r') {
@@ -159,17 +162,20 @@ void listRooms() {
 				break;
 			}
 			int newEntry = 0;
-			//roomArray[nRooms++] = strdup(msg);
-			if (!gtk_tree_model_iter_next(GTK_TREE_MODEL(treeModel), &toplevel)) {
-				gtk_tree_store_append (treeModel, &toplevel, NULL);
-				newEntry = 1;
-			}
-			while (!newEntry && !gtk_tree_model_iter_has_child(GTK_TREE_MODEL(treeModel), &toplevel)) {
+			if (!first) {
+				//roomArray[nRooms++] = strdup(msg);
 				if (!gtk_tree_model_iter_next(GTK_TREE_MODEL(treeModel), &toplevel)) {
 					gtk_tree_store_append (treeModel, &toplevel, NULL);
 					newEntry = 1;
 				}
+				while (!newEntry && !gtk_tree_model_iter_has_child(GTK_TREE_MODEL(treeModel), &toplevel)) {
+					if (!gtk_tree_model_iter_next(GTK_TREE_MODEL(treeModel), &toplevel)) {
+						gtk_tree_store_append (treeModel, &toplevel, NULL);
+						newEntry = 1;
+					}
+				}
 			}
+			first = FALSE;
         	gtk_tree_store_set (treeModel, &toplevel, 0, msg, -1);
         	s = msg;
         	responsePoint++;
