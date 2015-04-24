@@ -151,7 +151,7 @@ void listRooms() {
 	int nRooms = 0;
 	int nUsers = 0;
 	gboolean first = TRUE;
-	//gtk_tree_store_clear(treeModel);
+	gtk_tree_store_clear(treeModel);
 	gboolean iterFirst = gtk_tree_model_get_iter_first(GTK_TREE_MODEL(treeModel), &toplevel);
 	sendCommand(host, port, "LIST-ROOMS", user, password, "", response);
 
