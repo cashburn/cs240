@@ -220,7 +220,6 @@ void listRooms() {
 		    nRooms++;
 		    continue;
 		}
-		nRooms++;
 		s++;
 		responsePoint++;
 	}
