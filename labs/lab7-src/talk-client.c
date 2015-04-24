@@ -142,14 +142,19 @@ void listRooms() {
 	GtkTreeIter toplevel, child;
     GtkCellRenderer *cell;
     GtkTreeViewColumn *column;
-    char ** roomArray = (char **) malloc(MAX_RESPONSE * sizeof(char*));
-    char ** userArray = (char **) malloc(MAX_RESPONSE * sizeof(char*));
+    struct Room {
+    	char * name;
+    	char ** usersInRoom;
+    	int nUsers;
+    };
+    typedef struct Room Room;
+    Room * roomArray = (Room *) malloc(MAX_RESPONSE * sizeof(Room));
 	char * response = (char *) malloc(MAX_RESPONSE * sizeof(char));
 	char * responsePoint = response;
 	char * msg = (char *) malloc(MAX_RESPONSE * sizeof(char));
 	char * s = msg;
 	int nRooms = 0;
-	int nUsers = 0;
+	//int nUsers = 0;
 	gboolean first = TRUE;
 	gtk_tree_store_clear(treeModel);
 	gboolean iterFirst = gtk_tree_model_get_iter_first(GTK_TREE_MODEL(treeModel), &toplevel);
@@ -163,7 +168,7 @@ void listRooms() {
 				break;
 			}
 			int newEntry = 0;
-			roomArray[nRooms++] = strdup(msg);
+			roomArray[nRooms].name = strdup(msg);
 			/*if (!iterFirst) {
 				gtk_tree_store_append (treeModel, &toplevel, NULL);
 			}
@@ -188,7 +193,7 @@ void listRooms() {
         	char * response2 = (char *) malloc(MAX_RESPONSE * sizeof(char));
         	char *responsePoint2 = response2;
         	sendCommand(host, port, "GET-USERS-IN-ROOM", user, password, msg, response2);
-        	nUsers = 0;
+        	roomArray[nRooms].nUsers = 0;
         	while (responsePoint2) {
         		*s = *responsePoint2;
 				if (*s == '\r') {
@@ -196,7 +201,7 @@ void listRooms() {
 					if(strlen(msg) <= 0) {
 						break;
 					}
-					userArray[nUsers++] = strdup(msg);
+					roomArray[nRooms].usersInRoom[roomArray[nRooms].nUsers++] = strdup(msg);
 					/*if (!gtk_tree_model_iter_children(GTK_TREE_MODEL(treeModel), &child, &toplevel))
 						gtk_tree_store_append (treeModel, &child, &toplevel);
 		        	gtk_tree_store_set (treeModel, &child, 0, msg, -1);*/
@@ -211,6 +216,7 @@ void listRooms() {
 		    free(response2);
 		    continue;
 		}
+		nRooms++;
 		s++;
 		responsePoint++;
 	}
@@ -221,13 +227,14 @@ void listRooms() {
 	//if (!gtk_tree_model_get_iter_first(GTK_TREE_MODEL(treeModel), &toplevel)) {
 		for (int i = 0; i < nRooms; i++) {
 			gtk_tree_store_append (treeModel, &toplevel, NULL);
-			gtk_tree_store_set (treeModel, &toplevel, 0, roomArray[i], -1);
-			for (int j = 0; j < nUsers; j++) {
+			gtk_tree_store_set (treeModel, &toplevel, 0, roomArray[i].name, -1);
+			for (int j = 0; j < roomArray[i].nUsers; j++) {
 				gtk_tree_store_append (treeModel, &child, &toplevel);
-				gtk_tree_store_set (treeModel, &child, 0, userArray[j], -1);
-				free(userArray[j]);
+				gtk_tree_store_set (treeModel, &child, 0, roomArray[i].usersInRoom[j], -1);
+				free(roomArray[i].usersInRoom[j]);
 			}
-			free(roomArray[i]);
+			free(roomArray[i].name);
+			//free(roomArray[i]);
 		}
 		return;
 	//}
@@ -257,7 +264,7 @@ void listRooms() {
 	}*/
 	free(msg);
 	free(roomArray);
-	free(userArray);
+	//free(userArray);
 
 }
 
