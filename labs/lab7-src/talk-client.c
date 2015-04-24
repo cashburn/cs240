@@ -165,8 +165,9 @@ void listRooms() {
 		if (*s == '\r') {
 			*s = 0;
 			if(strlen(msg) <= 0) {
-				responsePoint++;
-				continue;
+				//responsePoint++;
+				//continue;
+				break;
 			}
 			int newEntry = 0;
 			roomArray[nRooms].name = strdup(msg);
