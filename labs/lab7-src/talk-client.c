@@ -168,7 +168,7 @@ void listRooms() {
 					gtk_tree_store_append (treeModel, &toplevel, NULL);
 					newEntry = 1;
 				}
-				while (!newEntry && !gtk_tree_model_iter_has_child(GTK_TREE_MODEL(treeModel), &toplevel)) {
+				while (!newEntry && gtk_tree_model_iter_parent(GTK_TREE_MODEL(treeModel), &child, &toplevel)) {
 					if (!gtk_tree_model_iter_next(GTK_TREE_MODEL(treeModel), &toplevel)) {
 						gtk_tree_store_append (treeModel, &toplevel, NULL);
 						newEntry = 1;
