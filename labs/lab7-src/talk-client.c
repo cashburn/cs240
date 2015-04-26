@@ -306,8 +306,10 @@ void getMessages() {
 	line += charCount;
 	strcat(final, line);*/
 	//responsePoint += charCount;
+	strcpy(final, "");
 	while (line != NULL) {
 		if (sscanf(line, "%d %s%n", lastMessage, userSent, charCount) < 2) {
+
 			break;
 		}
 
@@ -476,6 +478,7 @@ void roomSelected(GtkWidget *widget, gpointer textView)
     	g_free(value);   
   	}
   	getMessages();
+  	startGetMessageThread();
 }
 
 static GtkWidget * create_list()
@@ -545,7 +548,8 @@ int main(int argc, char **argv) {
 	//enterRoom();
 
 	// Start message thread
-	startGetMessageThread();
+	//startGetMessageThread();
+	listRooms();
 
 	GtkWidget *window;
   	GtkWidget *table;
