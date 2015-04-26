@@ -406,6 +406,10 @@ void sendMessage(GtkWidget * widget) {
 	}
 }*/
 
+void createRoomCallback(GtkWidget * widget, GtkWidget * roomName) {
+
+}
+
 void createRoom(GtkWidget * widget, GtkWidget *mainWindow) {
 	GtkWidget * dialog = gtk_dialog_new_with_buttons ("Create Room",
 		GTK_WINDOW(mainWindow), 
@@ -421,10 +425,20 @@ void createRoom(GtkWidget * widget, GtkWidget *mainWindow) {
 	gtk_container_add(GTK_CONTAINER(contentArea), roomLabel);
 	gtk_container_add(GTK_CONTAINER(contentArea), roomName);
 
-	g_signal_connect_swapped(dialog, "response",
-		G_CALLBACK(gtk_widget_destroy), dialog);
-
 	gtk_widget_show_all(dialog);
+	GtkResponseType result = gtk_dialog_run(GTK_DIALOG(dialog));
+
+	if (result == GTK_RESPONSE_ACCEPT) {
+		char * room = gtk_entry_get_text(GTK_ENTRY(roomName));
+		char response[ MAX_RESPONSE ];
+		sendCommand(host, port, "CREATE-ROOM", user, password, room, response);
+	
+		if (!strcmp(response,"OK\r\n")) {
+			printf("Created room %s", room);
+		}
+		g_free(room);
+	}
+	gtk_widget_destroy(widget);
 
 }
 
@@ -711,7 +725,7 @@ int main(int argc, char **argv) {
     	G_CALLBACK(leaveRoom), (gpointer) NULL);
 
   	g_signal_connect(createRoomButton, "clicked", 
-    	G_CALLBACK(createRoom), (gpointer) NULL);
+    	G_CALLBACK(createRoom), (gpointer) window);
 
 	g_signal_connect(button, "clicked", 
     	G_CALLBACK(sendMessage), (gpointer) NULL);
