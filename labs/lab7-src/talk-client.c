@@ -295,7 +295,7 @@ void getMessages() {
 	}
 	char * final = (char *) malloc(MAX_RESPONSE*sizeof(char));
 	char * responsePoint = response;
-	char * userSent = (char *) malloc(MAX_RESPONSE*sizeof(char));
+	char * userSent[MAX_RESPONSE];
 	char * line;
 	char * tempMessage = (char *) malloc(MAX_RESPONSE*sizeof(char));
 	int charCount;
