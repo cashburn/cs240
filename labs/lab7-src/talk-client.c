@@ -365,21 +365,21 @@ void sendMessage(GtkWidget * widget) {
 	gtk_text_buffer_get_start_iter(sendBuffer, &start);
 	gtk_text_buffer_get_end_iter(sendBuffer, &end);
 
-	char * getText = (char *) gtk_text_buffer_get_text(sendBuffer, &start, &end, FALSE);
-	char * message = (char *) malloc((strlen(getText)+10)*sizeof(char));
-	char * timestamp = timestr();
-	sprintf(message, "%s %s %s", currentRoom, timestamp, getText);
-	char response[ MAX_RESPONSE ];
-	sendCommand(host, port, "SEND-MESSAGE", user, password, message, response);
+	//char * getText = (char *) gtk_text_buffer_get_text(sendBuffer, &start, &end, FALSE);
+	//char * message = (char *) malloc((strlen(getText)+10)*sizeof(char));
+	//char * timestamp = timestr();
+	//sprintf(message, "%s %s %s", currentRoom, timestamp, getText);
+	//char response[ MAX_RESPONSE ];
+	//sendCommand(host, port, "SEND-MESSAGE", user, password, message, response);
 	
-	if (!strcmp(response,"OK\r\n")) {
-		printf("Message sent\n", user);
-	}
-	//gtk_text_buffer_delete(sendBuffer, &start, &end);
+	//if (!strcmp(response,"OK\r\n")) {
+		//printf("Message sent\n", user);
+	//}
+	gtk_text_buffer_delete(sendBuffer, &start, &end);
 	//getMessages();
 	//g_free(getText);
 	//free(message);
-	free(timestamp);
+	//free(timestamp);
 }
 /*gboolean on_key_press (GtkWidget * widget, GdkEventKey* pKey) {
 	if (pKey->type == GDK_KEY_PRESS) {
