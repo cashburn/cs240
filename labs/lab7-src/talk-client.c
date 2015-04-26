@@ -503,7 +503,7 @@ void roomSelected(GtkWidget *widget, gpointer textView)
     	currentRoom = strdup(value);
     	g_free(value);   
   	}
-  	refreshFunc(widget);
+  	getMessages();
   	startGetMessageThread();
 }
 
@@ -655,8 +655,9 @@ int main(int argc, char **argv) {
 	g_signal_connect(button, "clicked", 
     	G_CALLBACK(sendMessage), (gpointer) NULL);
 
-	g_signal_connect(text_entry, "key_press_event",
-    	G_CALLBACK(on_key_press), (gpointer) NULL);
+	gtk_widget_grab_default(button);
+	//g_signal_connect(text_entry, "key_press_event",
+    	//G_CALLBACK(on_key_press), (gpointer) NULL);
 
   	gtk_widget_show_all(window);
 
