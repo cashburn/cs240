@@ -429,7 +429,7 @@ void createRoom(GtkWidget * widget, GtkWidget *mainWindow) {
 	GtkResponseType result = gtk_dialog_run(GTK_DIALOG(dialog));
 
 	if (result == GTK_RESPONSE_ACCEPT) {
-		const char * room = gtk_entry_get_text(GTK_ENTRY(roomName));
+		char * room = gtk_entry_get_text(GTK_ENTRY(roomName));
 		char response[ MAX_RESPONSE ];
 		sendCommand(host, port, "CREATE-ROOM", user, password, room, response);
 	
