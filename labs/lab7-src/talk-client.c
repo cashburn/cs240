@@ -504,6 +504,7 @@ void roomSelected(GtkWidget *widget, gpointer textView)
     	gtk_text_buffer_delete (messageBuffer, &start, &end);
     	//gtk_text_buffer_set_text (messageBuffer,(gchar*) value, -1);
     	currentRoom = strdup(value);
+    	lastMessage = 0;
     	g_free(value);   
   	}
   	getMessages();
