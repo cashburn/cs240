@@ -313,7 +313,7 @@ void getMessages() {
 	//responsePoint += charCount;
 	strcpy(final, "");
 	while (line != NULL) {
-		if (sscanf(line, "%d %s %s%n", &lastMessage, userSent, timestr, &charCount) < 2) {
+		if (sscanf(line, "%d %s%n", &lastMessage, userSent, &charCount) < 2) {
 			break;
 		}
 
