@@ -287,7 +287,7 @@ void leaveRoom() {
 void getMessages() {
 	char response[ MAX_RESPONSE ];
 	char args[ MAX_RESPONSE ];
-	sprintf(args, "%d %s", lastMessage, currentRoom);
+	sprintf(args, "%d %s", lastMessage + 1, currentRoom);
 	sendCommand(host, port, "GET-MESSAGES", user, password, args, response);
 
 	if (!strcmp(response,"NO NEW MESSAGES\r\n")) {
@@ -309,12 +309,11 @@ void getMessages() {
 	strcpy(final, "");
 	while (line != NULL) {
 		if (sscanf(line, "%d %s%n", &lastMessage, userSent, &charCount) < 2) {
-
 			break;
 		}
 
 		line += charCount;
-		sprintf(tempMessage, "<%s> %s", userSent, line);
+		sprintf(tempMessage, "<%s> %s\r\n", userSent, line);
 		strcat(final, tempMessage);
 		line = strtok(NULL, "\r\n");
 	}
