@@ -289,9 +289,20 @@ void getMessages() {
 	char args[ MAX_RESPONSE ];
 	sprintf(args, "%d %s", lastMessage, currentRoom);
 	sendCommand(host, port, "GET-MESSAGES", user, password, args, response);
+
 	if (!strcmp(response,"NO NEW MESSAGES\r\n")) {
 		return;
 	}
+	char * final = (char *) malloc(MAX_RESPONSE*sizeof(char));
+	char * responsePoint = response;
+	char * userSent = (char *) malloc(MAX_RESPONSE*sizeof(char));
+	while (*responsePoint) {
+		if (sscanf(responsePoint, "%d %s", lastMessage, userSent) < 2)
+		return;
+	}
+
+
+
 	GtkTextIter start;
 	GtkTextIter end;
     messageBuffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (text_view));
@@ -362,16 +373,16 @@ void * getMessagesThread(void * arg) {
 	//}
 }
 
-void refreshFunc(GtkWidget *widget) {
-	listRooms();
+gboolean refreshFunc(GtkWidget *widget) {
 	getMessages();
-
+	listRooms();
+	return TRUE;
 }
 
 void startGetMessageThread()
 {
 	//pthread_create(&thread, NULL, getMessagesThread, NULL);
-	g_timeout_add(5000, (GSourceFunc) refreshFunc, (gpointer) NULL);
+	g_timeout_add_seconds(5, (GSourceFunc) refreshFunc, (gpointer) text_view);
 }
 
 static GtkWidget *create_text1()
