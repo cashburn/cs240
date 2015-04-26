@@ -366,17 +366,17 @@ void sendMessage(GtkWidget * widget) {
 	gtk_text_buffer_get_end_iter(sendBuffer, &end);
 
 	char * getText = (char *) gtk_text_buffer_get_text(sendBuffer, &start, &end, FALSE);
-	char * message = (char *) malloc((strlen(getText)+10)*sizeof(char));
+	char * message = (char *) malloc(MAX_RESPONSE*sizeof(char));
 	char * timestamp = timestr();
 	sprintf(message, "%s %s %s", currentRoom, timestamp, getText);
-	//char response[ MAX_RESPONSE ];
-	//sendCommand(host, port, "SEND-MESSAGE", user, password, message, response);
+	char response[ MAX_RESPONSE ];
+	sendCommand(host, port, "SEND-MESSAGE", user, password, message, response);
 	
-	//if (!strcmp(response,"OK\r\n")) {
-		//printf("Message sent\n", user);
-	//}
+	if (!strcmp(response,"OK\r\n")) {
+		printf("Message sent\n", user);
+	}
 	gtk_text_buffer_delete(sendBuffer, &start, &end);
-	//getMessages();
+	getMessages();
 	g_free(getText);
 	free(message);
 	free(timestamp);
