@@ -359,13 +359,13 @@ char * timestr() {
 }
 
 void sendMessage(GtkWidget * widget) {
-	GtkTextIter *start;
-	GtkTextIter *end;
+	GtkTextIter start;
+	GtkTextIter end;
 	sendBuffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW(text_entry));
-	gtk_text_buffer_get_start_iter(sendBuffer, start);
-	gtk_text_buffer_get_end_iter(sendBuffer, end);
+	gtk_text_buffer_get_start_iter(sendBuffer, &start);
+	gtk_text_buffer_get_end_iter(sendBuffer, &end);
 
-	char * getText = (char *) gtk_text_buffer_get_text(sendBuffer, start, end, FALSE);
+	char * getText = (char *) gtk_text_buffer_get_text(sendBuffer, &start, &end, FALSE);
 	char * message = (char *) malloc((strlen(getText)+10)*sizeof(char));
 	char * timestamp = timestr();
 	strcpy(message, timestamp);
