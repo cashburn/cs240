@@ -438,6 +438,7 @@ void createRoom(GtkWidget * widget, GtkWidget *mainWindow) {
 		}
 		//g_free(room);
 	}
+	listRooms();
 	gtk_widget_destroy(dialog);
 
 }
