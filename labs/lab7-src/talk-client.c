@@ -12,6 +12,7 @@
 #include <stdlib.h>
 #include <pthread.h>
 #include <gtk/gtk.h>
+#include <gdk/gdkkeysyms.h>
 
 char * host;
 char * user;
@@ -357,7 +358,7 @@ char * timestr() {
   	return buffer;
 }
 
-void sendMessage() {
+void sendMessage(GtkWidget * widget) {
 	GtkTextIter *start;
 	GtkTextIter *end;
 	sendBuffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW(text_entry));
@@ -377,7 +378,12 @@ void sendMessage() {
 	}
 	getMessages();
 }
-
+gboolean on_key_press (GtkWidget * widget, GdkEventKey* pKey) {
+	if (pKey->type == GDK_KEY_PRESS) {
+		if (pKey->keyval == GDK_KEY_Return)
+			sendMessage(widget);
+	}
+}
 void print_users_in_room() {
 }
 
@@ -415,8 +421,8 @@ void * getMessagesThread(void * arg) {
 }
 
 gboolean refreshFunc(GtkWidget *widget) {
-	getMessages();
 	listRooms();
+	getMessages();
 	return TRUE;
 }
 
@@ -497,7 +503,7 @@ void roomSelected(GtkWidget *widget, gpointer textView)
     	currentRoom = strdup(value);
     	g_free(value);   
   	}
-  	getMessages();
+  	refreshFunc(widget);
   	startGetMessageThread();
 }
 
@@ -645,6 +651,12 @@ int main(int argc, char **argv) {
 
   	g_signal_connect(refresh, "clicked", 
     	G_CALLBACK(refreshFunc), (gpointer) NULL);
+
+	g_signal_connect(button, "clicked", 
+    	G_CALLBACK(sendMessage), (gpointer) NULL);
+
+	g_signal_connect(text_entry, "key_press_event",
+    	G_CALLBACK(on_key_press), (gpointer) NULL);
 
   	gtk_widget_show_all(window);
 
