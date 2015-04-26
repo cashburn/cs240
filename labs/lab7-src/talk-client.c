@@ -401,9 +401,13 @@ void sendMessage(GtkWidget * widget) {
 }
 gboolean on_key_press (GtkWidget * widget, GdkEventKey* pKey) {
 	if (pKey->type == GDK_KEY_PRESS) {
-		if (pKey->keyval == GDK_KEY_Return)
+		if (pKey->keyval == GDK_KEY_Return) {
 			sendMessage(widget);
+			return TRUE;
+		}
+
 	}
+	return FALSE;
 }
 
 void createRoomCallback(GtkWidget * widget, GtkWidget * roomName) {
