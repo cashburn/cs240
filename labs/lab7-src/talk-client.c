@@ -412,6 +412,8 @@ void createRoom(GtkWidget * widget, GtkWidget *mainWindow) {
 		(GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT),
 		_("_OK"), GTK_RESPONSE_ACCEPT, _("_Cancel"),
 		GTK_RESPONSE_REJECT, NULL);
+
+	gtk_widget_show_all(dialog);
 }
 
 void printPrompt() {
