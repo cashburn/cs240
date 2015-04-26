@@ -399,12 +399,12 @@ void sendMessage(GtkWidget * widget) {
 	free(message);
 	free(timestamp);
 }
-/*gboolean on_key_press (GtkWidget * widget, GdkEventKey* pKey) {
+gboolean on_key_press (GtkWidget * widget, GdkEventKey* pKey) {
 	if (pKey->type == GDK_KEY_PRESS) {
 		if (pKey->keyval == GDK_KEY_Return)
 			sendMessage(widget);
 	}
-}*/
+}
 
 void createRoomCallback(GtkWidget * widget, GtkWidget * roomName) {
 
@@ -736,8 +736,8 @@ int main(int argc, char **argv) {
 
 	//gtk_widget_set_can_default(button, TRUE);
 	//gtk_window_set_default(GTK_WINDOW(window), button);
-	//g_signal_connect(text_entry, "key_press_event",
-    	//G_CALLBACK(on_key_press), (gpointer) NULL);
+	g_signal_connect(text_entry, "key_press_event",
+    	G_CALLBACK(on_key_press), (gpointer) NULL);
 
   	gtk_widget_show_all(window);
 
