@@ -375,6 +375,7 @@ void sendMessage(GtkWidget * widget) {
 	if (!strcmp(response,"OK\r\n")) {
 		printf("Message sent\n", user);
 	}
+	gtk_text_buffer_delete(sendBuffer, &start, &end);
 	getMessages();
 }
 gboolean on_key_press (GtkWidget * widget, GdkEventKey* pKey) {
