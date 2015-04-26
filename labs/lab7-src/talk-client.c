@@ -428,7 +428,7 @@ void createRoom(GtkWidget * widget, GtkWidget *mainWindow) {
 	gtk_widget_show_all(dialog);
 	GtkResponseType result = gtk_dialog_run(GTK_DIALOG(dialog));
 
-	if (result == GTK_RESPONSE_ACCEPT) {
+	/*if (result == GTK_RESPONSE_ACCEPT) {
 		char * room = gtk_entry_get_text(GTK_ENTRY(roomName));
 		char response[ MAX_RESPONSE ];
 		sendCommand(host, port, "CREATE-ROOM", user, password, room, response);
@@ -437,8 +437,8 @@ void createRoom(GtkWidget * widget, GtkWidget *mainWindow) {
 			printf("Created room %s", room);
 		}
 		g_free(room);
-	}
-	//gtk_widget_destroy(dialog);
+	}*/
+	gtk_widget_destroy(dialog);
 
 }
 
