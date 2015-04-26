@@ -318,7 +318,7 @@ void getMessages() {
 		}
 
 		line += charCount;
-		sprintf(tempMessage, "%s <%s> %s\r\n", timestr, userSent, line);
+		sprintf(tempMessage, "<%s> %s\r\n", /*timestr, */userSent, line);
 		strcat(final, tempMessage);
 		line = strtok(NULL, "\r\n");
 	}
