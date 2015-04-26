@@ -638,10 +638,10 @@ int main(int argc, char **argv) {
 	leaveRoomButton = gtk_tool_button_new_from_stock(GTK_STOCK_QUIT);
 	logout = gtk_tool_button_new_from_stock(GTK_STOCK_DISCONNECT);
 
-	gtk_tool_button_set_label(refresh, "Refresh");
-	gtk_tool_button_set_label(createRoom, "Create Room");
-	gtk_tool_button_set_label(leaveRoomButton, "Leave Room");
-	gtk_tool_button_set_label(logout, "Logout");
+	gtk_tool_button_set_label(GTK_TOOL_BUTTON(refresh), "Refresh");
+	gtk_tool_button_set_label(GTK_TOOL_BUTTON(createRoom), "Create Room");
+	gtk_tool_button_set_label(GTK_TOOL_BUTTON(leaveRoomButton), "Leave Room");
+	gtk_tool_button_set_label(GTK_TOOL_BUTTON(logout), "Logout");
 
 	gtk_toolbar_insert(GTK_TOOLBAR(toolbar), createRoom, -1);
 	gtk_toolbar_insert(GTK_TOOLBAR(toolbar), refresh, -1);
