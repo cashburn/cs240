@@ -377,8 +377,8 @@ void sendMessage(GtkWidget * widget) {
 	//}
 	gtk_text_buffer_delete(sendBuffer, &start, &end);
 	//getMessages();
-	//g_free(getText);
-	//free(message);
+	g_free(getText);
+	free(message);
 	//free(timestamp);
 }
 /*gboolean on_key_press (GtkWidget * widget, GdkEventKey* pKey) {
