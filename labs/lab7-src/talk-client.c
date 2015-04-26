@@ -289,7 +289,8 @@ void getMessages() {
 	char args[ MAX_RESPONSE ];
 	if (lastMessage == 0)
 		sprintf(args, "%d %s", 0, currentRoom);
-	sprintf(args, "%d %s", lastMessage + 1, currentRoom);
+	else
+		sprintf(args, "%d %s", lastMessage + 1, currentRoom);
 	sendCommand(host, port, "GET-MESSAGES", user, password, args, response);
 
 	if (!strcmp(response,"NO NEW MESSAGES\r\n")) {
