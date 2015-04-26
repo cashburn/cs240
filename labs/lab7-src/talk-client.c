@@ -295,7 +295,7 @@ void getMessages() {
 	}
 	char * final = (char *) malloc(MAX_RESPONSE*sizeof(char));
 	char * responsePoint = response;
-	char * userSent[MAX_RESPONSE];
+	char * userSent = (char *) malloc(MAX_RESPONSE*sizeof(char));
 	char * line;
 	char * tempMessage = (char *) malloc(MAX_RESPONSE*sizeof(char));
 	int charCount;
@@ -308,7 +308,7 @@ void getMessages() {
 	//responsePoint += charCount;
 	strcpy(final, "");
 	while (line != NULL) {
-		if (sscanf(line, "%d %s%n", lastMessage, userSent, charCount) < 2) {
+		if (sscanf(line, "%d %s%n", &lastMessage, userSent, &charCount) < 2) {
 
 			break;
 		}
@@ -329,7 +329,7 @@ void getMessages() {
 
     gtk_text_buffer_insert (messageBuffer, &end, (gchar*) final, -1);
     free(final);
-    //free(userSent);
+    free(userSent);
     free(tempMessage);
 }
 
