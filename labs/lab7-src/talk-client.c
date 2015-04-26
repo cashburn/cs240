@@ -329,7 +329,7 @@ void getMessages() {
 
     gtk_text_buffer_insert (messageBuffer, &end, (gchar*) final, -1);
     free(final);
-    free(userSent);
+    //free(userSent);
     free(tempMessage);
 }
 
