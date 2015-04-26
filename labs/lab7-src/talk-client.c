@@ -301,6 +301,7 @@ void getMessages() {
 	char * userSent = (char *) malloc(MAX_RESPONSE*sizeof(char));
 	char * line;
 	char * tempMessage = (char *) malloc(MAX_RESPONSE*sizeof(char));
+	char * timestr = (char *) malloc(10*sizeof(char));
 	int charCount;
 	int messageNum;
 	line = strtok(responsePoint, "\r\n");
@@ -311,12 +312,12 @@ void getMessages() {
 	//responsePoint += charCount;
 	strcpy(final, "");
 	while (line != NULL) {
-		if (sscanf(line, "%d %s%n", &lastMessage, userSent, &charCount) < 2) {
+		if (sscanf(line, "%d %s %s%n", &lastMessage, userSent, timestr, &charCount) < 2) {
 			break;
 		}
 
 		line += charCount;
-		sprintf(tempMessage, "<%s> %s\r\n", userSent, line);
+		sprintf(tempMessage, "%s <%s> %s\r\n", timestr, userSent, line);
 		strcat(final, tempMessage);
 		line = strtok(NULL, "\r\n");
 	}
@@ -334,8 +335,47 @@ void getMessages() {
     free(userSent);
     free(tempMessage);
 }
+char * timestr() {
+	char * buffer = (char*) malloc(20*sizeof(char));
+  	//if (widget->window == NULL) return FALSE;
 
-void sendMessage(char * msg) {
+  	time_t curtime;
+  	struct tm *loctime;
+
+  	curtime = time(NULL);
+  	loctime = localtime(&curtime);
+  	strftime(buffer, 256, "%T", loctime);
+
+  	//GtkTextIter iter2;
+    //messageBuffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (text_view));
+    //gtk_text_buffer_get_iter_at_offset (messageBuffer, &iter2, 0);
+
+    //gtk_text_buffer_insert (messageBuffer,&iter2, (gchar*) buffer, -1);
+    //listRooms();
+  	//printf("%s\n", buffer);
+  	//gtk_widget_queue_draw(widget);
+  	return buffer;
+}
+
+void sendMessage() {
+	GtkTextIter *start;
+	GtkTextIter *end;
+	sendBuffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW(text_entry));
+	gtk_text_buffer_get_start_iter(sendBuffer, start);
+	gtk_text_buffer_get_end_iter(sendBuffer, end);
+
+	char * getText = (char *) gtk_text_buffer_get_text(sendBuffer, start, end, FALSE);
+	char * message = (char *) malloc((strlen(getText)+10)*sizeof(char));
+	char * timestamp = timestr();
+	strcpy(message, timestamp);
+	strcat(message, getText);
+	char response[ MAX_RESPONSE ];
+	sendCommand(host, port, "SEND-MESSAGE", user, password, message, response);
+	
+	if (!strcmp(response,"OK\r\n")) {
+		printf("Message sent\n", user);
+	}
+	getMessages();
 }
 
 void print_users_in_room() {
@@ -358,29 +398,7 @@ void printHelp() {
 	printf("Anything that does not start with \"-\" will be a message to the chat room\n");
 }
 
-static gboolean
-time_handler(GtkWidget *widget)
-{
-	char buffer[20];
-  	//if (widget->window == NULL) return FALSE;
 
-  	time_t curtime;
-  	struct tm *loctime;
-
-  	curtime = time(NULL);
-  	loctime = localtime(&curtime);
-  	strftime(buffer, 256, "%T", loctime);
-
-  	GtkTextIter iter2;
-    messageBuffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (text_view));
-    gtk_text_buffer_get_iter_at_offset (messageBuffer, &iter2, 0);
-
-    gtk_text_buffer_insert (messageBuffer,&iter2, (gchar*) buffer, -1);
-    listRooms();
-  	//printf("%s\n", buffer);
-  	//gtk_widget_queue_draw(widget);
-  	return TRUE;
-}
 
 void * getMessagesThread(void * arg) {
 	// This code will be executed simultaneously with main()
