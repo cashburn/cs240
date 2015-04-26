@@ -634,11 +634,19 @@ int main(int argc, char **argv) {
 	gtk_container_add(GTK_CONTAINER(bigPane), toolbar);
 
 	refresh = gtk_tool_button_new_from_stock(GTK_STOCK_REFRESH);
-	createRoom = gtk_tool_button_new_from_stock(GTK_STOCK_HOME);
+	createRoom = gtk_tool_button_new_from_stock(GTK_STOCK_ADD);
 	leaveRoomButton = gtk_tool_button_new_from_stock(GTK_STOCK_QUIT);
+	logout = gtk_tool_button_new_from_stock(GTK_STOCK_DISCONNECT);
+
+	gtk_tool_button_set_label(refresh, "Refresh");
+	gtk_tool_button_set_label(createRoom, "Create Room");
+	gtk_tool_button_set_label(leaveRoomButton, "Leave Room");
+	gtk_tool_button_set_label(logout, "Logout");
+
 	gtk_toolbar_insert(GTK_TOOLBAR(toolbar), createRoom, -1);
 	gtk_toolbar_insert(GTK_TOOLBAR(toolbar), refresh, -1);
 	gtk_toolbar_insert(GTK_TOOLBAR(toolbar), leaveRoomButton, -1);
+	gtk_toolbar_insert(GTK_TOOLBAR(toolbar), logout, -1);
 
 	vpaned = gtk_vpaned_new();
 	gtk_container_add(GTK_CONTAINER(bigPane), vpaned);
