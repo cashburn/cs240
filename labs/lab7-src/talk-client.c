@@ -654,8 +654,8 @@ int main(int argc, char **argv) {
 	g_signal_connect(button, "clicked", 
     	G_CALLBACK(sendMessage), (gpointer) NULL);
 
-	gtk_widget_set_can_default(button, TRUE);
-	gtk_window_set_default(GTK_WINDOW(window), button);
+	//gtk_widget_set_can_default(button, TRUE);
+	//gtk_window_set_default(GTK_WINDOW(window), button);
 	//g_signal_connect(text_entry, "key_press_event",
     	//G_CALLBACK(on_key_press), (gpointer) NULL);
 
