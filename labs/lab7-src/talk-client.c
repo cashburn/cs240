@@ -375,18 +375,18 @@ void sendMessage(GtkWidget * widget) {
 	if (!strcmp(response,"OK\r\n")) {
 		printf("Message sent\n", user);
 	}
-	gtk_text_buffer_delete(sendBuffer, &start, &end);
+	//gtk_text_buffer_delete(sendBuffer, &start, &end);
 	//getMessages();
 	g_free(getText);
 	//g_free(message);
 	free(timestamp);
 }
-gboolean on_key_press (GtkWidget * widget, GdkEventKey* pKey) {
+/*gboolean on_key_press (GtkWidget * widget, GdkEventKey* pKey) {
 	if (pKey->type == GDK_KEY_PRESS) {
 		if (pKey->keyval == GDK_KEY_Return)
 			sendMessage(widget);
 	}
-}
+}*/
 void print_users_in_room() {
 }
 
