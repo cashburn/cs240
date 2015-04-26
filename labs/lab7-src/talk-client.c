@@ -313,12 +313,12 @@ void getMessages() {
 	//responsePoint += charCount;
 	strcpy(final, "");
 	while (line != NULL) {
-		if (sscanf(line, "%d %s%n", &lastMessage, userSent, &charCount) < 2) {
+		if (sscanf(line, "%d %s %s%n", &lastMessage, userSent, timestr, &charCount) < 2) {
 			break;
 		}
 
 		line += charCount;
-		sprintf(tempMessage, "<%s> %s\r\n", /*timestr, */userSent, line);
+		sprintf(tempMessage, "[%s] <%s> %s\r\n", timestr, userSent, line);
 		strcat(final, tempMessage);
 		line = strtok(NULL, "\r\n");
 	}
