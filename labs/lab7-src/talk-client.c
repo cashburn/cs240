@@ -27,6 +27,7 @@ GtkWidget *text_entry;
 GtkTextBuffer *messageBuffer;
 GtkTextBuffer *sendBuffer;
 GtkTreeStore *treeModel;
+gboolean continueRefresh;
 #define MAX_MESSAGES 100
 #define MAX_MESSAGE_LEN 300
 #define MAX_RESPONSE (20 * 1024)
@@ -282,7 +283,22 @@ void enterRoom(char * roomName) {
 	}
 }
 
-void leaveRoom() {
+void leaveRoom(GtkWidget * widget) {
+	continueRefresh = FALSE;
+
+	GtkTextIter start;
+	GtkTextIter end;
+    messageBuffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (text_view));
+    gtk_text_buffer_get_start_iter (messageBuffer, &start);
+    gtk_text_buffer_get_end_iter (messageBuffer, &end);
+    gtk_text_buffer_delete (messageBuffer, &start, &end);
+
+	char response[ MAX_RESPONSE ];
+	sendCommand(host, port, "LEAVE-ROOM", user, password, currentRoom, response);
+	
+	if (!strcmp(response,"OK\r\n")) {
+		printf("User %s left room %s\n", user, currentRoom);
+	}
 }
 
 void getMessages() {
@@ -426,7 +442,7 @@ void * getMessagesThread(void * arg) {
 gboolean refreshFunc(GtkWidget *widget) {
 	listRooms();
 	getMessages();
-	return TRUE;
+	return continueRefresh;
 }
 
 void startGetMessageThread()
@@ -505,6 +521,7 @@ void roomSelected(GtkWidget *widget, gpointer textView)
     	//gtk_text_buffer_set_text (messageBuffer,(gchar*) value, -1);
     	currentRoom = strdup(value);
     	lastMessage = 0;
+    	continueRefresh = TRUE;
     	g_free(value);   
   	}
   	getMessages();
