@@ -365,8 +365,8 @@ void sendMessage(GtkWidget * widget) {
 	gtk_text_buffer_get_start_iter(sendBuffer, &start);
 	gtk_text_buffer_get_end_iter(sendBuffer, &end);
 
-	//char * getText = (char *) gtk_text_buffer_get_text(sendBuffer, &start, &end, FALSE);
-	//char * message = (char *) malloc((strlen(getText)+10)*sizeof(char));
+	char * getText = (char *) gtk_text_buffer_get_text(sendBuffer, &start, &end, FALSE);
+	char * message = (char *) malloc((strlen(getText)+10)*sizeof(char));
 	//char * timestamp = timestr();
 	//sprintf(message, "%s %s %s", currentRoom, timestamp, getText);
 	//char response[ MAX_RESPONSE ];
