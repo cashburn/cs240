@@ -287,6 +287,8 @@ void leaveRoom() {
 void getMessages() {
 	char response[ MAX_RESPONSE ];
 	char args[ MAX_RESPONSE ];
+	if (lastMessage == 0)
+		sprintf(args, "%d %s", 0, currentRoom);
 	sprintf(args, "%d %s", lastMessage + 1, currentRoom);
 	sendCommand(host, port, "GET-MESSAGES", user, password, args, response);
 
