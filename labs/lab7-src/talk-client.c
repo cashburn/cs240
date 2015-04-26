@@ -304,7 +304,7 @@ void leaveRoom(GtkWidget * widget) {
 void getMessages() {
 	char response[ MAX_RESPONSE ];
 	char args[ MAX_RESPONSE ];
-	if (lastMessage == 0)
+	if (lastMessage == -1)
 		sprintf(args, "%d %s", 0, currentRoom);
 	else
 		sprintf(args, "%d %s", lastMessage + 1, currentRoom);
@@ -520,7 +520,7 @@ void roomSelected(GtkWidget *widget, gpointer textView)
     	gtk_text_buffer_delete (messageBuffer, &start, &end);
     	//gtk_text_buffer_set_text (messageBuffer,(gchar*) value, -1);
     	currentRoom = strdup(value);
-    	lastMessage = 0;
+    	lastMessage = -1;
     	continueRefresh = TRUE;
     	g_free(value);   
   	}
@@ -606,6 +606,7 @@ int main(int argc, char **argv) {
   	GtkWidget *toolbar;
   	GtkToolItem *refresh;
   	GtkToolItem *createRoom;
+  	GtkToolItem *leaveRoomButton;
   	GtkToolItem *logout;
 
   	GtkWidget *textEntry;
@@ -634,10 +635,10 @@ int main(int argc, char **argv) {
 
 	refresh = gtk_tool_button_new_from_stock(GTK_STOCK_REFRESH);
 	createRoom = gtk_tool_button_new_from_stock(GTK_STOCK_HOME);
-	logout = gtk_tool_button_new_from_stock(GTK_STOCK_QUIT);
+	leaveRoomButton = gtk_tool_button_new_from_stock(GTK_STOCK_QUIT);
 	gtk_toolbar_insert(GTK_TOOLBAR(toolbar), createRoom, -1);
 	gtk_toolbar_insert(GTK_TOOLBAR(toolbar), refresh, -1);
-	gtk_toolbar_insert(GTK_TOOLBAR(toolbar), logout, -1);
+	gtk_toolbar_insert(GTK_TOOLBAR(toolbar), leaveRoomButton, -1);
 
 	vpaned = gtk_vpaned_new();
 	gtk_container_add(GTK_CONTAINER(bigPane), vpaned);
@@ -672,6 +673,9 @@ int main(int argc, char **argv) {
 
   	g_signal_connect(refresh, "clicked", 
     	G_CALLBACK(refreshFunc), (gpointer) NULL);
+
+  	g_signal_connect(leaveRoomButton, "clicked", 
+    	G_CALLBACK(leaveRoom), (gpointer) NULL);
 
 	g_signal_connect(button, "clicked", 
     	G_CALLBACK(sendMessage), (gpointer) NULL);
