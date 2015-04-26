@@ -413,7 +413,19 @@ void createRoom(GtkWidget * widget, GtkWidget *mainWindow) {
 		_("_OK"), GTK_RESPONSE_ACCEPT, _("_Cancel"),
 		GTK_RESPONSE_REJECT, NULL);
 
+	GtkWidget * contentArea = gtk_dialog_get_content_area(GTK_DIALOG(dialog));
+	GtkWidget * roomLabel = gtk_label_new ("Enter Room Name");
+	GtkWidget * roomName = gtk_entry_new();
+	//GtkEntryBuffer * buffer = gtk_entry_get_buffer(roomName);
+
+	gtk_container_add(GTK_CONTAINER(contentArea), roomLabel);
+	gtk_container_add(GTK_CONTAINER(contentArea), roomName);
+
+	g_signal_connect_swapped(dialog, "response",
+		G_CALLBACK(gtk_widget_destroy), dialog);
+
 	gtk_widget_show_all(dialog);
+
 }
 
 void printPrompt() {
