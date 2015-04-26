@@ -255,3 +255,6 @@
 [master f344ebf] Make IRCclient
  3 files changed, 9 insertions(+), 1 deletion(-)
  rewrite labs/lab7-src/talk-client (60%)
+[master 675fa9b] Make IRCclient
+ 3 files changed, 11 insertions(+), 3 deletions(-)
+ rewrite labs/lab7-src/talk-client (88%)
