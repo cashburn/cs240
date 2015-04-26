@@ -13,6 +13,8 @@
 #include <pthread.h>
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
+#include <glib.h>
+#include <glib/gi18n.h>
 
 char * host;
 char * user;
@@ -403,10 +405,13 @@ void sendMessage(GtkWidget * widget) {
 			sendMessage(widget);
 	}
 }*/
-void print_users_in_room() {
-}
 
-void print_users() {
+void createRoom(GtkWidget * widget, GtkWidget *mainWindow) {
+	GtkWidget * dialog = gtk_dialog_new_with_buttons ("Create Room",
+		GTK_WINDOW(mainWindow), 
+		(GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT),
+		_("_OK"), GTK_RESPONSE_ACCEPT, _("_Cancel"),
+		GTK_RESPONSE_REJECT, NULL);
 }
 
 void printPrompt() {
