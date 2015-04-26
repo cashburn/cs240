@@ -375,7 +375,7 @@ void sendMessage(GtkWidget * widget) {
 	if (!strcmp(response,"OK\r\n")) {
 		printf("Message sent\n", user);
 	}
-	gtk_text_buffer_delete_interactive(sendBuffer, &start, &end, TRUE);
+	gtk_text_buffer_delete(sendBuffer, &start, &end);
 	//getMessages();
 	free(getText);
 	free(message);
