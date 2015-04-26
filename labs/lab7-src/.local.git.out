@@ -6,3 +6,294 @@
  4 files changed, 299 insertions(+), 1 deletion(-)
  create mode 100755 labs/lab7-src/packbox
  create mode 100644 labs/lab7-src/packbox.c
+[master 5302ead] Make IRCclient
+ 5 files changed, 158 insertions(+), 9 deletions(-)
+ rewrite labs/lab7-src/panned (92%)
+ rewrite labs/lab7-src/talk-client (91%)
+[master b25fa17] Make IRCclient
+ 6 files changed, 186 insertions(+), 10 deletions(-)
+ rewrite labs/lab7-src/windows (75%)
+ create mode 100644 labs/lab7-src/windowstest.c
+[master 7f9fc3a] Make IRCclient
+ 7 files changed, 87 insertions(+), 27 deletions(-)
+ rewrite labs/lab7-src/talk-client (70%)
+ create mode 100755 labs/lab7-src/windowstest
+[master 4630f68] Make IRCclient
+ 4 files changed, 5 insertions(+), 2 deletions(-)
+[master e49dd47] Make IRCclient
+ 4 files changed, 19 insertions(+), 2 deletions(-)
+ create mode 100644 labs/lab6-src/password.txt
+ rewrite labs/lab7-src/talk-client (70%)
+[master e05845f] Make IRCclient
+ 2 files changed, 14 insertions(+), 4 deletions(-)
+ rewrite labs/lab7-src/talk-client (88%)
+[master a45dfbb] Make IRCclient
+ 3 files changed, 10 insertions(+), 6 deletions(-)
+ rewrite labs/lab7-src/talk-client (84%)
+[master cf59e37] Make IRCclient
+ 3 files changed, 14 insertions(+)
+ rewrite labs/lab7-src/talk-client (83%)
+[master caeeaaa] Make IRCclient
+ 3 files changed, 4 insertions(+), 1 deletion(-)
+[master 06fc5f6] Make IRCclient
+ 3 files changed, 3 insertions(+), 1 deletion(-)
+[master 332d4d0] Make IRCclient
+ 3 files changed, 4 insertions(+), 2 deletions(-)
+[master bbd91e2] Make IRCclient
+ 3 files changed, 3 insertions(+), 1 deletion(-)
+[master 983b767] Make IRCclient
+ 3 files changed, 3 insertions(+), 1 deletion(-)
+[master aa33bff] Make IRCclient
+ 3 files changed, 33 insertions(+), 7 deletions(-)
+ rewrite labs/lab7-src/talk-client (91%)
+[master 64eec52] Make IRCclient
+ 3 files changed, 8 insertions(+), 4 deletions(-)
+ rewrite labs/lab7-src/talk-client (66%)
+[master 1ee04bb] Make IRCclient
+ 3 files changed, 10 insertions(+), 1 deletion(-)
+[master 51cc335] Make IRCclient
+ 3 files changed, 48 insertions(+), 18 deletions(-)
+ rewrite labs/lab7-src/talk-client (88%)
+[master f80a87f] Make IRCclient
+ 3 files changed, 4 insertions(+), 1 deletion(-)
+[master ca49f4d] Make IRCclient
+ 3 files changed, 4 insertions(+), 2 deletions(-)
+[master 937b4ea] Make IRCclient
+ 3 files changed, 8 insertions(+), 1 deletion(-)
+[master 4100749] Make IRCclient
+ 3 files changed, 4 insertions(+), 2 deletions(-)
+[master 1b4a842] Make IRCclient
+ 3 files changed, 8 insertions(+)
+[master a31d975] Make IRCclient
+ 3 files changed, 8 insertions(+)
+[master 0fd6832] Make IRCclient
+ 3 files changed, 4 insertions(+), 8 deletions(-)
+[master a8e62ff] Make IRCclient
+ 3 files changed, 14 insertions(+), 10 deletions(-)
+[master 094f751] Make IRCclient
+ 3 files changed, 9 insertions(+)
+ rewrite labs/lab7-src/talk-client (67%)
+[master 583079b] Make IRCclient
+ 3 files changed, 30 insertions(+), 5 deletions(-)
+ rewrite labs/lab7-src/talk-client (88%)
+[master d86192e] Make IRCclient
+ 3 files changed, 4 insertions(+), 1 deletion(-)
+[master 7ea383d] Make IRCclient
+ 3 files changed, 15 insertions(+), 2 deletions(-)
+[master e28b4d7] Make IRCclient
+ 3 files changed, 4 insertions(+), 2 deletions(-)
+[master 5be7194] Make IRCclient
+ 3 files changed, 3 insertions(+), 1 deletion(-)
+[master afde2e8] Make IRCclient
+ 3 files changed, 29 insertions(+), 12 deletions(-)
+ rewrite labs/lab7-src/talk-client (66%)
+[master dc65176] Make IRCclient
+ 3 files changed, 10 insertions(+), 7 deletions(-)
+[master cb6d2e9] Make IRCclient
+ 3 files changed, 3 insertions(+)
+[master 0ff87a2] Make IRCclient
+ 3 files changed, 3 insertions(+), 1 deletion(-)
+[master 0f6c722] Make IRCclient
+ 3 files changed, 12 insertions(+), 3 deletions(-)
+[master 5123c23] Make IRCclient
+ 3 files changed, 23 insertions(+), 10 deletions(-)
+ rewrite labs/lab7-src/talk-client (83%)
+[master a8162af] Make IRCclient
+ 3 files changed, 4 insertions(+), 1 deletion(-)
+[master bd2cd81] Make IRCclient
+ 3 files changed, 14 insertions(+), 6 deletions(-)
+ rewrite labs/lab7-src/talk-client (81%)
+[master 2ff502e] Make IRCclient
+ 3 files changed, 4 insertions(+), 1 deletion(-)
+[master 80e1410] Make IRCclient
+ 3 files changed, 3 insertions(+), 1 deletion(-)
+[master b871902] Make IRCclient
+ 3 files changed, 3 insertions(+), 1 deletion(-)
+[master 3ca11a0] Make IRCclient
+ 3 files changed, 7 insertions(+), 2 deletions(-)
+[master 99a4139] Make IRCclient
+ 3 files changed, 3 insertions(+)
+[master b18cb31] Make IRCclient
+ 3 files changed, 3 insertions(+), 1 deletion(-)
+[master c2925b0] Make IRCclient
+ 3 files changed, 3 insertions(+), 1 deletion(-)
+[master 9beae02] Make IRCclient
+ 3 files changed, 13 insertions(+), 8 deletions(-)
+[master d383702] Make IRCclient
+ 3 files changed, 4 insertions(+), 1 deletion(-)
+[master 084235e] Make IRCclient
+ 3 files changed, 21 insertions(+), 12 deletions(-)
+[master dd7bed1] Make IRCclient
+ 3 files changed, 3 insertions(+)
+[master c36a468] Make IRCclient
+ 3 files changed, 5 insertions(+), 1 deletion(-)
+[master 164be97] Make IRCclient
+ 3 files changed, 5 insertions(+), 2 deletions(-)
+[master e214c85] Make IRCclient
+ 3 files changed, 2 insertions(+), 1 deletion(-)
+[master 3b23467] Make IRCclient
+ 2 files changed, 7 insertions(+), 1 deletion(-)
+[master e79a547] Make IRCclient
+ 3 files changed, 7 insertions(+), 4 deletions(-)
+[master c8deb4a] Make IRCclient
+ 3 files changed, 23 insertions(+), 8 deletions(-)
+ rewrite labs/lab7-src/talk-client (83%)
+[master 0bf7909] Make IRCclient
+ 3 files changed, 4 insertions(+), 1 deletion(-)
+[master dbea3fc] Make IRCclient
+ 3 files changed, 3 insertions(+), 1 deletion(-)
+[master 4b68078] Make IRCclient
+ 3 files changed, 12 insertions(+), 5 deletions(-)
+ rewrite labs/lab7-src/talk-client (85%)
+[master 1e56905] Make IRCclient
+ 3 files changed, 4 insertions(+)
+[master bbf4c67] Make IRCclient
+ 3 files changed, 17 insertions(+), 4 deletions(-)
+ rewrite labs/lab7-src/talk-client (75%)
+[master be61399] Make IRCclient
+ 3 files changed, 25 insertions(+), 3 deletions(-)
+ rewrite labs/lab7-src/talk-client (79%)
+[master 03881de] Make IRCclient
+ 3 files changed, 8 insertions(+), 1 deletion(-)
+[master b74a3cc] Make IRCclient
+ 3 files changed, 3 insertions(+), 1 deletion(-)
+[master 08a962a] Make IRCclient
+ 3 files changed, 3 insertions(+), 1 deletion(-)
+[master a9ceac1] Make IRCclient
+ 3 files changed, 5 insertions(+), 3 deletions(-)
+[master cb1b339] Make IRCclient
+ 3 files changed, 3 insertions(+), 2 deletions(-)
+[master 0197aff] Make IRCclient
+ 3 files changed, 4 insertions(+), 3 deletions(-)
+[master eb49953] Make IRCclient
+ 3 files changed, 4 insertions(+)
+[master a9d6eb0] Make IRCclient
+ 1 file changed, 2 insertions(+)
+[master 5f754ea] Make IRCclient
+ 3 files changed, 4 insertions(+), 1 deletion(-)
+[master df2e5c1] Make IRCclient
+ 3 files changed, 45 insertions(+), 25 deletions(-)
+ rewrite labs/lab7-src/talk-client (86%)
+[master d8d6604] Make IRCclient
+ 3 files changed, 19 insertions(+), 4 deletions(-)
+ rewrite labs/lab7-src/talk-client (70%)
+[master 38995ff] Make IRCclient
+ 3 files changed, 7 insertions(+), 3 deletions(-)
+ rewrite labs/lab7-src/talk-client (64%)
+[master 42d7766] Make IRCclient
+ 3 files changed, 8 insertions(+), 5 deletions(-)
+[master 7acb8ce] Make IRCclient
+ 3 files changed, 3 insertions(+), 1 deletion(-)
+[master ddd4084] Make IRCclient
+ 3 files changed, 3 insertions(+), 1 deletion(-)
+[master 1fc6c55] Make IRCclient
+ 3 files changed, 5 insertions(+), 3 deletions(-)
+ rewrite labs/lab7-src/talk-client (66%)
+[master 7c48490] Make IRCclient
+ 3 files changed, 5 insertions(+), 2 deletions(-)
+ rewrite labs/lab7-src/talk-client (64%)
+[master 7988585] Make IRCclient
+ 3 files changed, 4 insertions(+)
+[master ceafc8f] Make IRCclient
+ 1 file changed, 2 insertions(+)
+[master b806f55] Make IRCclient
+ 3 files changed, 4 insertions(+), 2 deletions(-)
+[master f597293] Make IRCclient
+ 3 files changed, 5 insertions(+)
+[master 36f97aa] Make IRCclient
+ 3 files changed, 3 insertions(+), 1 deletion(-)
+[master 5a539ec] Make IRCclient
+ 3 files changed, 4 insertions(+), 2 deletions(-)
+[master 0c5feab] Make IRCclient
+ 3 files changed, 3 insertions(+), 1 deletion(-)
+[master 5f7bdc6] Make IRCclient
+ 3 files changed, 5 insertions(+), 3 deletions(-)
+ rewrite labs/lab7-src/talk-client (79%)
+[master 577b8dd] Make IRCclient
+ 3 files changed, 4 insertions(+), 1 deletion(-)
+[master 7ed7545] Make IRCclient
+ 1 file changed, 2 insertions(+)
+[master 337cdff] Make IRCclient
+ 3 files changed, 4 insertions(+), 2 deletions(-)
+[master 7dba586] Make IRCclient
+ 3 files changed, 3 insertions(+), 1 deletion(-)
+[master aa508ec] Make IRCclient
+ 3 files changed, 4 insertions(+), 2 deletions(-)
+[master 1c03f82] Make IRCclient
+ 3 files changed, 3 insertions(+)
+[master 8d6e23f] Make IRCclient
+ 3 files changed, 13 insertions(+), 11 deletions(-)
+ rewrite labs/lab7-src/talk-client (82%)
+[master feac399] Make IRCclient
+ 1 file changed, 3 insertions(+)
+[master da04217] Make IRCclient
+ 3 files changed, 4 insertions(+), 2 deletions(-)
+ rewrite labs/lab7-src/talk-client (80%)
+[master 2169670] Make IRCclient
+ 3 files changed, 5 insertions(+), 2 deletions(-)
+[master 6a3b75c] Make IRCclient
+ 1 file changed, 2 insertions(+)
+[master 586d21c] Make IRCclient
+ 3 files changed, 5 insertions(+), 3 deletions(-)
+[master 49d16ad] Make IRCclient
+ 3 files changed, 9 insertions(+), 7 deletions(-)
+[master fe3f338] Make IRCclient
+ 3 files changed, 21 insertions(+), 2 deletions(-)
+ rewrite labs/lab7-src/talk-client (65%)
+[master 2970190] Make IRCclient
+ 3 files changed, 11 insertions(+), 4 deletions(-)
+[master b6fc50d] Make IRCclient
+ 3 files changed, 11 insertions(+), 1 deletion(-)
+ rewrite labs/lab7-src/talk-client (66%)
+[master 70f0782] Make IRCclient
+ 3 files changed, 7 insertions(+), 4 deletions(-)
+ rewrite labs/lab7-src/talk-client (83%)
+[master 2df558c] Make IRCclient
+ 1 file changed, 3 insertions(+)
+[master 4645e79] Make IRCclient
+ 1 file changed, 2 insertions(+)
+[master f344ebf] Make IRCclient
+ 3 files changed, 9 insertions(+), 1 deletion(-)
+ rewrite labs/lab7-src/talk-client (60%)
+[master 675fa9b] Make IRCclient
+ 3 files changed, 11 insertions(+), 3 deletions(-)
+ rewrite labs/lab7-src/talk-client (88%)
+[master 9407f7c] Make IRCclient
+ 3 files changed, 10 insertions(+), 4 deletions(-)
+[master af033e5] Make IRCclient
+ 3 files changed, 4 insertions(+)
+[master 226ba49] Make IRCclient
+ 3 files changed, 14 insertions(+)
+ rewrite labs/lab7-src/talk-client (90%)
+[master 3c58cbc] Make IRCclient
+ 3 files changed, 21 insertions(+), 4 deletions(-)
+ rewrite labs/lab7-src/talk-client (83%)
+[master 7837b61] Make IRCclient
+ 3 files changed, 4 insertions(+), 1 deletion(-)
+[master 327049b] Make IRCclient
+ 3 files changed, 3 insertions(+), 1 deletion(-)
+[master 2aafc7e] Make IRCclient
+ 3 files changed, 3 insertions(+), 1 deletion(-)
+[master 24c363b] Make IRCclient
+ 3 files changed, 3 insertions(+), 1 deletion(-)
+[master db8210c] Make IRCclient
+ 3 files changed, 5 insertions(+), 3 deletions(-)
+ rewrite labs/lab7-src/talk-client (82%)
+[master 4096ea6] Make IRCclient
+ 3 files changed, 6 insertions(+), 3 deletions(-)
+ rewrite labs/lab7-src/talk-client (83%)
+[master 3102736] Make IRCclient
+ 3 files changed, 4 insertions(+)
+[master 7ea257e] Make IRCclient
+ 3 files changed, 4 insertions(+)
+[master ec3a86c] Make IRCclient
+ 1 file changed, 2 insertions(+)
+[master 6145c99] Make IRCclient
+ 2 files changed, 2 insertions(+), 1 deletion(-)
+[master 442914d] Make IRCclient
+ 3 files changed, 3 insertions(+), 1 deletion(-)
+[master 8b5de0b] Make IRCclient
+ 3 files changed, 6 insertions(+), 4 deletions(-)
+ rewrite labs/lab7-src/talk-client (64%)
+[master d88b529] Make IRCclient
+ 3 files changed, 8 insertions(+), 1 deletion(-)
