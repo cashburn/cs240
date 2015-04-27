@@ -494,6 +494,7 @@ void createAccount() {
 				printf("Added user %s", user);
 				listRooms();
 				gtk_widget_destroy(dialog);
+				break;
 			}
 			else {
 				GtkWidget * errorDialog = gtk_message_dialog_new(GTK_WINDOW(dialog),
@@ -518,6 +519,7 @@ void createAccount() {
 				printf("%s logged in", user);
 				listRooms();
 				gtk_widget_destroy(dialog);
+				break;
 			}
 			else {
 				GtkWidget * errorDialog = gtk_message_dialog_new(GTK_WINDOW(dialog),
