@@ -460,6 +460,79 @@ void createRoom(GtkWidget * widget, GtkWidget *mainWindow) {
 
 }
 
+void createAccount() {
+	GtkWidget * dialog = gtk_dialog_new_with_buttons ("Create Account",
+		NULL, (GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT),
+		_("_Create Account"), 1, _("_Login"), 2, NULL);
+
+	GtkWidget * contentArea = gtk_dialog_get_content_area(GTK_DIALOG(dialog));
+	GtkWidget * userLabel = gtk_label_new ("Username");
+	GtkWidget * userName = gtk_entry_new();
+	GtkWidget * passwordLabel = gtk_label_new("Password");
+	GtkWidget * passwordEntry = gtk_entry_new();
+	//GtkEntryBuffer * buffer = gtk_entry_get_buffer(roomName);
+
+	gtk_dialog_set_default_response(GTK_DIALOG(dialog), GTK_RESPONSE_ACCEPT);
+	gtk_entry_set_activates_default(GTK_ENTRY(login), TRUE);
+
+	gtk_container_add(GTK_CONTAINER(contentArea), userLabel);
+	gtk_container_add(GTK_CONTAINER(contentArea), userName);
+	gtk_container_add(GTK_CONTAINER(contentArea), passwordLabel);
+	gtk_container_add(GTK_CONTAINER(contentArea), passwordEntry);
+
+	gtk_widget_show_all(dialog);
+	while(1) {
+		GtkResponseType result = gtk_dialog_run(GTK_DIALOG(dialog));
+
+		if (result == 1) {
+			user = gtk_entry_get_text(GTK_ENTRY(userName));
+			password = gtk_entry_get_text(GTK_ENTRY(passwordEntry));
+			char response[ MAX_RESPONSE ];
+			sendCommand(host, port, "ADD-USER", user, password, "", response);
+		
+			if (!strcmp(response,"OK\r\n")) {
+				printf("Added user %s", user);
+				listRooms();
+				gtk_widget_destroy(dialog);
+			}
+			else {
+				GtkWidget * errorDialog = gtk_message_dialog_new(GTK_WINDOW(dialog),
+					GTK_DIALOG_DESTROY_WITH_PARENT,
+					GTK_MESSAGE_WARNING,
+					GTK_BUTTONS_OK,
+					response);
+				gtk_window_set_title(GTK_WINDOW(errorDialog), "Error");
+				gtk_dialog_run(GTK_DIALOG(errorDialog));
+				gtk_widget_destroy(errorDialog);
+			}
+			//g_free(room);
+		}
+
+		if (result == 2) {
+			user = gtk_entry_get_text(GTK_ENTRY(userName));
+			password = gtk_entry_get_text(GTK_ENTRY(passwordEntry));
+			char response[ MAX_RESPONSE ];
+			sendCommand(host, port, "LOGIN", user, password, "", response);
+		
+			if (!strcmp(response,"OK\r\n")) {
+				printf("%s logged in", user);
+				listRooms();
+				gtk_widget_destroy(dialog);
+			}
+			else {
+				GtkWidget * errorDialog = gtk_message_dialog_new(GTK_WINDOW(dialog),
+					GTK_DIALOG_DESTROY_WITH_PARENT,
+					GTK_MESSAGE_WARNING,
+					GTK_BUTTONS_OK,
+					response);
+			}
+			//g_free(room);
+		}
+
+	}
+
+}
+
 void printPrompt() {
 	printf("talk> ");
 	fflush(stdout);
@@ -623,24 +696,26 @@ int main(int argc, char **argv) {
 
 	char line[MAX_MESSAGE_LEN+1];
 	
-	if (argc < 5) {
+	if (argc < 3) {
 		printUsage();
 	}
 
 	host = argv[1];
 	sport = argv[2];
-	user = argv[3];
-	password = argv[4];
+	//user = argv[3];
+	//password = argv[4];
 
-	printf("\nStarting talk-client %s %s %s %s\n", host, sport, user, password);
+	printf("\nStarting talk-client %s %s\n", host, sport/*, user, password*/);
 
 	// Convert port to number
 	sscanf(sport, "%d", &port);
-	if (login()) {
+	/*if (login()) {
 	}
 	else {
 		add_user();
-	}
+	}*/
+	createAccount();
+
 
 	// Enter room
 	//enterRoom();
