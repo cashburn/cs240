@@ -280,9 +280,9 @@ void listRooms() {
 
 void enterRoom(char * roomName) {
 	char response[ MAX_RESPONSE ];
-	if (currentRoom != NULL)
+	/*if (currentRoom != NULL)
 		if (!strcmp(roomName, currentRoom))
-			return;
+			return;*/
 	sendCommand(host, port, "ENTER-ROOM", user, password, roomName, response);
 	
 	if (!strcmp(response,"OK\r\n")) {
