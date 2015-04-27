@@ -287,7 +287,7 @@ void enterRoom(char * roomName) {
 		printf("User %s added to %s\n", user, roomName);
 	}
 	char message[ MAX_RESPONSE ];
-	sprintf(message, "%s SYSTEM %s has entered the room\r\n", currentRoom, user);
+	sprintf(message, "%s SYSTEM %s has entered the room", currentRoom, user);
 	sendCommand(host, port, "SEND-MESSAGE", user, password, message, response);
 }
 
@@ -303,7 +303,7 @@ void leaveRoom(GtkWidget * widget) {
 
 	char response[ MAX_RESPONSE ];
 	char message[ MAX_RESPONSE ];
-	sprintf(message, "%s SYSTEM %s has left the room\r\n", currentRoom, user);
+	sprintf(message, "%s SYSTEM %s has left the room", currentRoom, user);
 	sendCommand(host, port, "SEND-MESSAGE", user, password, message, response);
 	sendCommand(host, port, "LEAVE-ROOM", user, password, currentRoom, response);
 	if (!strcmp(response,"OK\r\n")) {
@@ -346,7 +346,7 @@ void getMessages() {
 
 		line += charCount;
 		if (!strcmp(timestr, "SYSTEM")) {
-			sprintf(tempMessage, "         %s", line);
+			sprintf(tempMessage, "         %s\r\n", line);
 		}
 		else 
 			sprintf(tempMessage, "[%s] <%s> %s\r\n", timestr, userSent, line);
