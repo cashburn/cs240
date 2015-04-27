@@ -287,10 +287,11 @@ void enterRoom(char * roomName) {
 	
 	if (!strcmp(response,"OK\r\n")) {
 		printf("User %s added to %s\n", user, roomName);
-	}
+	
 	char message[ MAX_RESPONSE ];
 	sprintf(message, "%s SYSTEM %s has entered the room", currentRoom, user);
 	sendCommand(host, port, "SEND-MESSAGE", user, password, message, response);
+	}
 }
 
 void leaveRoom(GtkWidget * widget) {
@@ -549,6 +550,11 @@ void createAccount() {
 
 }
 
+void logout(GtkWidget * widget, GtkWidget * window) {
+	gtk_widget_hide(window);
+	createAccount();
+}
+
 void printPrompt() {
 	printf("talk> ");
 	fflush(stdout);
@@ -749,7 +755,7 @@ int main(int argc, char **argv) {
   	GtkToolItem *refresh;
   	GtkToolItem *createRoomButton;
   	GtkToolItem *leaveRoomButton;
-  	GtkToolItem *logout;
+  	GtkToolItem *logoutButton;
 
   	GtkWidget *textEntry;
   	GtkWidget *textView;
@@ -778,7 +784,7 @@ int main(int argc, char **argv) {
 	refresh = gtk_tool_button_new_from_stock(GTK_STOCK_REFRESH);
 	createRoomButton = gtk_tool_button_new_from_stock(GTK_STOCK_ADD);
 	leaveRoomButton = gtk_tool_button_new_from_stock(GTK_STOCK_QUIT);
-	logout = gtk_tool_button_new_from_stock(GTK_STOCK_DISCONNECT);
+	logoutButton = gtk_tool_button_new_from_stock(GTK_STOCK_DISCONNECT);
 
 	/*gtk_tool_button_set_label(GTK_TOOL_BUTTON(refresh), "Refresh");
 	gtk_tool_button_set_label(GTK_TOOL_BUTTON(createRoom), "Create Room");
@@ -789,12 +795,12 @@ int main(int argc, char **argv) {
 	gtk_widget_set_tooltip_text(GTK_WIDGET(refresh), "Refresh");
 	gtk_widget_set_tooltip_text(GTK_WIDGET(createRoomButton), "Create Room");
 	gtk_widget_set_tooltip_text(GTK_WIDGET(leaveRoomButton), "Leave Room");
-	gtk_widget_set_tooltip_text(GTK_WIDGET(logout), "Logout");
+	gtk_widget_set_tooltip_text(GTK_WIDGET(logoutButton), "Logout");
 
 	gtk_toolbar_insert(GTK_TOOLBAR(toolbar), createRoomButton, -1);
 	gtk_toolbar_insert(GTK_TOOLBAR(toolbar), refresh, -1);
 	gtk_toolbar_insert(GTK_TOOLBAR(toolbar), leaveRoomButton, -1);
-	gtk_toolbar_insert(GTK_TOOLBAR(toolbar), logout, -1);
+	gtk_toolbar_insert(GTK_TOOLBAR(toolbar), logoutButton, -1);
 
 	vpaned = gtk_vpaned_new();
 	gtk_container_add(GTK_CONTAINER(bigPane), vpaned);
@@ -832,6 +838,9 @@ int main(int argc, char **argv) {
 
   	g_signal_connect(leaveRoomButton, "clicked", 
     	G_CALLBACK(leaveRoom), (gpointer) NULL);
+
+  	g_signal_connect(logoutButton, "clicked", 
+    	G_CALLBACK(logout), window);
 
   	g_signal_connect(createRoomButton, "clicked", 
     	G_CALLBACK(createRoom), (gpointer) window);
