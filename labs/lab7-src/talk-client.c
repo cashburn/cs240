@@ -523,7 +523,7 @@ void createAccount() {
 			password = gtk_entry_get_text(GTK_ENTRY(passwordEntry));
 			//char response[ MAX_RESPONSE ];
 			//sendCommand(host, port, "LOGIN", user, password, "", response);
-			if (add_user()) {
+			if (login()) {
 				gtk_widget_destroy(dialog);
 				return;
 			}
