@@ -138,6 +138,7 @@ int login() {
 		response1++;
 		s++;
 	}
+	*s = '\n';
 	if (!strcmp(newResponse,"OK\r\n")) {
 		printf("User %s exists\n", user);
 		free(newResponse);
