@@ -119,7 +119,17 @@ int add_user() {
 	// Try first to add user in case it does not exist.
 	char response[ MAX_RESPONSE ];
 	sendCommand(host, port, "ADD-USER", user, password, "", response);
-	
+	char * newResponse = (char *) malloc(strlen(response)*sizeof(char));
+	char * s = newResponse;
+	char * response1 = response;
+	while (*response1 != '\n') {
+		*s = *response1;
+		response1++;
+		s++;
+	}
+	*s = '\n';
+	s++;
+	*s = '\0';
 	if (!strcmp(response,"OK\r\n")) {
 		printf("User %s added\n", user);
 		return 1;
@@ -139,6 +149,8 @@ int login() {
 		s++;
 	}
 	*s = '\n';
+	s++;
+	*s = '\0';
 	if (!strcmp(newResponse,"OK\r\n")) {
 		printf("User %s exists\n", user);
 		free(newResponse);
