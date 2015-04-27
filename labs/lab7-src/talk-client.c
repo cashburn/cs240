@@ -520,8 +520,8 @@ void createAccount(GtkWidget * window) {
 		}
 
 		if (result == 2) {
-			user = gtk_entry_get_text(GTK_ENTRY(userName));
-			password = gtk_entry_get_text(GTK_ENTRY(passwordEntry));
+			user = strdup(gtk_entry_get_text(GTK_ENTRY(userName)));
+			password = strdup(gtk_entry_get_text(GTK_ENTRY(passwordEntry)));
 			//char response[ MAX_RESPONSE ];
 			//sendCommand(host, port, "LOGIN", user, password, "", response);
 			if (login()) {

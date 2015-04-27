@@ -393,7 +393,7 @@ IRCServer::addUser(int fd, const char * user, const char * password, const char 
 	// Here add a new user. For now always return OK.
 	const char * msg;
 	char ** temp;
-	if(!passwords.find(user, (void**) temp)) {
+	if(!checkPassword(fd, user, password)) {
 		if(!passwords.insertItem(user, (void*) password)) {
 			msg =  "OK\r\n";
 			nUsers++;
