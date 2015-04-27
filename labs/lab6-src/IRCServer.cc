@@ -684,14 +684,16 @@ IRCServer::getAllUsers(int fd, const char * user, const char * password, const  
 }
 void
 IRCServer::login(int fd, const char * user, const char * password, const char * args) {
+	FILE * fssock = fdopen(fd,"r+");
 	const char * msg;
 	if (checkPassword(fd, user, password)) {
 		msg = "OK\r\n";
 	}
 	else
 		msg = "DENIED\r\n"; //another deny for catch-all
-	write(fd, msg, strlen(msg)); //sends the variable msg back through the network (either OK or DENIED)
-	
+	//write(fd, msg, strlen(msg)); //sends the variable msg back through the network (either OK or DENIED)
+	fprintf(fssock, "%s", msg);
+	fclose(fssock);
 	return;	//exit the function!
 }
 
