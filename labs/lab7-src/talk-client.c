@@ -714,7 +714,7 @@ int main(int argc, char **argv) {
 	else {
 		add_user();
 	}*/
-	createAccount();
+	//createAccount();
 
 
 	// Enter room
@@ -829,7 +829,7 @@ int main(int argc, char **argv) {
     	G_CALLBACK(on_key_press), (gpointer) NULL);
 
   	gtk_widget_show_all(window);
-
+  	createAccount();
 
   	listRooms();
 
