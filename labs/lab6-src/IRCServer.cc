@@ -404,7 +404,7 @@ IRCServer::addUser(int fd, const char * user, const char * password, const char 
 	else
 		msg = "DENIED\r\n"; //another deny for catch-all
 	write(fd, msg, strlen(msg)); //sends the variable msg back through the network (either OK or DENIED)
-	if (strcmp(args, "initialize")) { //I have a password file that I'm adding the users to, and this makes sure it's not already there
+	if (strcmp(args, "initialize") && !strcmp(msg, "OK\r\n")) { //I have a password file that I'm adding the users to, and this makes sure it's not already there
 		FILE * passFile = fopen("password.txt","a+"); //open the password file with "append" priviledges
 		fprintf(passFile, "%s %s\r\n", user, password); //write the username and password into the file
 		fclose(passFile); //close the password file
