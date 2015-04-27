@@ -129,7 +129,7 @@ int add_user() {
 int login() {
 	char response[ MAX_RESPONSE ];
 	sendCommand(host, port, "LOGIN", user, password, "", response);
-	
+	printf("%s\n", response);
 	if (!strcmp(response,"OK\r\n")) {
 		printf("User %s exists\n", user);
 		return 1;
