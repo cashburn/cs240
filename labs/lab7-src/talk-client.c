@@ -463,7 +463,7 @@ void createRoom(GtkWidget * widget, GtkWidget *mainWindow) {
 
 }
 
-void createAccount() {
+void createAccount(GtkWidget * window) {
 	GtkWidget * dialog = gtk_dialog_new_with_buttons ("Create Account",
 		NULL, (GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT),
 		_("_Create Account"), 1, _("_Login"), 2, NULL);
@@ -493,6 +493,7 @@ void createAccount() {
 			printf("%s %s\n", user, password);
 			if (add_user()) {
 				gtk_widget_destroy(dialog);
+				gtk_widget_show(window);
 				return;
 			}
 			//char response[ MAX_RESPONSE ];
@@ -525,6 +526,7 @@ void createAccount() {
 			//sendCommand(host, port, "LOGIN", user, password, "", response);
 			if (login()) {
 				gtk_widget_destroy(dialog);
+				gtk_widget_show(window);
 				return;
 			}
 			/*if (!strcmp(response,"OK\r\n")) {
@@ -552,7 +554,7 @@ void createAccount() {
 
 void logout(GtkWidget * widget, GtkWidget * window) {
 	gtk_widget_hide(window);
-	createAccount();
+	createAccount(window);
 }
 
 void printPrompt() {
@@ -854,7 +856,8 @@ int main(int argc, char **argv) {
     	G_CALLBACK(on_key_press), (gpointer) NULL);
 
   	gtk_widget_show_all(window);
-  	createAccount();
+  	gtk_widget_hide(window);
+  	createAccount(window);
 
   	listRooms();
 
