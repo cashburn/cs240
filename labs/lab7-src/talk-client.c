@@ -130,10 +130,20 @@ int login() {
 	char response[ MAX_RESPONSE ];
 	sendCommand(host, port, "LOGIN", user, password, "", response);
 	printf("%s\n", response);
-	if (!strcmp(response,"OK\r\n")) {
+	char * newResponse = (char *) malloc(strlen(response)*sizeof(char));
+	char * s = newResponse;
+	char * response1 = response;
+	while (*response1 != '\n') {
+		*s = *response1;
+		response1++;
+		s++;
+	}
+	if (!strcmp(newResponse,"OK\r\n")) {
 		printf("User %s exists\n", user);
+		free(newResponse);
 		return 1;
 	}
+	free(newResponse);
 	return 0;
 }
 
