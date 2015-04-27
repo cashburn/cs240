@@ -278,13 +278,15 @@ void listRooms() {
 
 void enterRoom(char * roomName) {
 	char response[ MAX_RESPONSE ];
+	if (!strcmp(roomName, currentRoom))
+		return;
 	sendCommand(host, port, "ENTER-ROOM", user, password, roomName, response);
 	
 	if (!strcmp(response,"OK\r\n")) {
 		printf("User %s added to %s\n", user, roomName);
 	}
 	char message[ MAX_RESPONSE ];
-	sprintf(message, "%s SYSTEM %s has entered the room", currentRoom, user);
+	sprintf(message, "%s SYSTEM %s has entered the room\r\n", currentRoom, user);
 	sendCommand(host, port, "SEND-MESSAGE", user, password, message, response);
 }
 
@@ -300,12 +302,13 @@ void leaveRoom(GtkWidget * widget) {
 
 	char response[ MAX_RESPONSE ];
 	char message[ MAX_RESPONSE ];
-	sprintf(message, "%s SYSTEM %s has left the room", currentRoom, user);
+	sprintf(message, "%s SYSTEM %s has left the room\r\n", currentRoom, user);
+	sendCommand(host, port, "SEND-MESSAGE", user, password, message, response);
 	sendCommand(host, port, "LEAVE-ROOM", user, password, currentRoom, response);
 	if (!strcmp(response,"OK\r\n")) {
 		printf("User %s left room %s\n", user, currentRoom);
 	}
-	sendCommand(host, port, "SEND-MESSAGE", user, password, message, response);
+	
 }
 
 void getMessages() {
