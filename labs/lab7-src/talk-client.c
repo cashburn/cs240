@@ -115,14 +115,16 @@ void printUsage()
 	exit(1);
 }
 
-void add_user() {
+int add_user() {
 	// Try first to add user in case it does not exist.
 	char response[ MAX_RESPONSE ];
 	sendCommand(host, port, "ADD-USER", user, password, "", response);
 	
 	if (!strcmp(response,"OK\r\n")) {
 		printf("User %s added\n", user);
+		return 1;
 	}
+	return 0;
 }
 int login() {
 	char response[ MAX_RESPONSE ];
@@ -487,21 +489,26 @@ void createAccount() {
 		if (result == 1) {
 			user = gtk_entry_get_text(GTK_ENTRY(userName));
 			password = gtk_entry_get_text(GTK_ENTRY(passwordEntry));
-			char response[ MAX_RESPONSE ];
-			sendCommand(host, port, "ADD-USER", user, password, "", response);
+			if (add_user()) {
+				gtk_widget_destroy(dialog);
+				return;
+			}
+			//char response[ MAX_RESPONSE ];
+			//sendCommand(host, port, "ADD-USER", user, password, "", response);
 		
-			if (!strcmp(response,"OK\r\n")) {
+			/*if (!strcmp(response,"OK\r\n")) {
 				printf("Added user %s", user);
 				listRooms();
 				gtk_widget_destroy(dialog);
 				break;
 			}
+			*/
 			else {
 				GtkWidget * errorDialog = gtk_message_dialog_new(GTK_WINDOW(dialog),
 					GTK_DIALOG_DESTROY_WITH_PARENT,
 					GTK_MESSAGE_WARNING,
 					GTK_BUTTONS_OK,
-					response);
+					"ERROR: User exists");
 				gtk_window_set_title(GTK_WINDOW(errorDialog), "Error");
 				gtk_dialog_run(GTK_DIALOG(errorDialog));
 				gtk_widget_destroy(errorDialog);
@@ -512,21 +519,27 @@ void createAccount() {
 		if (result == 2) {
 			user = gtk_entry_get_text(GTK_ENTRY(userName));
 			password = gtk_entry_get_text(GTK_ENTRY(passwordEntry));
-			char response[ MAX_RESPONSE ];
-			sendCommand(host, port, "LOGIN", user, password, "", response);
-		
-			if (!strcmp(response,"OK\r\n")) {
+			//char response[ MAX_RESPONSE ];
+			//sendCommand(host, port, "LOGIN", user, password, "", response);
+			if (add_user()) {
+				gtk_widget_destroy(dialog);
+				return;
+			}
+			/*if (!strcmp(response,"OK\r\n")) {
 				printf("%s logged in", user);
 				listRooms();
 				gtk_widget_destroy(dialog);
 				break;
-			}
+			}*/
 			else {
 				GtkWidget * errorDialog = gtk_message_dialog_new(GTK_WINDOW(dialog),
 					GTK_DIALOG_DESTROY_WITH_PARENT,
 					GTK_MESSAGE_WARNING,
 					GTK_BUTTONS_OK,
-					response);
+					"ERROR: User doesn't exist");
+				gtk_window_set_title(GTK_WINDOW(errorDialog), "Error");
+				gtk_dialog_run(GTK_DIALOG(errorDialog));
+				gtk_widget_destroy(errorDialog);
 			}
 			//g_free(room);
 		}
