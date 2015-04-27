@@ -83,16 +83,16 @@ int open_client_socket(char * host, int port) {
 	return sock;
 }
 
-int sendCommand(char * host, int port, char * command, char * user,
-		char * password, char * args, char * response) {
+int sendCommand(char * host, int port, char * command, char * user1,
+		char * password1, char * args, char * response) {
 	int sock = open_client_socket( host, port);
 
 	// Send command
 	write(sock, command, strlen(command));
 	write(sock, " ", 1);
-	write(sock, user, strlen(user));
+	write(sock, user1, strlen(user1));
 	write(sock, " ", 1);
-	write(sock, password, strlen(password));
+	write(sock, password1, strlen(password1));
 	write(sock, " ", 1);
 	write(sock, args, strlen(args));
 	write(sock, "\r\n",2);
