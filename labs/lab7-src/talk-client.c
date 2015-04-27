@@ -487,8 +487,8 @@ void createAccount() {
 		GtkResponseType result = gtk_dialog_run(GTK_DIALOG(dialog));
 
 		if (result == 1) {
-			user = gtk_entry_get_text(GTK_ENTRY(userName));
-			password = gtk_entry_get_text(GTK_ENTRY(passwordEntry));
+			user = strdup(gtk_entry_get_text(GTK_ENTRY(userName)));
+			password = strdup(gtk_entry_get_text(GTK_ENTRY(passwordEntry)));
 			printf("%s %s\n", user, password);
 			if (add_user()) {
 				gtk_widget_destroy(dialog);
