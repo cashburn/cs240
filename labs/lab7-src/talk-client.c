@@ -284,8 +284,8 @@ void enterRoom(char * roomName) {
 		printf("User %s added to %s\n", user, roomName);
 	}
 	char message[ MAX_RESPONSE ];
-	sprintf(message, "%s SYSTEM %s has left the room", currentRoom, user);
-	sendCommand(host, port, "LEAVE-ROOM", user, password, message, response);
+	sprintf(message, "%s SYSTEM %s has entered the room", currentRoom, user);
+	sendCommand(host, port, "SEND-MESSAGE", user, password, message, response);
 }
 
 void leaveRoom(GtkWidget * widget) {
@@ -301,10 +301,11 @@ void leaveRoom(GtkWidget * widget) {
 	char response[ MAX_RESPONSE ];
 	char message[ MAX_RESPONSE ];
 	sprintf(message, "%s SYSTEM %s has left the room", currentRoom, user);
-	sendCommand(host, port, "LEAVE-ROOM", user, password, message, response);
+	sendCommand(host, port, "LEAVE-ROOM", user, password, currentRoom, response);
 	if (!strcmp(response,"OK\r\n")) {
 		printf("User %s left room %s\n", user, currentRoom);
 	}
+	sendCommand(host, port, "SEND-MESSAGE", user, password, message, response);
 }
 
 void getMessages() {
