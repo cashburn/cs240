@@ -283,6 +283,9 @@ void enterRoom(char * roomName) {
 	if (!strcmp(response,"OK\r\n")) {
 		printf("User %s added to %s\n", user, roomName);
 	}
+	char message[ MAX_RESPONSE ];
+	sprintf(message, "%s SYSTEM %s has left the room", currentRoom, user);
+	sendCommand(host, port, "LEAVE-ROOM", user, password, message, response);
 }
 
 void leaveRoom(GtkWidget * widget) {
@@ -296,8 +299,9 @@ void leaveRoom(GtkWidget * widget) {
     gtk_text_buffer_delete (messageBuffer, &start, &end);
 
 	char response[ MAX_RESPONSE ];
-	sendCommand(host, port, "LEAVE-ROOM", user, password, currentRoom, response);
-	
+	char message[ MAX_RESPONSE ];
+	sprintf(message, "%s SYSTEM %s has left the room", currentRoom, user);
+	sendCommand(host, port, "LEAVE-ROOM", user, password, message, response);
 	if (!strcmp(response,"OK\r\n")) {
 		printf("User %s left room %s\n", user, currentRoom);
 	}
@@ -336,9 +340,14 @@ void getMessages() {
 		}
 
 		line += charCount;
-		sprintf(tempMessage, "[%s] <%s> %s\r\n", timestr, userSent, line);
+		if (!strcmp(timestr, "SYSTEM")) {
+			sprintf(tempMessage, "         %s", line);
+		}
+		else 
+			sprintf(tempMessage, "[%s] <%s> %s\r\n", timestr, userSent, line);
 		strcat(final, tempMessage);
 		line = strtok(NULL, "\r\n");
+		
 	}
 
 
@@ -408,10 +417,6 @@ gboolean on_key_press (GtkWidget * widget, GdkEventKey* pKey) {
 
 	}
 	return FALSE;
-}
-
-void createRoomCallback(GtkWidget * widget, GtkWidget * roomName) {
-
 }
 
 void createRoom(GtkWidget * widget, GtkWidget *mainWindow) {
