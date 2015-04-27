@@ -553,6 +553,9 @@ void createAccount(GtkWidget * window) {
 }
 
 void logout(GtkWidget * widget, GtkWidget * window) {
+	continueRefresh = FALSE;
+	free(user);
+	free(password);
 	gtk_widget_hide(window);
 	createAccount(window);
 }
