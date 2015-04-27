@@ -473,7 +473,7 @@ void createAccount() {
 	//GtkEntryBuffer * buffer = gtk_entry_get_buffer(roomName);
 
 	gtk_dialog_set_default_response(GTK_DIALOG(dialog), GTK_RESPONSE_ACCEPT);
-	gtk_entry_set_activates_default(GTK_ENTRY(login), TRUE);
+	//gtk_entry_set_activates_default(GTK_ENTRY(login), TRUE);
 
 	gtk_container_add(GTK_CONTAINER(contentArea), userLabel);
 	gtk_container_add(GTK_CONTAINER(contentArea), userName);
