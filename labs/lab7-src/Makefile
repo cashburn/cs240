@@ -18,7 +18,7 @@ radio: radio.c
 	gcc radio.c -o radio `pkg-config --cflags --libs gtk+-2.0`
 
 talk-client: talk-client.c
-	gcc -pthread -g -o talk-client talk-client.c `pkg-config --cflags --libs gtk+-2.0`
+	gcc -std=gnu99 -pthread -g -o talk-client talk-client.c `pkg-config --cflags --libs gtk+-2.0`
 
 timer: timer.c
 	gcc timer.c -o timer `pkg-config --cflags --libs gtk+-2.0`
