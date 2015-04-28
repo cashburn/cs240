@@ -333,9 +333,9 @@ void enterRoom(char * roomName) {
 	if (!strcmp(response,"OK\r\n")) {
 		printf("User %s added to %s\n", user, roomName);
 	
-	char message[ MAX_RESPONSE ];
-	sprintf(message, "%s SYSTEM %s has entered the room", currentRoom, user);
-	sendCommand(host, port, "SEND-MESSAGE", user, password, message, response);
+	//char message[ MAX_RESPONSE ];
+	//sprintf(message, "%s SYSTEM %s has entered the room", currentRoom, user);
+	//sendCommand(host, port, "SEND-MESSAGE", user, password, message, response);
 	}
 }
 
@@ -906,6 +906,9 @@ int main(int argc, char **argv) {
   	gtk_widget_show_all(window);
   	gtk_widget_hide(window);
   	createAccount(window);
+  	char windowName[MAX_RESPONSE];
+  	sprintf(windowName, "IRC Client - %s", user);
+  	gtk_window_set_title(GTK_WINDOW(window), windowName);
 
   	listRooms();
 

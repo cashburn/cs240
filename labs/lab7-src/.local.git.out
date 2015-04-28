@@ -392,3 +392,6 @@
  2 files changed, 1 insertion(+), 1 deletion(-)
 [master c51da3f] Make IRCclient
  2 files changed, 1 insertion(+), 1 deletion(-)
+[master 396146d] Make IRCclient
+ 2 files changed, 6 insertions(+), 3 deletions(-)
+ rewrite talk-client (61%)
