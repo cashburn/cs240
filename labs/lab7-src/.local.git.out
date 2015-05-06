@@ -348,3 +348,50 @@
  3 files changed, 3 insertions(+)
 [master ba8a219] Make IRCclient
  4 files changed, 16 insertions(+), 1 deletion(-)
+[master e68f767] Make IRCclient
+ 17 files changed, 1745 insertions(+), 35 deletions(-)
+ create mode 100755 IRCClient
+ create mode 100644 IRCClient.cc
+ create mode 100755 packbox
+ create mode 100644 packbox.c
+ rewrite panned (92%)
+ rewrite talk-client (94%)
+ create mode 100755 treeview
+ create mode 100644 treeview.c
+ create mode 100755 windows
+ create mode 100644 windows.c
+ create mode 100755 windowstest
+ create mode 100644 windowstest.c
+[master 7a60355] Make IRCclient
+ 2 files changed, 15 insertions(+), 7 deletions(-)
+ rewrite talk-client (78%)
+[master ea02b70] Make IRCclient
+ 2 files changed, 4 insertions(+), 1 deletion(-)
+[master 2fc77ac] Make IRCclient
+ 2 files changed, 2 insertions(+), 1 deletion(-)
+[master 1ea3706] Make IRCclient
+ 2 files changed, 9 insertions(+)
+ rewrite talk-client (77%)
+[master eaf7435] Make IRCclient
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+[master c2c295e] Make IRCclient
+ 2 files changed, 1 insertion(+), 1 deletion(-)
+[master a4484a6] Make IRCclient
+ 2 files changed, 1 insertion(+), 1 deletion(-)
+[master 9436ee8] Make IRCclient
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+[master e2f9c72] Make IRCclient
+ 2 files changed, 1 insertion(+)
+[master e329ed7] Make IRCclient
+ 2 files changed, 1 insertion(+), 1 deletion(-)
+[master 7fc14c7] Make IRCclient
+ 2 files changed, 4 insertions(+), 4 deletions(-)
+[master e89d0f2] Make IRCclient
+ 2 files changed, 9 insertions(+), 9 deletions(-)
+[master d814e20] Make IRCclient
+ 2 files changed, 1 insertion(+), 1 deletion(-)
+[master c51da3f] Make IRCclient
+ 2 files changed, 1 insertion(+), 1 deletion(-)
+[master 396146d] Make IRCclient
+ 2 files changed, 6 insertions(+), 3 deletions(-)
+ rewrite talk-client (61%)

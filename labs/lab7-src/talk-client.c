@@ -256,16 +256,38 @@ void listRooms() {
 	
 	free(response);
 	//int listExists = 1;
-
+	char * tempString;
+	gboolean parentExists;
+	gboolean childExists;
+	GtkTreeIter parent;
 	//if (!gtk_tree_model_get_iter_first(GTK_TREE_MODEL(treeModel), &toplevel)) {
 		for (int i = 0; i < nRooms; i++) {
-			gtk_tree_store_append (treeModel, &toplevel, NULL);
-			gtk_tree_store_set (treeModel, &toplevel, 0, roomArray[i].name, -1);
+
+			/*if (iterFirst && parentExists)
+				gtk_tree_model_get(GTK_TREE_MODEL(treeModel), &toplevel, 0, &tempString, -1);
+			else
+				tempString = strdup("");
+			if (strcmp(tempString, roomArray[i].name)){*/
+				gtk_tree_store_append (treeModel, &toplevel, NULL);
+				gtk_tree_store_set (treeModel, &toplevel, 0, roomArray[i].name, -1);
+			//}
+			//childExists = gtk_tree_model_iter_children(GTK_TREE_MODEL(treeModel), &child, &toplevel);
+			
+			//while (gtk_tree_model_iter_parent(GTK_TREE_MODEL(treeModel), &parent, &toplevel));
+
 			for (int j = 0; j < roomArray[i].nUsers; j++) {
-				gtk_tree_store_append (treeModel, &child, &toplevel);
-				gtk_tree_store_set (treeModel, &child, 0, roomArray[i].usersInRoom[j], -1);
-				free(roomArray[i].usersInRoom[j]);
+				/*if (childExists)
+					gtk_tree_model_get(GTK_TREE_MODEL(treeModel), &child, 0, &tempString, -1);
+				if (strcmp(tempString, roomArray[i].usersInRoom[j])){*/
+					//printf("%s\n", tempString);
+					gtk_tree_store_append (treeModel, &child, &toplevel);
+					gtk_tree_store_set (treeModel, &child, 0, roomArray[i].usersInRoom[j], -1);
+					free(roomArray[i].usersInRoom[j]);
+				//}
+				//childExists = gtk_tree_model_iter_next(GTK_TREE_MODEL(treeModel), &child);
 			}
+			//parentExists = gtk_tree_model_iter_next(GTK_TREE_MODEL(treeModel), &toplevel);
+			//g_free(tempString);
 			free(roomArray[i].name);
 			//free(roomArray[i]);
 		}
@@ -311,9 +333,9 @@ void enterRoom(char * roomName) {
 	if (!strcmp(response,"OK\r\n")) {
 		printf("User %s added to %s\n", user, roomName);
 	
-	char message[ MAX_RESPONSE ];
-	sprintf(message, "%s SYSTEM %s has entered the room", currentRoom, user);
-	sendCommand(host, port, "SEND-MESSAGE", user, password, message, response);
+	//char message[ MAX_RESPONSE ];
+	//sprintf(message, "%s SYSTEM %s has entered the room", currentRoom, user);
+	//sendCommand(host, port, "SEND-MESSAGE", user, password, message, response);
 	}
 }
 
@@ -884,6 +906,9 @@ int main(int argc, char **argv) {
   	gtk_widget_show_all(window);
   	gtk_widget_hide(window);
   	createAccount(window);
+  	char windowName[MAX_RESPONSE];
+  	sprintf(windowName, "IRC Client - %s", user);
+  	gtk_window_set_title(GTK_WINDOW(window), windowName);
 
   	listRooms();
 
