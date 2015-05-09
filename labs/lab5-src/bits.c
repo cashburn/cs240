@@ -26,10 +26,18 @@ void setBitAt( unsigned int *bitmap, int i, int bitValue ) {
 // It returns the number of bits with a value "bitValue".
 // if bitValue is 0, it returns the number of 0s. If bitValue is 1, it returns the number of 1s.
 int countBits( unsigned int bitmap, unsigned int bitValue) {
-	int count = 0;
+	/*int count = 0;
 	for (int i = 0; i < 32; i++) {
 		if (getBitAt(bitmap, i) == bitValue)
 			count++;
+	}
+	return count;*/
+
+	int count = 0;
+	for (int i = 0; i < 32; i++) {
+		if (bitmap & 1)
+			count++;
+		bitmap = bitmap >> 1;
 	}
 	return count;
 }
@@ -71,5 +79,46 @@ void printBits(unsigned int bitmap) {
 		printf("%d", i%10);
 	printf("\n");
 }
+
+unsigned int replaceBits (unsigned int val, unsigned int from, unsigned int to, int n) {
+	int count = 0;
+	unsigned int newVal = 0;
+
+	printBits(from);
+	printBits(to);
+	printf("\n");
+	for (int i = 0; i < 32; i++) {
+		while ((from&1) == (val&1)) {
+			from = from >> 1;
+			val = val >> 1;
+			count++;
+			if (count == n) {
+
+				val = val << count;
+				from = from << count;
+				count = 0;
+				printBits(val);
+				
+				printBits(from);
+				printBits(newVal);
+
+				printf("\n");
+				for (int i = 0; i < n; i++) {
+					newVal = newVal | (to & 1);
+					newVal = newVal >> 1;
+					to >> 1;
+				}
+				to << n;
+			}
+		}
+		val >> 1;
+		newVal = newVal | (to & 1);
+		newVal = newVal >> 1;
+	}
+	//newVal << 1;
+	return newVal;
+}
+
+
 
 

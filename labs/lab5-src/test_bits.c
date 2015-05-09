@@ -113,6 +113,19 @@ void test5()
 	printf("maxContinuousOnes(b, &pos)=%d pos=%d\n", count, pos);
 }
 
+void test6() {
+	unsigned int val = 0b1001001010010100;
+	unsigned int from = 0b101;
+	unsigned int to = 0b111;
+	int n = 3;
+	printBits(val);
+	unsigned int result = replaceBits(val, from, to, n);
+	printBits(result);
+
+	//unsigned int value = 0b1001001010010100;
+	//printf("%d\n", countBits(value, 1));
+}
+
 int main( int argc, char ** argv )
 {
 	if (argc < 2) {
@@ -121,7 +134,7 @@ int main( int argc, char ** argv )
 	}
 
 	if (strcmp(argv[1],"test1")==0) {
-		test1();
+		test6();
 	}
 	else if (strcmp(argv[1],"test2")==0) {
 		test2();
